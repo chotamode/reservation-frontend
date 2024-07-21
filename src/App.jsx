@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage.jsx';
+import ProfilePage from "./pages/ProfilePage.jsx";
+
+const dummyUser = {
+  name: 'John Doe',
+  email: 'john.doe@example.com'
+};
+
+const dummyPsychologists = [
+  { id: 1, name: 'Dr. Smith', specialization: 'Clinical Psychology', experience: 10, contact: 'smith@example.com' },
+  { id: 2, name: 'Dr. Johnson', specialization: 'Counseling Psychology', experience: 8, contact: 'johnson@example.com' },
+  // Add more dummy data as needed
+];
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/profile" element={<ProfilePage user={dummyUser} psychologists={dummyPsychologists} />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
