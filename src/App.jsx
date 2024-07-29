@@ -1,25 +1,22 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from "./pages/ProfilePage.jsx";
-
-const dummyUser = {
-  name: 'John Doe',
-  email: 'john.doe@example.com'
-};
-
-const dummyPsychologists = [
-  { id: 1, name: 'Dr. Smith', specialization: 'Clinical Psychology', experience: 10, contact: 'smith@example.com' },
-  { id: 2, name: 'Dr. Johnson', specialization: 'Counseling Psychology', experience: 8, contact: 'johnson@example.com' },
-  // Add more dummy data as needed
-];
+import RegistrationPage from "./pages/RegistrationPage.jsx";
+import PsychologistDetailsPage from './pages/PsychologistDetailsPage.jsx';
+import useAuth from "./hooks/useAuth.js";
 
 function App() {
+  const { user } = useAuth(); // Use the useAuth hook
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfilePage user={dummyUser} psychologists={dummyPsychologists} />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="/profile" element={user ? <ProfilePage user={user} /> : <Navigate to="/login" />} />
+        <Route path="/psychologist/:id" element={<PsychologistDetailsPage />} />
       </Routes>
     </Router>
   );
