@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormField from "../components/FormField.jsx";
-import { signup } from '../utils/api.js';
+import { signup } from '../utils/auth.js';
 
 function RegistrationPage() {
   const [formData, setFormData] = useState({

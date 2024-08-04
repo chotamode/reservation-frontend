@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
 
-function Slot({ time, onReserve, reserved }) {
+interface SlotProps {
+    time: string;
+    onReserve: (time: string) => void;
+    reserved: boolean;
+}
+
+const Slot: React.FC<SlotProps> = ({ time, onReserve, reserved }) => {
     return (
         <div className={`slot-container p-4 rounded-lg flex justify-between items-center ${reserved ? 'bg-gray-400' : 'bg-gray-100'}`}>
             <span className="text-gray-800">{time}</span>
@@ -13,7 +19,7 @@ function Slot({ time, onReserve, reserved }) {
             </button>
         </div>
     );
-}
+};
 
 Slot.propTypes = {
     time: PropTypes.string.isRequired,

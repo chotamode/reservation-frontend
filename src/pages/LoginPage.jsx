@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import "../App.css";
-import supabase from "../supabaseClient.js";
-import FormField from '../components/FormField.jsx'; // Ensure this import is correct
+import FormField from '../components/FormField.jsx';
+import { login } from '../utils/auth.js';
+import useAuth from '../hooks/useAuth.js';
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ function LoginPage() {
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { user, isPsychologist } = useAuth(); // Retrieve user from useAuth
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -25,14 +27,12 @@ function LoginPage() {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
-
-      if (error) throw error;
-
-      navigate('/profile');
+      await login(formData);
+      if (isPsychologist) {
+        navigate(`/psychologist-profile/${user.id}`);
+      } else {
+        navigate('/profile');
+      }
     } catch (err) {
       setError(err.message);
     }
