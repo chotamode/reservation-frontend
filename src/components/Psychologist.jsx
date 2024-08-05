@@ -14,7 +14,6 @@ function Psychologist({ psychologist }) {
 Psychologist.propTypes = {
   psychologist: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
     specialization: PropTypes.string.isRequired,
     experience: PropTypes.number.isRequired,
     contact: PropTypes.string.isRequired,
