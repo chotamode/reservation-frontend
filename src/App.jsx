@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -17,7 +16,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/profile" element={user && !isPsychologist ? <ProfilePage user={user} /> : <Navigate to="/login" />} />
+        <Route path="/profile" element={user && !isPsychologist ? <ProfilePage/> : <Navigate to="/login" />} />
         <Route path="/psychologist/:id" element={<PsychologistDetailsPage />} />
         <Route path="/create-slot" element={user ? <CreateSlotsPage /> : <Navigate to="/login" />} />
         <Route path="/psychologist-profile/:id" element={isPsychologist ? <PsychologistProfilePage /> : <Navigate to="/login" />} />

@@ -1,52 +1,20 @@
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import config from '../config.js';
+import useFetchPsychologist from '../hooks/useFetchPsychologist';
+import useFetchSlots from '../hooks/useFetchSlots';
 
 function PsychologistProfilePage() {
   const { id } = useParams();
-  const [psychologist, setPsychologist] = useState(null);
-  const [slots, setSlots] = useState([]);
-  const [error, setError] = useState(null);
+  const { psychologist, error: psychologistError } = useFetchPsychologist(id);
+  const { slots, error: slotsError } = useFetchSlots(id);
 
-  useEffect(() => {
-    const fetchPsychologist = async () => {
-      try {
-        const response = await fetch(`${config.backendUrl}/psychologists/${id}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const data = await response.json();
-        setPsychologist(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    const fetchSlots = async () => {
-      try {
-        const response = await fetch(`${config.backendUrl}/slots?psychologist_id=${id}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const data = await response.json();
-        setSlots(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchPsychologist();
-    fetchSlots();
-  }, [id]);
-
-  if (error) return <div>Error: {error}</div>;
+  if (psychologistError || slotsError) return <div>Error: {psychologistError || slotsError}</div>;
   if (!psychologist) return <div>Loading...</div>;
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-2">{psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        {psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}
+      </h2>
       <p className="text-md text-gray-600">Specialization: {psychologist.specialization}</p>
       <p className="text-md text-gray-600">Experience: {psychologist.experience} years</p>
       <p className="text-md text-gray-600 mb-4">Contact: {psychologist.contact}</p>

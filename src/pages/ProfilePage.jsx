@@ -3,11 +3,36 @@ import Psychologist from '../components/Psychologist';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import config from '../config.js';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-function ProfilePage({ user }) {
-  const { logout } = useAuth();
+function ProfilePage() {
+  const { user, logout } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
   const [psychologists, setPsychologists] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await fetch(`${config.backendUrl}/user/${user.id}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        const data = await response.json();
+        setUserDetails(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user) {
+      fetchUserDetails();
+    }
+  }, [user]);
 
   useEffect(() => {
     const fetchPsychologists = async () => {
@@ -27,12 +52,18 @@ function ProfilePage({ user }) {
     fetchPsychologists();
   }, []);
 
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div className="container mx-auto p-4">
-      {user && (
+      {userDetails && (
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">Welcome, {user.name}!</h1>
-          <p>Email: {user.email}</p>
+          <h1 className="text-3xl font-bold">Welcome, {userDetails.name}!</h1>
+          <p>Phone: {userDetails.phone}</p>
+          <p>Email: {userDetails.email}</p>
+          <p>Full Name: {userDetails.surname + ' ' + userDetails.name + ' ' + userDetails.patronymic}</p>
+          <p>Telegram Nickname: {userDetails.tg_username}</p>
           <button onClick={logout} className="btn btn-primary">Logout</button>
         </div>
       )}
@@ -49,9 +80,12 @@ function ProfilePage({ user }) {
 }
 
 ProfilePage.propTypes = {
-  user: PropTypes.shape({
+  userDetails: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
+    phone: PropTypes.string,
+    fullName: PropTypes.string,
+    telegramNickname: PropTypes.string,
   }),
 };
 

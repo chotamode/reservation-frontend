@@ -9,6 +9,8 @@ function RegistrationPage() {
     surname: '',
     patronymic: '',
     email: '',
+    tg_username: '',
+    phone: '',
     password: '',
   });
   const [error, setError] = useState(null);
@@ -43,6 +45,8 @@ function RegistrationPage() {
         <FormField id="surname" label="Фамилия" type="text" value={formData.surname} onChange={handleChange} />
         <FormField id="patronymic" label="Отчество" type="text" value={formData.patronymic} onChange={handleChange} />
         <FormField id="email" label="Email" type="email" value={formData.email} onChange={handleChange} />
+        <FormField id="tg_username" label="Telegram username" type="text" value={formData.tg_username} onChange={handleChange} />
+        <FormField id="phone" label="Телефон" type="text" value={formData.phone} onChange={handleChange} />
         <FormField id="password" label="Пароль" type="password" value={formData.password} onChange={handleChange} />
         <div className="flex items-center justify-between">
           <button

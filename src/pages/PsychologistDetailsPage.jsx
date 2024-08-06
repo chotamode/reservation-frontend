@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Slot from '../components/Slot.tsx';
 import reserveSlot from "../utils/reserveSlot.js";
 import useAuth from "../hooks/useAuth.js";
-import config from '../config.js';
+import useFetchPsychologistDetails from '../hooks/useFetchPsychologistDetails';
+import useFetchSlots from '../hooks/useFetchSlots';
 
 function PsychologistDetailsPage() {
     const { id } = useParams();
-    const [psychologist, setPsychologist] = useState(null);
-    const [slots, setSlots] = useState([]);
+    const { psychologist, error: psychologistError } = useFetchPsychologistDetails(id);
+    const { slots, error: slotsError } = useFetchSlots(id);
     const { user } = useAuth();
-
-    useEffect(() => {
-        const fetchPsychologistDetails = async () => {
-            try {
-                const response = await fetch(`${config.backendUrl}/psychologists/${id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const data = await response.json();
-                setPsychologist(data.psychologist);
-                setSlots(data.slots);
-            } catch (error) {
-                console.error("Failed to fetch psychologist details:", error.message);
-            }
-        };
-
-        fetchPsychologistDetails();
-    }, [id]);
 
     const handleReserve = async (slotId) => {
         try {
@@ -37,7 +18,6 @@ function PsychologistDetailsPage() {
                 alert(result.error);
             } else {
                 alert('Slot reserved successfully!');
-                // Optionally, refresh the slots to show the updated reservation status
             }
         } catch (error) {
             console.error("Reservation error:", error.message);
@@ -45,6 +25,7 @@ function PsychologistDetailsPage() {
         }
     };
 
+    if (psychologistError || slotsError) return <div>Error: {psychologistError || slotsError}</div>;
     if (!psychologist) return <div>Loading...</div>;
 
     return (
