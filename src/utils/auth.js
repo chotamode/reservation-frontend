@@ -1,4 +1,3 @@
-// src/utils/auth.js
 import config from '../config.js';
 import supabase from './supabaseClient.js';
 

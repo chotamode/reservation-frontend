@@ -1,12 +1,14 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Slot from '../components/Slot.tsx';
 import reserveSlot from "../utils/reserveSlot.js";
 import useAuth from "../hooks/useAuth.js";
 import useFetchPsychologistDetails from '../hooks/useFetchPsychologistDetails';
 import useFetchSlots from '../hooks/useFetchSlots';
+import SubscriptionForm from '../components/SubscriptionForm';
 
 function PsychologistDetailsPage() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const { psychologist, error: psychologistError } = useFetchPsychologistDetails(id);
     const { slots, error: slotsError } = useFetchSlots(id);
     const { user } = useAuth();
@@ -25,11 +27,18 @@ function PsychologistDetailsPage() {
         }
     };
 
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     if (psychologistError || slotsError) return <div>Error: {psychologistError || slotsError}</div>;
     if (!psychologist) return <div>Loading...</div>;
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+            <button onClick={handleGoBack} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4">
+                Go Back
+            </button>
             <h2 className="text-2xl font-bold text-gray-800 mb-2">{psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}</h2>
             <p className="text-md text-gray-600">Specialization: {psychologist.specialization}</p>
             <p className="text-md text-gray-600">Experience: {psychologist.experience} years</p>
@@ -46,6 +55,8 @@ function PsychologistDetailsPage() {
                     />
                 ))}
             </div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3 mt-6">Buy Subscription</h3>
+            <SubscriptionForm psychologistId={id} />
         </div>
     );
 }

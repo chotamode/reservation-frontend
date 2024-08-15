@@ -49,11 +49,11 @@ function RegistrationPage() {
         <FormField id="phone" label="Телефон" type="text" value={formData.phone} onChange={handleChange} />
         <FormField id="password" label="Пароль" type="password" value={formData.password} onChange={handleChange} />
         <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
             Регистрация
+          </button>
+          <button type="button" onClick={() => navigate('/register-psychologist')} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Register as Psychologist
           </button>
         </div>
       </form>

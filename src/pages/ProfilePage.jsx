@@ -65,8 +65,12 @@ function ProfilePage() {
               <p>Email: {userDetails.email}</p>
               <p>Full Name: {userDetails.surname + ' ' + userDetails.name + ' ' + userDetails.patronymic}</p>
               <p>Telegram Nickname: {userDetails.tg_username}</p>
-              <button onClick={logout} className="btn btn-primary">Logout</button>
-              <button onClick={() => navigate(`/update-user/${user.id}`)} className="btn btn-secondary">Edit Profile</button>
+              <button onClick={logout} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Logout
+              </button>
+              <button onClick={() => navigate(`/update-user/${user.id}`)} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ml-4">
+                Edit Profile
+              </button>
             </div>
         )}
         <h2 className="text-2xl font-bold mb-4">Available Psychologists</h2>
@@ -91,4 +95,4 @@ ProfilePage.propTypes = {
   }),
 };
 
-export default ProfilePage
+export default ProfilePage;

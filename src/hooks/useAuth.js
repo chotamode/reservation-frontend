@@ -11,6 +11,7 @@ function useAuth() {
     return savedSession ? JSON.parse(savedSession)?.user : null;
   });
   const [isPsychologist, setIsPsychologist] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const getSession = async () => {
@@ -20,11 +21,12 @@ function useAuth() {
         setSession(session);
         setUser(session.user);
         checkIfPsychologist(session.user.id);
+        checkIfAdmin(session.user.id);
       }
     };
 
     const checkIfPsychologist = async (userId) => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('psychologists')
         .select('id')
         .eq('id', userId)
@@ -34,15 +36,28 @@ function useAuth() {
       }
     };
 
+    const checkIfAdmin = async (userId) => {
+      const { data } = await supabase
+        .from('admin')
+        .select('id')
+        .eq('id', userId)
+        .single();
+      if (data) {
+        setIsAdmin(true);
+      }
+    };
+
     getSession().then(r => r);
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, newSession) => {
       if (newSession) {
         localStorage.setItem('supabaseSession', JSON.stringify(newSession));
         checkIfPsychologist(newSession.user.id).then(r => r);
+        checkIfAdmin(newSession.user.id).then(r => r);
       } else {
         localStorage.removeItem('supabaseSession');
         setIsPsychologist(false);
+        setIsAdmin(false);
       }
       setSession(newSession);
       setUser(newSession?.user || null);
@@ -64,10 +79,11 @@ function useAuth() {
       setSession(null);
       setUser(null);
       setIsPsychologist(false);
+      setIsAdmin(false);
     }
   };
 
-  return { session, user, isPsychologist, logout };
+  return { session, user, isPsychologist, isAdmin, logout };
 }
 
 export default useAuth;

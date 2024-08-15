@@ -7,12 +7,14 @@ import PsychologistDetailsPage from './pages/PsychologistDetailsPage.jsx';
 import PsychologistProfilePage from './pages/PsychologistProfilePage.jsx';
 import UpdateUserDetails from './pages/UpdateUserDetails.jsx';
 import UpdatePsychologistDetails from './pages/UpdatePsychologistDetails.jsx';
+import RegisterPsychologistPage from './pages/RegisterPsychologistPage.jsx';
 import useAuth from './hooks/useAuth.js';
 import config from "./config.js";
 import CreateSlot from "./pages/CreateSlot.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 
 function App() {
-  const { user, isPsychologist } = useAuth();
+  const { user, isPsychologist, isAdmin } = useAuth(); // Ensure isAdmin is imported
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState(null);
@@ -48,8 +50,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/admin" element={user && isAdmin ? <AdminPage /> : <Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="/register-psychologist" element={<RegisterPsychologistPage />} />
         <Route path="/profile" element={user && !isPsychologist ? <ProfilePage userDetails={userDetails} /> : <Navigate to="/login" />} />
         <Route path="/psychologist/:id" element={<PsychologistDetailsPage />} />
         <Route path="/psychologist-profile/:id" element={isPsychologist ? <PsychologistProfilePage /> : <Navigate to="/login" />} />
