@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import Psychologist from '../components/Psychologist';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import useFetchPsychologistsBySpecialization from '../hooks/useFetchPsychologistsBySpecialization';
 import config from '../config.js';
 import { useEffect, useState } from "react";
 
@@ -9,9 +10,8 @@ function ProfilePage() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState(null);
-  const [psychologists, setPsychologists] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [specialization, setSpecialization] = useState('');
+  const { psychologists, loading, error } = useFetchPsychologistsBySpecialization(specialization);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -35,24 +35,6 @@ function ProfilePage() {
     }
   }, [user]);
 
-  useEffect(() => {
-    const fetchPsychologists = async () => {
-      try {
-        const response = await fetch(`${config.backendUrl}/psychologists`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const psychologistsData = await response.json();
-        setPsychologists(psychologistsData);
-      } catch (error) {
-        console.error("Error fetching psychologists:", error.message);
-      }
-    };
-
-    fetchPsychologists();
-  }, []);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -74,6 +56,20 @@ function ProfilePage() {
             </div>
         )}
         <h2 className="text-2xl font-bold mb-4">Available Psychologists</h2>
+        <div className="mb-4">
+          <label htmlFor="specialization" className="block text-sm font-medium text-gray-700">Select Specialization</label>
+          <select
+            id="specialization"
+            name="specialization"
+            value={specialization}
+            onChange={(e) => setSpecialization(e.target.value)}
+            className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+          >
+            <option value="">All</option>
+            <option value="Burnout">Burnout</option>
+            <option value="Depression">Depression</option>
+          </select>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {psychologists.map((psychologist) => (
               <Link to={`/psychologist/${psychologist.id}`} key={psychologist.id} className="no-underline">

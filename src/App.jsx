@@ -12,9 +12,11 @@ import useAuth from './hooks/useAuth.js';
 import config from "./config.js";
 import CreateSlot from "./pages/CreateSlot.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
+import Layout from './components/Layout.jsx';
 
 function App() {
-  const { user, isPsychologist, isAdmin } = useAuth(); // Ensure isAdmin is imported
+  const { user, isPsychologist, isAdmin } = useAuth();
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState(null);
   const [error, setError] = useState(null);
@@ -48,19 +50,21 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/admin" element={user && isAdmin ? <AdminPage /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/register-psychologist" element={<RegisterPsychologistPage />} />
-        <Route path="/profile" element={user && !isPsychologist ? <ProfilePage userDetails={userDetails} /> : <Navigate to="/login" />} />
-        <Route path="/psychologist/:id" element={<PsychologistDetailsPage />} />
-        <Route path="/psychologist-profile/:id" element={isPsychologist ? <PsychologistProfilePage /> : <Navigate to="/login" />} />
-        <Route path="/update-user/:id" element={user ? <UpdateUserDetails /> : <Navigate to="/login" />} />
-        <Route path="/update-psychologist/:id" element={isPsychologist ? <UpdatePsychologistDetails /> : <Navigate to="/login" />} />
-        <Route path="/create-slot" element={isPsychologist ? <CreateSlot /> : <Navigate to="/login" />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/admin" element={user && isAdmin ? <AdminPage /> : <Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/register-psychologist" element={<RegisterPsychologistPage />} />
+          <Route path="/profile" element={user && !isPsychologist ? <ProfilePage userDetails={userDetails} /> : <Navigate to="/login" />} />
+          <Route path="/psychologist/:id" element={<PsychologistDetailsPage />} />
+          <Route path="/psychologist-profile/:id" element={isPsychologist ? <PsychologistProfilePage /> : <Navigate to="/login" />} />
+          <Route path="/update-user/:id" element={user ? <UpdateUserDetails /> : <Navigate to="/login" />} />
+          <Route path="/update-psychologist/:id" element={isPsychologist ? <UpdatePsychologistDetails /> : <Navigate to="/login" />} />
+          <Route path="/create-slot" element={isPsychologist ? <CreateSlot /> : <Navigate to="/login" />} />
+        </Routes>
+      </Layout>
     </Router>
   );
 }

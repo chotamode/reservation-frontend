@@ -1,0 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Raleway';
+@import 'https://fonts.googleapis.com/css?family=Inter';
+@import 'https://fonts.googleapis.com/css?family=Kodchasan';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-custom {
+  @apply bg-custom-bg bg-cover bg-center min-h-screen;
+}
