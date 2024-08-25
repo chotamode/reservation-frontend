@@ -19,6 +19,7 @@
             },
             height: {
                 '26rem': '25.7rem',
+                'custom-440': '27.5rem',
             },
             maxHeight: {
                 '26rem': '25.7rem',
