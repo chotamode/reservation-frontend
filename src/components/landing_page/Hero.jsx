@@ -8,8 +8,8 @@ function Hero() {
                 <img src={MethHero} alt="MethHero"/>
             </div>
 
-            <div className="ml-auto h-full flex items-end justify-end w-1/3">
-                <img src={MethHeroHand} alt="MethHeroHand" className="w-full h-full overflow-hidden"/>
+            <div className="ml-auto h-full flex items-end justify-end w-1/3 pt-7">
+                <img src={MethHeroHand} alt="MethHeroHand" className="w-full h-full overflow-hidden rounded-b-3xl"/>
             </div>
         </div>
     );
