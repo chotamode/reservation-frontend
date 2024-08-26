@@ -38,10 +38,10 @@ function LandingPage() {
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
                 <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-2/3 w-full">
+                    <div className="flex h-3/4 w-full">
                         <Hero/>
                     </div>
-                    <div className="flex h-1/3 w-full">
+                    <div className="flex h-1/4 w-full">
                         <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
                     </div>
                 </div>
