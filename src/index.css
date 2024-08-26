@@ -8,4 +8,9 @@
 
 .bg-custom {
   @apply bg-custom-bg bg-cover bg-center min-h-screen;
+  background-attachment:fixed;
+}
+
+.body{
+  background-attachment:fixed;
 }
