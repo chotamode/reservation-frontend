@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import ArrowIcon from './../../assets/images/arrow_accordeon.svg?react';
 import AccordeonPerson from './../../assets/images/accordeon_person.svg?react';
 
-function Accordeon({contentElements}) {
+function Accordeon({ contentElements }) {
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleAccordion = (index) => {
@@ -10,9 +10,9 @@ function Accordeon({contentElements}) {
     };
 
     return (
-        <div className="w-full space-y-4 bg-white rounded-3xl border-1 border-black p-28">
+        <div className="w-full space-y-4 bg-white rounded-3xl border-1 border-black p-28 relative">
             <div className="flex flex-row h-16 items-end">
-                <AccordeonPerson className="h-full"/>
+                <AccordeonPerson className="h-full" />
                 <h1 className="text-4xl font-bold">
                     ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span>
                 </h1>
@@ -25,13 +25,16 @@ function Accordeon({contentElements}) {
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
-                            className={`transform transition-transform ${openIndex === index ? 'rotate-180' : 'rotate-0'}`}/>
+                            className={`transform transition-transform ${openIndex === index ? 'rotate-180' : 'rotate-0'}`}
+                        />
                     </button>
-                    {openIndex === index && (
+                    <div
+                        className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-screen' : 'max-h-0'}`}
+                    >
                         <div className="p-4">
                             <p>{element.text}</p>
                         </div>
-                    )}
+                    </div>
                 </div>
             ))}
         </div>
