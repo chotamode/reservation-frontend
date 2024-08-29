@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Logo from './../../assets/images/logo.svg';
-import LoginIcon from './../../assets/images/login.svg';
+import Logo from '../../assets/images/logo.svg';
+import LoginIcon from '../../assets/images/login.svg';
 
 function TopNav() {
     return (

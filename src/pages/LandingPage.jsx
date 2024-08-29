@@ -1,4 +1,4 @@
-import TopNav from "../components/landing_page/TopNav.jsx";
+import TopNav from "../components/topnav/TopNav.jsx";
 import Hero from "../components/landing_page/Hero.jsx";
 import BigButton from "../components/landing_page/BigButton.jsx";
 import Arrow from "./../assets/images/arrow.svg";
@@ -7,6 +7,8 @@ import {useState} from "react";
 import Drawer from "../components/landing_page/Drawer.jsx";
 import Carousel from "../components/landing_page/Carousel.jsx";
 import mockPsychologists from '../components/landing_page/mockPsychologists';
+import Footer from "../components/footer/Footer.jsx";
+import EmotionCard from "../components/landing_page/EmotionCard.jsx";
 
 
 function LandingPage() {
@@ -16,20 +18,28 @@ function LandingPage() {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
-    const contentElements = [
-        {
-            title: "О проекте",
-            text: "METOD - это онлайн-платформа, которая помогает людям найти психолога и записаться на консультацию онлайн."
-        },
-        {
-            title: "Как работает METOD?",
-            text: "Мы собрали для вас лучших психологов, которые помогут вам решить ваши проблемы. Выберите психолога, который вам подходит, и запишитесь на консультацию онлайн."
-        },
+    const contentElements = [{
+        title: "О проекте",
+        text: "METOD - это онлайн-платформа, которая помогает людям найти психолога и записаться на консультацию онлайн."
+    }, {
+        title: "Как работает METOD?",
+        text: "Мы собрали для вас лучших психологов, которые помогут вам решить ваши проблемы. Выберите психолога, который вам подходит, и запишитесь на консультацию онлайн."
+    },];
+
+    const emotionCardsData = [
+        {index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 2, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 3, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 4, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 5, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 6, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 7, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."},
+        {index: 8, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд."}
     ];
 
     return (
-        <div className="mx-32">
-            <div className="flex flex-col gap-8 h-screen py-10">
+        <div className="">
+            <div className="flex flex-col gap-8 h-screen">
                 <div className="md:hidden">
                     <button onClick={toggleDrawer} className="text-black">Menu</button>
                 </div>
@@ -62,69 +72,30 @@ function LandingPage() {
 
             </div>
 
-            <div className="grid grid-cols-4 gap-5 h-custom-440">
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
-
-                <span
-                    className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
-                    <p className="font-bold">
-                        Запросы с которыми работаем:
-                    </p>
-                </span>
+            <div className="">
+                <div className="grid grid-cols-4 gap-5 h-custom-440">
+                    {emotionCardsData.map((card, index) => (
+                        <EmotionCard key={index} index={card.index} title={card.title} description={card.description}/>
+                    ))}
+                </div>
+                <p className=" flex rounded-full bg-[#D3DBA8] border-1 border-black mt-5 w-3/4 font-raleway text-[0.813rem] text-center h-16 items-center justify-center font-medium">
+                    Здесь представлены лишь те не многие направления, где мы можем вам помочь, откройте весь список для
+                    ознакомления!
+                </p>
             </div>
 
-            <Carousel psychologists={mockPsychologists}/>
+            <div className={"my-32"}>
+                <Carousel psychologists={mockPsychologists}/>
+            </div>
 
-        </div>
-    );
+            <div className="flex h-44 w-full">
+                <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
+            </div>
+
+            <div className={"py-32"}>
+                <Footer/>
+            </div>
+        </div>);
 }
 
 export default LandingPage;
