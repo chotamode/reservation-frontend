@@ -9,6 +9,7 @@ import FreeDurov from "../assets/images/business/free_durov.svg";
 import SupportCard from "../components/business/SupportCard.jsx";
 import GalochkaList from "../components/business/GalochkaList.jsx";
 import BusinessChubzik from "../assets/images/business/business_chubzik.svg";
+import DialogChubzik from "../assets/images/business/dialog_chubzik.svg";
 
 function Business() {
     const galochkaItems = [
@@ -45,7 +46,7 @@ function Business() {
                             description="Вебинары, памятки, материалы для рассылки"
                         />
                         <SupportCard
-                            imgSrc={FreeDurov}
+                            imgSrc={DialogChubzik}
                             title="Консультации"
                             description="Общение с психологом в формате видео или переписки"
                         />

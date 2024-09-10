@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-function BigButton({ text, icon }) {
+function BigButton({ text, icon, onClick }) {
   return (
-    <button className="rounded-3xl bg-greenLight border-1 border-greenDark w-full h-full flex items-center justify-center">
+    <button className="rounded-3xl bg-greenLight border-1 border-greenDark w-full h-full flex items-center justify-center" onClick={onClick}>
       <p className="font-bold">
           {text}
       </p>

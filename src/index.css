@@ -10,20 +10,37 @@
 @tailwind utilities;
 
 @layer utilities {
-  .font-condensed {
-    font-stretch: condensed;
-  }
+    .font-condensed {
+        font-stretch: condensed;
+    }
 }
 
 .bg-custom {
-  @apply bg-custom-bg bg-cover bg-center min-h-screen;
-  background-attachment: fixed;
+    @apply bg-custom-bg bg-cover bg-center min-h-screen;
+    background-attachment: fixed;
 }
 
 .body {
-  /*background-attachment: fixed;*/
+    /*background-attachment: fixed;*/
 }
 
 .text-container-size {
-  font-size: calc(1vw + 1vh);
+    font-size: calc(1vw + 1vh);
+}
+
+.checkbox-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid #39442B;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-circle:checked {
+    background-color: #39442B;
 }

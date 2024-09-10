@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import ArrowIcon from './../../assets/images/arrow_accordeon.svg?react';
-import AccordeonPerson from './../../assets/images/accordeon_person.svg?react';
+import ArrowIcon from './../assets/images/dropdown_arrow.svg?react';
 
-function Accordeon({ contentElements, header }) {
+function Accordeon2({ contentElements, header, className }) {
     const [openIndex, setOpenIndex] = useState(null);
 
     const toggleAccordion = (index) => {
@@ -10,15 +9,17 @@ function Accordeon({ contentElements, header }) {
     };
 
     return (
-        <div className="w-full space-y-4 bg-white rounded-3xl border-1 border-black p-28 relative">
+        <div className={`w-full space-y-6 bg-white rounded-3xl p-24 relative ${className} mb-32`}>
             <div className="flex flex-row h-16 items-end">
-                <AccordeonPerson className="h-full" />
                 <h1 className="text-4xl font-bold">
                     {header}
                 </h1>
             </div>
             {contentElements.map((element, index) => (
-                <div key={index} className="bg-greenLight border-1 border-black rounded-3xl p-7">
+                <div
+                    key={index}
+                    className={`border-1 rounded-3xl p-7 ${openIndex === index ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
+                >
                     <button
                         className="w-full text-left focus:outline-none flex justify-between items-center rounded-3xl"
                         onClick={() => toggleAccordion(index)}
@@ -41,4 +42,4 @@ function Accordeon({ contentElements, header }) {
     );
 }
 
-export default Accordeon;
+export default Accordeon2;

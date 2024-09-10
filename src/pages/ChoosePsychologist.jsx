@@ -5,7 +5,11 @@ import TopNav from "../components/topnav/TopNav.jsx";
 import SearchIcon from "../assets/images/search.svg";
 import Footer from "../components/footer/Footer.jsx";
 
-function PsychologistCard2({psychologist}) {
+function PsychologistCard2({psychologist})
+// TODO: УБРАТЬ КНОПКУ ПОКАЗХАТЬ ВСЕХ СПЕЦ И СДЛАТЬ СКРОЛЛ
+// TODO: 
+{
+
     return (
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full">
             <div className="flex flex-col gap-7 flex-grow">
@@ -50,7 +54,7 @@ const psychologists = [{
     img: "https://xsgames.co/randomusers/assets/avatars/female/17.jpg",
     speciality: "Психотерапевт",
     description: "Мария Петрова — психотерапевт с 5-летним стажем работы. Она специализируется на психотерапии и помогает людям справиться с проблемами в отношениях, стрессом и другими психологическими проблемами.",
-    practices: ["КПТ", "Гештальт-терапия", "Гуманистическая психотерапия"]
+    practices: ["КПТ", "Гештальт-терапия", "Гуманистическая психотерапия", "КПТ", "Гештальт-терапия", "Гуманистическая психотерапия", "КПТ", "Гештальт-терапия", "Гуманистическая психотерапия"]
 }, {
     name: "Алексей Сидоров",
     img: "https://xsgames.co/randomusers/assets/avatars/male/17.jpg",
