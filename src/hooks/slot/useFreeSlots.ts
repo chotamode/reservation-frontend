@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import config from '../config.js';
+import config from '../../config.js';
 
 const useFreeSlots = (psychologistId: string) => {
     const [freeSlots, setFreeSlots] = useState([]);

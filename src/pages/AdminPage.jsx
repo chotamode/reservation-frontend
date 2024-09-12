@@ -1,6 +1,6 @@
 import React from 'react';
 import useAuth from '../hooks/useAuth';
-import useFetchPsychologists from '../hooks/useFetchPsychologists';
+import useFetchPsychologists from '../hooks/psychologist/useFetchPsychologists.js';
 import useToggleActivation from '../hooks/useToggleActivation';
 import PsychologistsTable from '../components/PsychologistsTable';
 

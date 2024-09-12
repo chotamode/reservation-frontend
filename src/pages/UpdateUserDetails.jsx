@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useAuth from '../hooks/useAuth';
-import config from '../config.js';
+import useUpdateUserDetails from '../hooks/useUpdateUserDetails';
 import TopNav from "../components/topnav/TopNav.jsx";
 import Footer from "../components/footer/Footer.jsx";
 
@@ -12,35 +11,10 @@ const creditCards = [
 
 function UpdateUserDetails() {
   const { id } = useParams();
-  const { user } = useAuth();
-  const [userDetails, setUserDetails] = useState({
-    name: '',
-    surname: '',
-    patronymic: '',
-    email: '',
-    phone: '',
-    tg_username: ''
-  });
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { userDetails, setUserDetails, loading, error, fetchUserDetails, updateUserDetails } = useUpdateUserDetails(id);
+  const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      try {
-        const response = await fetch(`${config.backendUrl}/user/${id}`, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        const data = await response.json();
-        setUserDetails(data);
-      } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchUserDetails();
   }, [id]);
 
@@ -49,22 +23,29 @@ function UpdateUserDetails() {
     setUserDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
   };
 
+  const validate = () => {
+    const errors = {};
+    if (!userDetails.name) errors.name = 'Name is required';
+    if (userDetails.name && userDetails.name.length < 2) errors.name = 'Name must be at least 2 characters';
+    if (!userDetails.surname) errors.surname = 'Surname is required';
+    if (userDetails.surname && userDetails.surname.length < 2) errors.surname = 'Surname must be at least 2 characters';
+    if (!userDetails.email) errors.email = 'Email is required';
+    if (userDetails.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(userDetails.email)) errors.email = 'Invalid email address';
+    if (!userDetails.phone) errors.phone = 'Phone is required';
+    if (userDetails.phone && !/^\+?[1-9]\d{1,14}$/.test(userDetails.phone)) errors.phone = 'Invalid phone number';
+    if (!userDetails.tg_username) errors.tg_username = 'Telegram Username is required';
+    if (userDetails.tg_username && userDetails.tg_username.length < 5) errors.tg_username = 'Telegram Username must be at least 5 characters';
+    return errors;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`${config.backendUrl}/user/update-user/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(userDetails)
-      });
-      if (!response.ok) throw new Error('Failed to update user details');
-      alert('User details updated successfully');
-    } catch (error) {
-      setError(error.message);
+    const errors = validate();
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
     }
+    await updateUserDetails(userDetails);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -84,16 +65,18 @@ function UpdateUserDetails() {
               Сменить аватар
             </button>
           </div>
-          <form className={"grid grid-cols-2 gap-5"}>
+          <form className={"grid grid-cols-2 gap-5"} onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700">Name</label>
               <input type="text" name="name" value={userDetails.name} onChange={handleChange}
                      className="w-full px-3 py-2 border rounded" placeholder="Name"/>
+              {validationErrors.name && <p className="text-red-500">{validationErrors.name}</p>}
             </div>
             <div className="mb-4">
               <label className="block text-gray-700">Surname</label>
               <input type="text" name="surname" value={userDetails.surname} onChange={handleChange}
                      className="w-full px-3 py-2 border rounded" placeholder="Surname"/>
+              {validationErrors.surname && <p className="text-red-500">{validationErrors.surname}</p>}
             </div>
             <div className="mb-4">
               <label className="block text-gray-700">Patronymic</label>
@@ -104,11 +87,13 @@ function UpdateUserDetails() {
               <label className="block text-gray-700">Phone</label>
               <input type="text" name="phone" value={userDetails.phone} onChange={handleChange}
                      className="w-full px-3 py-2 border rounded" placeholder="Phone"/>
+              {validationErrors.phone && <p className="text-red-500">{validationErrors.phone}</p>}
             </div>
             <div className="mb-4">
               <label className="block text-gray-700">Telegram Username</label>
               <input type="text" name="tg_username" value={userDetails.tg_username} onChange={handleChange}
                      className="w-full px-3 py-2 border rounded" placeholder="Telegram Username"/>
+              {validationErrors.tg_username && <p className="text-red-500">{validationErrors.tg_username}</p>}
             </div>
             <button type="submit" className="bg-[#D3DBA8] text-black py-2 rounded-2xl my-auto mx-auto px-5 ml-0">Сохранить</button>
           </form>
@@ -117,6 +102,7 @@ function UpdateUserDetails() {
               <label className="block text-gray-700">Email</label>
               <input type="email" name="email" value={userDetails.email} onChange={handleChange}
                      className="w-full px-3 py-2 border rounded" placeholder="Email"/>
+              {validationErrors.email && <p className="text-red-500">{validationErrors.email}</p>}
             </div>
             <button type="submit"
                     className="bg-[#D3DBA8] text-black py-2 rounded-2xl my-auto mx-auto px-5 ml-0">Отправить письмо с подтверждением

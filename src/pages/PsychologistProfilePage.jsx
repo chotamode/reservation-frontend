@@ -1,6 +1,6 @@
 import {useParams, useNavigate} from 'react-router-dom';
-import useFetchPsychologist from '../hooks/useFetchPsychologist';
-import useFetchSlots from '../hooks/useFetchSlots';
+import useFetchPsychologist from '../hooks/psychologist/useFetchPsychologist.js';
+import useFetchSlots from '../hooks/slot/useFetchSlots.js';
 import useAuth from '../hooks/useAuth';
 import config from '../config.js';
 import {useEffect, useState} from 'react';

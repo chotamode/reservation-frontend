@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import useFreeSlots from '../hooks/useFreeSlots';
+import useFreeSlots from '../hooks/slot/useFreeSlots';
 import useRescheduleSession from '../hooks/useRescheduleSession';
 
 interface SlotProps {

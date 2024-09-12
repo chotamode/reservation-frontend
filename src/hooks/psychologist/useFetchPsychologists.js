@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import config from '../config.js';
+import config from '../../config.js';
 
 function useFetchPsychologists() {
   const [psychologists, setPsychologists] = useState([]);

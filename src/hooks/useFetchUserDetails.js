@@ -4,6 +4,7 @@ import config from '../config.js';
 function useFetchUserDetails(id) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -17,13 +18,15 @@ function useFetchUserDetails(id) {
         setUser(data.user);
       } catch (error) {
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchUserDetails();
   }, [id]);
 
-  return { user, error };
+  return { user, error, loading };
 }
 
 export default useFetchUserDetails;

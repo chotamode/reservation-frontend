@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import {useNavigate} from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
-import useFetchPsychologistsBySpecialization from '../hooks/useFetchPsychologistsBySpecialization';
-import config from '../config.js';
-import {useEffect, useState} from "react";
+import useFetchPsychologistsBySpecialization from '../hooks/psychologist/useFetchPsychologistsBySpecialization.js';
+import useFetchUserDetails from '../hooks/useFetchUserDetails';
 import TopNav from "../components/topnav/TopNav.jsx";
 import Footer from "../components/footer/Footer.jsx";
 import userIcon from '../assets/images/user.svg';
@@ -11,77 +10,38 @@ import newConsultationIcon from '../assets/images/profile/new_consult.svg';
 import starIcon from '../assets/images/profile/star.svg';
 import giftIcon from '../assets/images/profile/gift.svg';
 import {PaymentTable} from "../components/PaymentTable.jsx";
+import useFetchCustomerReservations from "../hooks/useFetchCustomerReservations.ts";
+import {useState} from "react";
 
-const payments = [{date: '01/01/2023', amount: '500', status: 'Completed'}, {
-    date: '15/01/2023', amount: '1000', status: 'Pending'
-}, {date: '20/01/2023', amount: '1500', status: 'Failed'},];
-
-const propUpcomingSessions = [{
-    dateAndTime: "12/12/2023 10:00",
-    status: "Confirmed",
-    duration: "50",
-    individualOrGroup: "Индивидуально",
-    psychologistName: "Иван Иванов"
-}, {
-    dateAndTime: "13/12/2023 10:00",
-    status: "Confirmed",
-    duration: "50",
-    individualOrGroup: "Индивидуально",
-    psychologistName: "Иван Иванов"
-}, {
-    dateAndTime: "14/12/2023 10:00",
-    status: "Pending",
-    duration: "50",
-    individualOrGroup: "Индивидуально",
-    psychologistName: "Иван Иванов"
-},
+const payments = [
+    {date: '01/01/2023', amount: '500', status: 'Completed'},
+    {date: '15/01/2023', amount: '1000', status: 'Pending'},
+    {date: '20/01/2023', amount: '1500', status: 'Failed'},
 ];
-const propFinishedSessions = [{
-    dateAndTime: "12/12/2023 10:00",
-    status: "Finished",
-    duration: "50",
-    individualOrGroup: "Индивидуально",
-    psychologistName: "Иван Иванов"
-}, {
-    dateAndTime: "13/12/2023 10:00",
-    status: "Finished",
-    duration: "50",
-    individualOrGroup: "Индивидуально",
-    psychologistName: "Иван Иванов"
-}];
-
 
 function ProfilePage() {
     const {user, logout} = useAuth();
     const navigate = useNavigate();
-    const [userDetails, setUserDetails] = useState(null);
     const [specialization, setSpecialization] = useState('');
-    const {psychologists, loading, error} = useFetchPsychologistsBySpecialization(specialization);
+    const {
+        psychologists,
+        loading: loadingPsychologists,
+        error: errorPsychologists
+    } = useFetchPsychologistsBySpecialization(specialization);
+    const {
+        upcomingReservations,
+        finishedReservations,
+        loading: loadingReservations,
+        error: errorReservations
+    } = useFetchCustomerReservations(user.id);
+    const {
+        user: userDetails,
+        error: errorUserDetails,
+        loading: loadingUserDetails
+    } = useFetchUserDetails(user.id);
 
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const response = await fetch(`${config.backendUrl}/user/${user.id}`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const data = await response.json();
-                setUserDetails(data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        if (user) {
-            fetchUserDetails();
-        }
-    }, [user]);
-
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (loadingPsychologists || loadingReservations || loadingUserDetails) return <div>Loading...</div>;
+    if (errorPsychologists || errorReservations || errorUserDetails) return <div>Error: {errorPsychologists || errorReservations || errorUserDetails}</div>;
 
     const handleProfileClick = () => {
         navigate(`/update-user/${user.id}`);
@@ -99,7 +59,7 @@ function ProfilePage() {
                 <div>
                     <div className={"flex flex-row justify-between items-center mb-7"}>
                         <h1 className="text-2xl font-bold">
-                            Добро пожаловать в личный кабинет, Мария!
+                            Добро пожаловать в личный кабинет, {userDetails?.name}!
                         </h1>
                         <button
                             className={"rounded-2xl bg-red-500 text-white px-7 h-10"}
@@ -130,37 +90,11 @@ function ProfilePage() {
                             <p>500 рублей</p>
                         </div>
                     </div>
-
-                </div>
-
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
-                <h1 className="text-2xl font-bold mb-5">
-                    Предстоящие сессии:
-                </h1>
-                {/*//TODO: предстоящие сессии сделать скролл и у клиента тоже!!!!*/}
-                {propUpcomingSessions.map((session) => upcomingSession(session.dateAndTime, session.status, session.duration, session.individualOrGroup, session.psychologistName))}
-                <div className="flex justify-end mt-4 mb-0">
-                    <button>
-                        <p>
-                            Показать все
-                        </p>
-                    </button>
                 </div>
             </div>
 
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
-                <h1 className="text-2xl font-bold mb-5">
-                    Прошедшие сессии:
-                </h1>
-                {propFinishedSessions.map((session) => upcomingSession(session.dateAndTime, session.status, session.duration, session.individualOrGroup, session.psychologistName))}
-                <button className="flex justify-end mt-4 mb-0">
-                    <p>
-                        Показать все
-                    </p>
-                </button>
-            </div>
+            {upcomingSessions(upcomingReservations)}
+            {finishedSessions(finishedReservations)}
 
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">
@@ -196,39 +130,70 @@ function ProfilePage() {
             </div>
 
             <Footer/>
-        </div>);
+        </div>
+    );
 }
 
 function getStatusColor(status) {
     switch (status) {
-        case 'Confirmed':
+        case 'confirmed':
             return 'bg-[#E9EFC8]';
-        case 'Finished':
+        case 'finished':
             return 'bg-[#E5E7EB]';
-        case 'Pending':
+        case 'pending':
             return 'bg-[#DBEAFE]';
+        case 'canceled':
+            return 'bg-[#FECACA]';
         default:
             return 'bg-[#E9EFC8]';
     }
 }
 
-function upcomingSession(dateAndTime, status, duration, individualOrGroup, psychologistName) {
+function upcomingSessions(upcomingSessions) {
+    return (
+        <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+            <h1 className="text-2xl font-bold mb-5">
+                Предстоящие сессии:
+            </h1>
+            <div className={"flex flex-col gap-2 overflow-auto max-h-96"}>
+                {upcomingSessions.map((session) => upcomingSession(session.slots[0].time, session.status, session.format, session.slots[0].psychologists.system_users.name, session.slots[0].psychologists.system_users.surname, session.slots[0].psychologists.system_users.patronymic))}
+            </div>
+        </div>
+    )
+}
+
+function finishedSessions(finishedSessions) {
+    return (
+        <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+            <h1 className="text-2xl font-bold mb-5">
+                Прошедшие сессии:
+            </h1>
+            <div className={"flex flex-col gap-2 overflow-auto max-h-96"}>
+                {finishedSessions.map((session) => upcomingSession(session.slots[0].time, session.status, session.format, session.slots[0].psychologists.system_users.name, session.slots[0].psychologists.system_users.surname, session.slots[0].psychologists.system_users.patronymic))}
+            </div>
+        </div>
+    )
+}
+
+function upcomingSession(time, status, format, name, surname, patronymic) {
     const statusColor = getStatusColor(status);
-    return (<div className={`rounded-3xl p-5 w-full flex flex-row justify-between ${statusColor}`}>
-        <div className={"flex flex-col gap-1"}>
-            <h3 className={"font-bold"}>{dateAndTime}</h3>
-            <p className={"text-gray-500"}>{psychologistName} - {individualOrGroup}</p>
-            <p>{status}</p>
+    return (
+        <div className={`rounded-3xl p-5 w-full flex flex-row justify-between ${statusColor}`}>
+            <div className={"flex flex-col gap-1"}>
+                <h3 className={"font-bold"}>{time}</h3>
+                <p className={"text-gray-500"}>{name} {surname} {patronymic} - {format}</p>
+                <p>{status}</p>
+            </div>
+            <div className={"flex flex-row gap-5"}>
+                <button className="rounded-xl bg-black bg-opacity-10 my-auto py-2 px-8">
+                    Перенести
+                </button>
+                <button className="rounded-xl bg-[#39442B] my-auto py-2 px-8 text-white">
+                    Отменить
+                </button>
+            </div>
         </div>
-        <div className={"flex flex-row gap-5"}>
-            <button className="rounded-xl bg-black bg-opacity-10 my-auto py-2 px-8">
-                Перенести
-            </button>
-            <button className="rounded-xl bg-[#39442B] my-auto py-2 px-8 text-white">
-                Отменить
-            </button>
-        </div>
-    </div>);
+    );
 }
 
 ProfilePage.propTypes = {

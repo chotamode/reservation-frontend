@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Navigate, Route, Routes} from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage.jsx';
-import PsychologistDetailsPage from './pages/PsychologistDetailsPage.jsx';
 import PsychologistProfilePage from './pages/PsychologistProfilePage.jsx';
 import UpdateUserDetails from './pages/UpdateUserDetails.jsx';
 import UpdatePsychologistDetails from './pages/UpdatePsychologistDetails.jsx';
@@ -17,6 +16,7 @@ import Psychologists from "./pages/Psychologists.jsx";
 import ChoosePsychologist from "./pages/ChoosePsychologist.jsx";
 import Requests from "./pages/Requests.jsx";
 import FAQ from "./pages/FAQ.jsx";
+import PsychologistInfoPage from "./pages/PsychologistInfoPage.jsx";
 
 function App() {
     const {user, isPsychologist, isAdmin} = useAuth();
@@ -61,7 +61,6 @@ function App() {
                         <Route path="/profile"
                                element={user && !isPsychologist ? <ProfilePage userDetails={userDetails}/> :
                                    <Navigate to="/login"/>}/>
-                        <Route path="/psychologist/:id" element={<PsychologistDetailsPage/>}/>
                         <Route path="/psychologist-profile/:id"
                                element={isPsychologist ? <PsychologistProfilePage/> : <Navigate to="/"/>}/>
                         <Route path="/update-user/:id" element={user ? <UpdateUserDetails/> : <Navigate to="/"/>}/>
@@ -74,6 +73,7 @@ function App() {
                         <Route path="/select-psychologist" element={<ChoosePsychologist/>}/>
                         <Route path="/requests" element={<Requests/>}/>
                         <Route path="/FAQ" element={<FAQ/>}/>
+                        <Route path="/psychologist-info/:id" element={<PsychologistInfoPage />} />
                     </Routes>
                 </div>
             </Layout>

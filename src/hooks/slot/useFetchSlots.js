@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import config from '../config.js';
+import config from '../../config.js';
 
 function useFetchSlots(id) {
   const [slots, setSlots] = useState([]);

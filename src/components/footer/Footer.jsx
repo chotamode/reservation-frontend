@@ -13,7 +13,7 @@ const socialMediaData = [
 function Footer() {
     return (
         <footer
-            className="flex flex-col rounded-3xl border-black border-1 items-center justify-center bg-[#BEC598] text-white h-custom-783 pt-8">
+            className="flex flex-col rounded-3xl items-center justify-center bg-[#BEC598] text-white h-custom-783 pt-8">
             <FooterLogo/>
             <h1 className="h-12 text-5xl font-light my-12 font-kodchasan text-[#39442B]">
                 METOD@GMAIL.COM
@@ -46,6 +46,10 @@ function Footer() {
                     </a>
                 </div>
             </div>
+            <p className={"px-16 font-inter text-[#7D7D7D] font-normal mt-4"}>
+                Индивидуальный предприниматель Вахитов-Брук Руслан Эмилевич ИНН 165808340907 ГРНИП 324169000184999
+                Расч. сч. 40802810429930006967 БИК 042202824 Кор. сч. 30101810200000000824
+            </p>
         </footer>
     );
 }
