@@ -11,7 +11,8 @@ function useFetchPsychologists() {
       try {
         const response = await fetch(`${config.backendUrl}/psychologists`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json'
           }
         });
         const data = await response.json();
