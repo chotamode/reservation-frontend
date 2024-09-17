@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 
 const localizer = momentLocalizer(moment);
+const DnDCalendar = withDragAndDrop(Calendar);
 
 function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate }) {
     const [events, setEvents] = useState(slots);
@@ -39,16 +40,43 @@ function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate }) 
         }
     };
 
+    const onEventResize = ({ event, start, end }) => {
+        setEvents((prevEvents) => {
+            return prevEvents.map((e) => {
+                if (e === event) {
+                    return { ...e, start, end };
+                }
+                return e;
+            });
+        });
+    };
+
+    const onEventDrop = ({ event, start, end }) => {
+        setEvents((prevEvents) => {
+            return prevEvents.map((e) => {
+                if (e === event) {
+                    return { ...e, start, end };
+                }
+                return e;
+            });
+        });
+    };
+
     return (
         <div>
-            <Calendar
-                localizer={localizer}
+            <DnDCalendar
+                defaultDate={moment().toDate()}
+                defaultView="month"
                 events={events}
-                startAccessor="start"
-                endAccessor="end"
-                selectable
-                onSelectSlot={handleSelectSlot}
+                localizer={localizer}
+                onEventDrop={onEventDrop}
+                onEventResize={onEventResize}
                 onSelectEvent={handleSelectEvent}
+                onSelectSlot={handleSelectSlot}
+                endAccessor="end"
+                startAccessor="start"
+                selectable
+                resizable
                 style={{ height: 500 }}
             />
         </div>

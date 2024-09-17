@@ -6,6 +6,7 @@ import BusinessIcon from '../../assets/images/business/business_chubzik.svg';
 import Modal from '../Modal.jsx';
 import LoginForm from '../auth/LoginForm.jsx';
 import RegistrationForm from '../auth/RegistrationForm.jsx';
+import PsychologistRegistrationForm from '../auth/PsychologistRegistrationForm.jsx';
 import useAuth from '../../hooks/useAuth.js';
 
 function TopNav() {
@@ -67,8 +68,8 @@ function TopNav() {
                     }}
                 />
             </Modal>
-            <Modal isOpen={isPsychologistRegisterOpen} onClose={() => setIsPsychologistRegisterOpen(false)}>
-                <RegistrationForm onClose={() => setIsPsychologistRegisterOpen(false)} />
+            <Modal isOpen={isPsychologistRegisterOpen} onClose={() => setIsPsychologistRegisterOpen(false)} header={"Регистрация для психолога"}>
+                <PsychologistRegistrationForm onClose={() => setIsPsychologistRegisterOpen(false)} />
             </Modal>
         </nav>
     );

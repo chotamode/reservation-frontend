@@ -1,47 +1,53 @@
 // src/pages/PsychologistInfoPage.jsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import Footer from "../components/footer/Footer.jsx";
 import TopNav from "../components/topnav/TopNav.jsx";
 import useFetchFreeSlots from '../hooks/slot/useFetchFreeSlots';
 import useFetchPsychologistDetails from '../hooks/psychologist/useFetchPsychologistDetails';
-import Slot from '../components/Slot';
+import useFetchNearestSlots from '../hooks/slot/useFetchNearestSlots';
 import useReserveSlot from "../hooks/slot/useReserveSlot.js";
-import useAuth from "../hooks/useAuth.js";
+import Modal from '../components/Modal';
+import AppointmentWindow from '../components/AppointmentWindow';
 
 function PsychologistInfoPage() {
     const { id } = useParams();
     const { freeSlots, error: slotsError, loading: slotsLoading } = useFetchFreeSlots(id);
     const { psychologist, error: psychologistError, loading: psychologistLoading } = useFetchPsychologistDetails(id);
-    const { reserveSlot, error: reserveError } = useReserveSlot();
+    const { slots: nearestSlots, loading: nearestSlotsLoading, error: nearestSlotsError } = useFetchNearestSlots(id);
+    const { reserveSlot } = useReserveSlot();
     const [reservationError, setReservationError] = useState(null);
-    // const {user, isPsychologist, isAdmin} = useAuth();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleReserve = async (slotId) => {
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleSlotSelect = async (slotId, customerId) => {
         try {
-            await reserveSlot(slotId, 'd6a4ecdf-d874-4278-9615-b73e3c686e59');
-            // Update the free slots state
-            // setFreeSlots(freeSlots.filter(slot => slot.id !== slotId));
+            await reserveSlot(slotId, customerId);
+            setIsModalOpen(false);
         } catch (error) {
             setReservationError(error.message);
         }
     };
 
-    const handleCancel = (slotId) => {
-        // Implement cancellation logic here
-    };
-
-    if (psychologistLoading || slotsLoading) return <div>Loading...</div>;
+    if (psychologistLoading || slotsLoading || nearestSlotsLoading) return <div>Loading...</div>;
     if (psychologistError) return <div>Error: {psychologistError}</div>;
     if (slotsError) return <div>Error: {slotsError}</div>;
+    if (nearestSlotsError) return <div>Error: {nearestSlotsError}</div>;
 
     if (!psychologist) return <div>Error: Psychologist not found</div>;
 
     return (
         <div>
             <TopNav />
-            <div className="grid grid-cols-4 gap-4 my-4 rounded-3xl font-raleway items-center h-full">
+            <div className="grid grid-cols-4 gap-4 my-4 rounded-3xl items-center h-full font-roboto">
                 <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-col font-roboto items-center w-full justify-center">
                     <img src={psychologist.system_users.image} alt="psychologist" className="w-40 h-40 object-cover rounded-t-3xl filter grayscale" />
                     <h1 className="text-3xl font-bold">
@@ -58,30 +64,74 @@ function PsychologistInfoPage() {
                     <div>
                         <h2 className="text-xl font-bold mb-2">Биография</h2>
                         <p className="text-lg font-normal text-[#374151]">
-                            {psychologist.system_users.description}
+                            {psychologist.biography}
                         </p>
                     </div>
 
                     <div>
-                        <h2 className="text-xl font-bold mb-4">Свободные слоты</h2>
-                        <ul>
-                            {freeSlots.map(slot => (
-                                <Slot
-                                    key={slot.id}
-                                    id={slot.id}
-                                    time={slot.time}
-                                    onReserve={handleReserve}
-                                    onCancel={handleCancel}
-                                    reserved={false}
-                                    psychologistId={id}
-                                    userId="currentUserId" // Replace with actual user ID
-                                />
-                            ))}
-                        </ul>
+                        <h2 className="text-xl font-bold mb-2">Специализации</h2>
+                        <SpecializationPills specializations={psychologist.specializations} />
+                    </div>
+
+                    <div>
+                        <h2 className="text-xl font-bold mb-2">Сертификаты</h2>
+                        {psychologist.certificates.map((certificate) => (
+                            <p key={certificate} className="font-normal text-[#374151]">
+                                {certificate}
+                            </p>))}
                     </div>
                 </div>
             </div>
-            <Footer />
+            <div className="bg-white rounded-3xl h-full gap-4 p-9 flex flex-col font-roboto">
+                <h2 className="text-xl font-bold mb-2">Свободные временные интервалы</h2>
+                <div className={"flex flex-row justify-between items-center"}>
+                    <div className={"flex flex-row gap-2"}>
+                        {nearestSlots.map(slot => (
+                            <FreeSlotPill key={slot.id} dateAndTime={slot.time}/>
+                        ))}
+                    </div>
+                    <button className="rounded-xl bg-[#D3DBA8] font-bold py-3 px-24"
+                            onClick={handleOpenModal}>
+                        Записаться
+                    </button>
+                </div>
+
+            </div>
+            <Footer/>
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal} header="Book an Appointment">
+                <AppointmentWindow psychologistId={id} onSlotSelect={handleSlotSelect} />
+            </Modal>
+        </div>
+    );
+}
+
+function SpecializationPills({specializations}) {
+    if (!Array.isArray(specializations)) {
+        return null;
+    }
+
+    return (
+        <div className="flex flex-row gap-2">
+            {specializations.map((specialization, index) => (
+                <span key={index} className="rounded-lg bg-[#DBEAFE] px-3 py-1">
+                    <p className="font-semibold text-[#1E40AF]">
+                        {specialization}
+                    </p>
+                </span>
+            ))}
+        </div>
+    );
+}
+
+function FreeSlotPill({ dateAndTime }) {
+    const date = new Date(dateAndTime);
+    const weekDay = date.toLocaleString('ru', { weekday: 'long' });
+    const time = date.toLocaleString('ru', { hour: 'numeric', minute: 'numeric' });
+    return (
+        <div className="rounded-lg bg-[#DBEAFE] px-3 py-1 h-fit">
+            <p className="font-normal text-[#1E40AF]">
+                {weekDay}, {time}
+            </p>
         </div>
     );
 }

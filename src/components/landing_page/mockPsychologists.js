@@ -1,7 +1,7 @@
 
 const mockPsychologists = [
     {
-        image: 'https://images.pexels.com/photos/4100672/pexels-photo-4100672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        image: '',
         specialization: 'Specialization 1',
         name: 'Psychologist 1',
         description: 'Description 1',

@@ -15,7 +15,7 @@ function useFetchUserDetails(id) {
           }
         });
         const data = await response.json();
-        setUser(data.user);
+        setUser(data);
       } catch (error) {
         setError(error.message);
       } finally {

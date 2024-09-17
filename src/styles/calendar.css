@@ -1,0 +1,21 @@
+.react-calendar {
+    border-radius: 1rem;
+    overflow: hidden;
+    font: 1rem 'Roboto', sans-serif;
+    background-color: white;
+}
+
+.react-calendar__tile--bg-black {
+    color: black !important;
+}
+
+.react-calendar__tile--bg-gray-300 {
+    color: #d1d5db !important;
+}
+
+.react-calendar__tile--selected {
+    background-color: transparent !important;
+    border: 1px solid #5E6247 !important;
+    border-radius: 0.5rem;
+    color: black !important;
+}

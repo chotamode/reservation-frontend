@@ -30,7 +30,7 @@ function Requests({ requests }) {
         <div>
             <TopNav/>
             <Accordeon2
-                header={"Часто задаваемые вопросы о консультациях"}
+                header={"Запросы с которыми мы работаем"}
                 contentElements={requests}
                 className="my-12"
             />

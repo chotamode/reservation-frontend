@@ -1,3 +1,4 @@
+// src/pages/LandingPage.jsx
 import { useNavigate } from 'react-router-dom';
 import TopNav from "../components/topnav/TopNav.jsx";
 import Hero from "../components/landing_page/Hero.jsx";
@@ -7,13 +8,14 @@ import Accordeon from "../components/landing_page/Accordeon.jsx";
 import { useState } from "react";
 import Drawer from "../components/landing_page/Drawer.jsx";
 import Carousel from "../components/landing_page/Carousel.jsx";
-import mockPsychologists from '../components/landing_page/mockPsychologists';
 import Footer from "../components/footer/Footer.jsx";
 import EmotionCard from "../components/landing_page/EmotionCard.jsx";
+import useFetchPsychologists from '../hooks/psychologist/useFetchPsychologists';
 
 function LandingPage() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const navigate = useNavigate();
+    const { psychologists, loading, error } = useFetchPsychologists();
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
@@ -90,12 +92,15 @@ function LandingPage() {
                         <EmotionCard key={index} index={card.index} title={card.title} description={card.description} />
                     ))}
                 </div>
-                {/*<p className=" flex rounded-full bg-[#D3DBA8] border-1 border-black mt-5 w-3/4 font-raleway text-[0.813rem] text-center h-16 items-center justify-center font-medium">*/}
-                {/*    Здесь представлены лишь те не многие направления, где мы можем вам помочь, откройте весь список для ознакомления!*/}
-                {/*</p>*/}
             </div>
             <div className={"my-32"}>
-                <Carousel psychologists={mockPsychologists} />
+                {loading ? (
+                    <div>Loading...</div>
+                ) : error ? (
+                    <div>Error: {error}</div>
+                ) : (
+                    <Carousel psychologists={psychologists} />
+                )}
             </div>
             <div className="flex h-44 w-full">
                 <BigButton

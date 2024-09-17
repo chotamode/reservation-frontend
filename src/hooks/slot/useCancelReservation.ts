@@ -8,7 +8,7 @@ const useCancelReservation = () => {
     const cancelReservation = async (reservationId: string) => {
         setLoading(true);
         try {
-            const response = await fetch(`${config.backendUrl}/reservations/${reservationId}`, {
+            const response = await fetch(`${config.backendUrl}/reservations/${reservationId}/cancel`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
