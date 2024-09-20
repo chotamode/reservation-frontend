@@ -10,10 +10,10 @@ function CustomDropdown({ options, selectedOptions, onChange }) {
     return (
         <div className="relative z-10 w-full">
             <button
-                className="rounded-2xl p-2 px-4 drop-shadow-md w-full text-left bg-white border-1 border-gray-300"
+                className="rounded-full p-2 px-4 drop-shadow-md w-full text-left bg-white border-1 border-gray-300"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                Выбрать пратики
+                Тип терапии
             </button>
             {isOpen && (
                 <div className="absolute bg-white border-1 border-gray-300 rounded-xl mt-2 w-full">

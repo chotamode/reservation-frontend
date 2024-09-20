@@ -84,7 +84,7 @@ function PsychologistInfoPage() {
                     </div>
                 </div>
             </div>
-            <div className="bg-white rounded-3xl h-full gap-4 p-9 flex flex-col font-roboto">
+            <div className="bg-white rounded-3xl h-full gap-4 p-9 flex flex-col font-roboto mb-5">
                 <h2 className="text-xl font-bold mb-2">Свободные временные интервалы</h2>
                 <div className={"flex flex-row justify-between items-center"}>
                     <div className={"flex flex-row gap-2"}>
