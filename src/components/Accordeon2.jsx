@@ -30,9 +30,9 @@ function Accordeon2({ contentElements, header, className }) {
                         />
                     </button>
                     <div
-                        className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-screen' : 'max-h-0'}`}
+                        className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-96' : 'max-h-0'}`}
                     >
-                        <div className="p-4">
+                        <div className="pt-4">
                             <p>{element.text}</p>
                         </div>
                     </div>
