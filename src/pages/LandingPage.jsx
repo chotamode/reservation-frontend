@@ -11,6 +11,7 @@ import Carousel from "../components/landing_page/Carousel.jsx";
 import Footer from "../components/footer/Footer.jsx";
 import EmotionCard from "../components/landing_page/EmotionCard.jsx";
 import useFetchPsychologists from '../hooks/psychologist/useFetchPsychologists';
+import icon1 from "../assets/images/cards/emotion1.svg";
 
 function LandingPage() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -43,7 +44,7 @@ function LandingPage() {
     },];
 
     const emotionCardsData = [
-        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
+        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд.", icon: icon1, iconX: "10px", iconY: "10px" },
         { index: 2, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
         { index: 3, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
         { index: 4, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
