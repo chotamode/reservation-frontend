@@ -12,6 +12,13 @@ import Footer from "../components/footer/Footer.jsx";
 import EmotionCard from "../components/landing_page/EmotionCard.jsx";
 import useFetchPsychologists from '../hooks/psychologist/useFetchPsychologists';
 import icon1 from "../assets/images/cards/emotion1.svg";
+import icon2 from "../assets/images/cards/emotion2.svg";
+import icon3 from "../assets/images/cards/emotion3.svg";
+import icon4 from "../assets/images/cards/emotion4.svg";
+import icon5 from "../assets/images/cards/emotion5.svg";
+import icon6 from "../assets/images/cards/emotion6.svg";
+import icon7 from "../assets/images/cards/emotion7.svg";
+import icon8 from "../assets/images/cards/emotion8.svg";
 
 function LandingPage() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -44,14 +51,20 @@ function LandingPage() {
     },];
 
     const emotionCardsData = [
-        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд.", icon: icon1, iconX: "10px", iconY: "10px" },
-        { index: 2, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 3, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 4, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 5, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 6, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 7, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." },
-        { index: 8, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд." }
+        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд.", icon: icon1, iconX: "130px", iconY: "10px" },
+        { index: 2, title: "Состояния души", description: "C родителями/партнерами", icon: icon2, iconX: "130px", iconY: "80px" },
+        { index: 3, title: "Коммуникативные трудности", description: "Обидчивость, застенчивость,\n" +
+                "конфликтность и тд.", icon: icon3, iconX: "160px", iconY: "40px" },
+        { index: 4, title: "Депрессивные, \n" +
+                "невротические \n" +
+                "состояния", description: "Личностные кризисы", icon: icon4, iconX: "180px", iconY: "100px" },
+        { index: 5, title: "Психосоматические\n" +
+                "расстройства", description: "", icon: icon5, iconX: "130px", iconY: "110px" },
+        { index: 6, title: "Фобические\n" +
+                "расстройства", description: "Панические состояния", icon: icon6, iconX: "130px", iconY: "110px" },
+        { index: 7, title: "Зависимости", description: "В том числе и химические", icon: icon7, iconX: "130px", iconY: "10px" },
+        { index: 8, title: "Работа с детьми \n" +
+                "и семьями", description: "", icon: icon8, iconX: "60px", iconY: "130px" },
     ];
 
     return (

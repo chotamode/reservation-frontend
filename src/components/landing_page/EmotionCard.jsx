@@ -3,15 +3,15 @@ import React from 'react';
 
 function EmotionCard({ index, title, description, icon, iconX, iconY }) {
     return (
-        <span className="rounded-3xl bg-white border-1 border-greenDark w-full h-52 flex flex-col p-7 pr-12 relative">
-            <p>
-                / {index}
+        <span className="rounded-3xl bg-white border-1 border-greenDark w-full h-52 flex flex-col p-7 pr-12 relative font-montserrat font-normal">
+            <p className={"font-montserrat font-normal"}>
+                / 0{index}
             </p>
-            <div className="flex flex-col justify-between h-full">
-                <p className="font-bold">
+            <div className="flex flex-col justify-between h-full z-10">
+                <p className="font-montserrat font-normal">
                     {title}
                 </p>
-                <p>
+                <p className={"font-raleway font-medium text-sm"}>
                     {description}
                 </p>
             </div>
@@ -19,7 +19,7 @@ function EmotionCard({ index, title, description, icon, iconX, iconY }) {
                 <img
                     src={icon}
                     alt="icon"
-                    style={{ position: 'absolute', left: iconX, top: iconY }}
+                    style={{ position: 'absolute', left: iconX, top: iconY, zIndex: 0 }}
                 />
             )}
         </span>

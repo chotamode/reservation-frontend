@@ -18,6 +18,7 @@
                 kodchasan: ['Kodchasan', 'sans-serif'],
                 raleway: ['Raleway', 'sans-serif'],
                 roboto: ['Roboto', 'sans-serif'],
+                montserrat: ['Montserrat' , 'sans-serif'],
             },
             height: {
                 '26rem': '25.7rem',
