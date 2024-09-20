@@ -25,7 +25,7 @@ function TopNav() {
     };
 
     return (
-        <nav className="bg-white shadow-lg p-4 rounded-3xl flex items-center h-28 hidden md:flex mt-11">
+        <nav className="bg-white shadow-lg p-4 rounded-3xl flex items-center h-28 hidden md:flex">
             <div className="flex-grow flex items-center w-full justify-between text-sm p-9">
                 <Link to="/">
                     <img src={Logo} alt="Logo" className="" />
