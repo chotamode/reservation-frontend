@@ -1,5 +1,5 @@
 // src/components/AuthModal.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from './Modal.jsx';
 import LoginForm from './auth/LoginForm.jsx';
 import RegistrationForm from './auth/RegistrationForm.jsx';
@@ -10,36 +10,42 @@ function AuthModal({ isOpen, onClose }) {
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [isPsychologistRegisterOpen, setIsPsychologistRegisterOpen] = useState(false);
 
+    useEffect(() => {
+        if (!isOpen) {
+            setIsLoginOpen(true);
+            setIsRegisterOpen(false);
+            setIsPsychologistRegisterOpen(false);
+        }
+    }, [isOpen]);
+
     return (
-        <>
-            <Modal isOpen={isOpen} onClose={onClose} header="Вход в личный кабинет">
-                {isLoginOpen && (
-                    <LoginForm
-                        onClose={onClose}
-                        onOpenRegister={() => {
-                            setIsLoginOpen(false);
-                            setIsRegisterOpen(true);
-                        }}
-                        onOpenPsychologistRegister={() => {
-                            setIsLoginOpen(false);
-                            setIsPsychologistRegisterOpen(true);
-                        }}
-                    />
-                )}
-                {isRegisterOpen && (
-                    <RegistrationForm
-                        onClose={onClose}
-                        onOpenLogin={() => {
-                            setIsRegisterOpen(false);
-                            setIsLoginOpen(true);
-                        }}
-                    />
-                )}
-                {isPsychologistRegisterOpen && (
-                    <PsychologistRegistrationForm onClose={onClose} />
-                )}
-            </Modal>
-        </>
+        <Modal isOpen={isOpen} onClose={onClose} header="Вход в личный кабинет">
+            {isLoginOpen && (
+                <LoginForm
+                    onClose={onClose}
+                    onOpenRegister={() => {
+                        setIsLoginOpen(false);
+                        setIsRegisterOpen(true);
+                    }}
+                    onOpenPsychologistRegister={() => {
+                        setIsLoginOpen(false);
+                        setIsPsychologistRegisterOpen(true);
+                    }}
+                />
+            )}
+            {isRegisterOpen && (
+                <RegistrationForm
+                    onClose={onClose}
+                    onOpenLogin={() => {
+                        setIsRegisterOpen(false);
+                        setIsLoginOpen(true);
+                    }}
+                />
+            )}
+            {isPsychologistRegisterOpen && (
+                <PsychologistRegistrationForm onClose={onClose} />
+            )}
+        </Modal>
     );
 }
 

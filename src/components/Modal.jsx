@@ -24,7 +24,7 @@ function Modal({isOpen, onClose, children, header}) {
     return ReactDOM.createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
             <div
-                className="bg-white p-6 rounded-3xl border-1 border-black relative w-[1200px] mx-auto py-10">
+                className="bg-white p-6 rounded-3xl border-1 border-black relative w-[1200px] mx-auto py-14 px-20">
                 <div className={"flex flex-row justify-between items-center mb-12"}>
                     <h1 className={"text-2xl text-[#39442B] font-bold ml-0"}>
                         {header}
