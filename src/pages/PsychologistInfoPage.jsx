@@ -11,6 +11,8 @@ import useReserveSlot from "../hooks/slot/useReserveSlot.js";
 import Modal from '../components/Modal';
 import AppointmentWindow from '../components/AppointmentWindow';
 
+const defaultImage = "https://images.pexels.com/photos/4100672/pexels-photo-4100672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
 function PsychologistInfoPage() {
     const { id } = useParams();
     const { freeSlots, error: slotsError, loading: slotsLoading } = useFetchFreeSlots(id);
@@ -49,7 +51,7 @@ function PsychologistInfoPage() {
             <TopNav />
             <div className="grid grid-cols-4 gap-4 my-4 rounded-3xl items-center h-full font-roboto">
                 <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-col font-roboto items-center w-full justify-center">
-                    <img src={psychologist.system_users.image} alt="psychologist" className="w-40 h-40 object-cover rounded-t-3xl filter grayscale" />
+                    <img src={psychologist.system_users.image || defaultImage} alt="psychologist" className="rounded-full w-40 h-40 filter grayscale object-cover" />
                     <h1 className="text-3xl font-bold">
                         {psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}
                     </h1>

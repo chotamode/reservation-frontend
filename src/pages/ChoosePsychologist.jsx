@@ -11,6 +11,7 @@ function PsychologistCard2({ psychologist }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const navigate = useNavigate();
     const { user } = useAuth();
+    const defaultImage = "https://images.pexels.com/photos/4100672/pexels-photo-4100672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
     const handleButtonClick = () => {
         if (user) {
@@ -24,7 +25,7 @@ function PsychologistCard2({ psychologist }) {
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
             <div className="flex flex-col gap-7 flex-grow">
                 <div className="flex flex-row gap-5 justify-start items-center">
-                    <img src={psychologist.img} alt="Psychologist" className="rounded-full w-24 h-24 filter grayscale" />
+                    <img src={psychologist.img || defaultImage} alt="Psychologist" className="rounded-full w-24 h-24 filter grayscale object-cover" />
                     <div className="flex flex-col">
                         <h1 className="font-semibold text-xl">
                             {psychologist.system_users.name} {psychologist.system_users.surname}
