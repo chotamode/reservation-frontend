@@ -22,18 +22,11 @@ function Footer() {
                 +7 920 786 456 67
             </p>
             <div className="w-[60%] mt-5 mb-36">
-                <div className="line border-1 border-[#FDFDF1] mb-10"></div>
+                <div className="line border-b-1 border-[#FDFDF1] mb-10 opacity-25"></div>
                 <SocialMedia socialMedia={socialMediaData}/>
             </div>
-            <div className="w-full flex flex-row justify-between text-8xl font-extralight font-inter opacity-25">
-                <p>walk</p>
-                <p>on</p>
-                <p>the</p>
-                <p>wellness</p>
-                <p>side</p>
-            </div>
             <div className="w-[85%]">
-                <div className="line border-1 border-[#FDFDF1]"></div>
+                <div className="line border-b-1 border-[#FDFDF1] opacity-25"></div>
                 <div className="flex justify-between items-center"></div>
                 <div className={"flex justify-between items-center mt-4"}>
                     <a href="/rules" className="flex flex-row items-center font-bold text-greenDark">

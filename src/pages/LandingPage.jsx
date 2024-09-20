@@ -94,7 +94,7 @@ function LandingPage() {
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
             <div className="flex flex-row h-44 gap-5 mb-5">
-                <span className="rounded-3xl bg-white border-1 border-greenDark w-full h-full flex items-center justify-center">
+                <span className="rounded-3xl bg-white border-greenDark w-full h-full flex items-center justify-center">
                     <p className="font-bold">
                         Запросы с которыми работаем:
                     </p>
@@ -120,7 +120,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            <div className={"my-32"}>
+            <div className={"mt-32"}>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -129,14 +129,14 @@ function LandingPage() {
                     <Carousel psychologists={psychologists}/>
                 )}
             </div>
-            <div className="flex h-44 w-full">
+            <div className="flex h-44 w-full mb-24 mt-8">
             <BigButton
                     text={"ЗАПИСАТЬСЯ"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
                 />
             </div>
-            <div className={"py-32"}>
+            <div className={""}>
                 <Footer />
             </div>
         </div>

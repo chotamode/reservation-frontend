@@ -18,7 +18,7 @@ function Accordeon2({ contentElements, header, className }) {
             {contentElements.map((element, index) => (
                 <div
                     key={index}
-                    className={`border-1 rounded-3xl p-7 ${openIndex === index ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
+                    className={`rounded-3xl p-7 ${openIndex === index ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
                 >
                     <button
                         className="w-full text-left focus:outline-none flex justify-between items-center rounded-3xl"

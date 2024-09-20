@@ -34,7 +34,7 @@ function Psychologists() {
                 </div>
             </div>
 
-            <div className="bg-white text-black p-10 rounded-3xl my-10 font-raleway flex flex-col gap-5 border-1 border-black">
+            <div className="bg-white text-black p-10 rounded-3xl my-10 font-raleway flex flex-col gap-5 border-black">
                 <h1 className={"text-2xl font-semibold"}>
                     Вы следуете за своим призванием, мы заботимся об организации
                 </h1>
@@ -42,7 +42,7 @@ function Psychologists() {
                     путь на нашей платформе, а нашим клиентам — сделать первые шаги к себе</p>
             </div>
 
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2 border-1 border-black">
+            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2 border-black">
                 <h1 className="text-2xl font-bold mb-5">
                     Давай познакомимся?
                 </h1>

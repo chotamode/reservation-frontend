@@ -3,7 +3,7 @@ import React from 'react';
 
 function EmotionCard({ index, title, description, icon, iconX, iconY }) {
     return (
-        <span className="rounded-3xl bg-white border-1 border-greenDark w-full h-52 flex flex-col p-7 pr-12 relative font-montserrat font-normal">
+        <span className="rounded-3xl bg-white border-greenDark w-full h-52 flex flex-col p-7 pr-12 relative font-montserrat font-normal">
             <p className={"font-montserrat font-normal"}>
                 / 0{index}
             </p>
