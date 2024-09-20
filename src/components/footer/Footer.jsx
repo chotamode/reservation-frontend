@@ -13,7 +13,7 @@ const socialMediaData = [
 function Footer() {
     return (
         <footer
-            className="flex flex-col rounded-3xl items-center justify-center bg-[#BEC598] text-white h-[43rem] py-8">
+            className="flex flex-col rounded-3xl items-center justify-center bg-[#BEC598] text-white h-[calc(100vh-40px)]">
             <FooterLogo/>
             <h1 className="h-12 text-5xl font-light my-12 font-kodchasan text-[#39442B]">
                 METOD@GMAIL.COM
@@ -21,7 +21,7 @@ function Footer() {
             <p className="text-white text-2xl font-inter font-normal">
                 +7 920 786 456 67
             </p>
-            <div className="w-[60%] mt-5 mb-36">
+            <div className="w-[60%] mt-5 mb-28">
                 <div className="line border-b-1 border-[#FDFDF1] mb-10 opacity-25"></div>
                 <SocialMedia socialMedia={socialMediaData}/>
             </div>

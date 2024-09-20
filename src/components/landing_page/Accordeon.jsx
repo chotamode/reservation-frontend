@@ -35,7 +35,7 @@ function Accordeon({ contentElements, header }) {
                     <div
                         className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
-                        <div className="p-4">
+                        <div className="px-7 pb-10">
                             <p>{element.text}</p>
                         </div>
                     </div>
