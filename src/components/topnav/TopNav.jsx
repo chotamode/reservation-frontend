@@ -1,18 +1,14 @@
+// src/components/topnav/TopNav.jsx
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/logo.svg';
 import LoginIcon from '../../assets/images/login.svg';
 import BusinessIcon from '../../assets/images/business/business_chubzik.svg';
-import Modal from '../Modal.jsx';
-import LoginForm from '../auth/LoginForm.jsx';
-import RegistrationForm from '../auth/RegistrationForm.jsx';
-import PsychologistRegistrationForm from '../auth/PsychologistRegistrationForm.jsx';
+import AuthModal from '../AuthModal.jsx';
 import useAuth from '../../hooks/useAuth.js';
 
 function TopNav() {
-    const [isLoginOpen, setIsLoginOpen] = useState(false);
-    const [isRegisterOpen, setIsRegisterOpen] = useState(false);
-    const [isPsychologistRegisterOpen, setIsPsychologistRegisterOpen] = useState(false);
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const { user, isPsychologist } = useAuth();
     const navigate = useNavigate();
 
@@ -24,7 +20,7 @@ function TopNav() {
                 navigate('/profile');
             }
         } else {
-            setIsLoginOpen(true);
+            setIsAuthModalOpen(true);
         }
     };
 
@@ -46,31 +42,7 @@ function TopNav() {
                     onClick={handleLoginClick}
                 />
             </div>
-            <Modal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} header="Вход в личный кабинет">
-                <LoginForm
-                    onClose={() => setIsLoginOpen(false)}
-                    onOpenRegister={() => {
-                        setIsLoginOpen(false);
-                        setIsRegisterOpen(true);
-                    }}
-                    onOpenPsychologistRegister={() => {
-                        setIsLoginOpen(false);
-                        setIsPsychologistRegisterOpen(true);
-                    }}
-                />
-            </Modal>
-            <Modal isOpen={isRegisterOpen} onClose={() => setIsRegisterOpen(false)} header={"Регистрация"}>
-                <RegistrationForm
-                    onClose={() => setIsRegisterOpen(false)}
-                    onOpenLogin={() => {
-                        setIsRegisterOpen(false);
-                        setIsLoginOpen(true);
-                    }}
-                />
-            </Modal>
-            <Modal isOpen={isPsychologistRegisterOpen} onClose={() => setIsPsychologistRegisterOpen(false)} header={"Регистрация для психолога"}>
-                <PsychologistRegistrationForm onClose={() => setIsPsychologistRegisterOpen(false)} />
-            </Modal>
+            <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
         </nav>
     );
 }

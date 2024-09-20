@@ -68,7 +68,7 @@ function ProfilePage() {
 
 
     if (loadingPsychologists || loadingReservations || loadingUserDetails || loadingNearestSlots || loadingFinishedSessionsCount || loadingBalance || loadingNearestSession) return <div>Loading...</div>;
-    if (errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount || errorBalance || errorNearestSession) return <div>Error: {errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount}</div>;
+    // if (errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount || errorBalance || errorNearestSession) return <div>Error: {errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount}</div>;
 
     const handleActivateCertificateClick = () => {
         setActivateModalOpen(true);
@@ -173,6 +173,7 @@ function ProfilePage() {
                 </div>
             </div>
 
+
             {upcomingSessions(upcomingReservations, handleReschedule, showCancelModal, rescheduleLoading, cancelLoading, rescheduleError, cancelError)}
             {finishedSessions(canceledReservations, finishedReservations)}
 
@@ -242,6 +243,15 @@ function ProfilePage() {
 
 
 function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, rescheduleLoading, cancelLoading, rescheduleError, cancelError) {
+    if (upcomingSessions.length === 0) {
+        return (
+            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+                <h1 className="text-2xl font-bold mb-5">Предстоящие сессии</h1>
+                <p>Пока что новых резенваций нет</p>
+            </div>
+        );
+    }
+
     return (
         <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
             <h1 className="text-2xl font-bold mb-5">
@@ -281,13 +291,22 @@ function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, resc
 }
 
 function finishedSessions(canceledSessions, finishedSessions) {
+    if (canceledSessions.length === 0 && finishedSessions.length === 0) {
+        return (
+            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+                <h1 className="text-2xl font-bold mb-5">Завершенные сессии</h1>
+                <p>пока что завершенных сессий нет</p>
+            </div>
+        );
+    }
+
     const transformedFinishedSessions = finishedSessions.map(session => ({
         id: session.id,
         created_at: session.created_at,
-        reservation: {
-            format: session.format,
-            status: session.status
-        },
+        reservation: session.reservation ? {
+            format: session.reservation.format,
+            status: session.reservation.status
+        } : null,
         slots: {
             time: session.slots[0].time,
             psychologists: {
@@ -309,7 +328,7 @@ function finishedSessions(canceledSessions, finishedSessions) {
             </h1>
             <div className={"flex flex-col gap-2 overflow-auto max-h-96"}>
                 {combinedSessions.map((session) => (
-                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-row justify-between ${getStatusColor(session.reservation.status)}`}>
+                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-row justify-between ${getStatusColor(session.reservation?.status)}`}>
                         <div className={"flex flex-col gap-1"}>
                             <h3 className={"font-bold"}>{new Date(session.slots.time).toLocaleString('ru-RU', {
                                 year: 'numeric',
@@ -318,8 +337,8 @@ function finishedSessions(canceledSessions, finishedSessions) {
                                 hour: '2-digit',
                                 minute: '2-digit',
                             })}</h3>
-                            <p className={"text-gray-500"}>{session.slots.psychologists.system_users.name} {session.slots.psychologists.system_users.surname} {session.slots.psychologists.system_users.patronymic} - {session.reservation.format}</p>
-                            <p>{session.reservation.status}</p>
+                            <p className={"text-gray-500"}>{session.slots.psychologists.system_users.name} {session.slots.psychologists.system_users.surname} {session.slots.psychologists.system_users.patronymic} - {session.reservation?.format}</p>
+                            <p>{session.reservation?.status}</p>
                         </div>
                     </div>
                 ))}

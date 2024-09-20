@@ -1,21 +1,28 @@
 // src/pages/ChoosePsychologist.jsx
-import PsychologistCard from "../components/landing_page/PsychologistCard.jsx";
 import {useEffect, useState} from "react";
 import TopNav from "../components/topnav/TopNav.jsx";
 import SearchIcon from "../assets/images/search.svg";
 import Footer from "../components/footer/Footer.jsx";
 import useFetchPsychologists from "../hooks/psychologist/useFetchPsychologists.js";
 import {useNavigate} from "react-router-dom";
+import AuthModal from "../components/AuthModal.jsx";
+import useAuth from "../hooks/useAuth.js";
 
 function PsychologistCard2({ psychologist }) {
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const handleButtonClick = () => {
-        navigate(`/psychologist-info/${psychologist.system_users.id}`);
-    };
+        if (user) {
+            navigate(`/psychologist-info/${psychologist.system_users.id}`);
+        } else {
+            setIsAuthModalOpen(true);
+        }
+    }
 
     return (
-        <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full">
+        <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
             <div className="flex flex-col gap-7 flex-grow">
                 <div className="flex flex-row gap-5 justify-start items-center">
                     <img src={psychologist.img} alt="Psychologist" className="rounded-full w-24 h-24 filter grayscale" />
@@ -45,6 +52,7 @@ function PsychologistCard2({ psychologist }) {
             >
                 Записаться
             </button>
+            <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
         </div>
     );
 }
@@ -113,7 +121,7 @@ function ChoosePsychologist() {
                 </select>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (

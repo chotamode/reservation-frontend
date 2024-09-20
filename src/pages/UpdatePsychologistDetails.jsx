@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import config from '../config.js';
+import AvatarUploadForm from '../components/AvatarUploadForm';
 
 function UpdatePsychologistDetails() {
   const { id } = useParams();
@@ -138,6 +139,8 @@ function UpdatePsychologistDetails() {
           ))}
         </select>
       </div>
+
+      <AvatarUploadForm />
 
       <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Update</button>
     </form>

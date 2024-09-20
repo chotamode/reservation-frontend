@@ -1,13 +1,22 @@
 import { useNavigate } from 'react-router-dom';
+import AuthModal from '../AuthModal.jsx';
+import { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
 
 function PsychologistCard({ psychologist }) {
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const { image, specialist_type, mini_description } = psychologist;
     const { name } = psychologist.system_users;
     const defaultImage = "https://images.pexels.com/photos/4100672/pexels-photo-4100672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     const handleNavigate = () => {
-        navigate(`/psychologist-info/${psychologist.id}`);
+        if (user) {
+            navigate(`/psychologist-info/${psychologist.id}`);
+        } else {
+            setIsAuthModalOpen(true);
+        }
     };
 
     return (
@@ -28,6 +37,7 @@ function PsychologistCard({ psychologist }) {
                     </button>
                 </div>
             </div>
+            <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
         </div>
     );
 }

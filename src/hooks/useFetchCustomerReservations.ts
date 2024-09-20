@@ -21,9 +21,9 @@ const useFetchCustomerReservations = (customerId: string) => {
                     throw new Error('Failed to fetch reservations');
                 }
 
-                const upcomingData = await upcomingResponse.json();
-                const finishedData = await finishedResponse.json();
-                const canceledData = await canceledResponse.json();
+                const upcomingData = (await upcomingResponse.json()) || [];
+                const finishedData = (await finishedResponse.json()) || [];
+                const canceledData = (await canceledResponse.json()) || [];
 
                 setUpcomingReservations(upcomingData);
                 setFinishedReservations(finishedData);
