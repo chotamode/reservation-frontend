@@ -44,3 +44,9 @@
 .checkbox-circle:checked {
     background-color: #39442B;
 }
+
+/*.meth-hero-animation {*/
+/*    width: 100px; !* Set the desired width *!*/
+/*    height: 100px; !* Set the height to be the same as the width *!*/
+/*    object-fit: cover; !* Ensure the image covers the entire area *!*/
+/*}*/

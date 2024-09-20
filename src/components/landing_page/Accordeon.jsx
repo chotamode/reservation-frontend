@@ -3,10 +3,14 @@ import ArrowIcon from './../../assets/images/arrow_accordeon.svg?react';
 import AccordeonPerson from './../../assets/images/accordeon_person.svg?react';
 
 function Accordeon({ contentElements, header }) {
-    const [openIndex, setOpenIndex] = useState(null);
+    const [openIndices, setOpenIndices] = useState([]);
 
     const toggleAccordion = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
+        setOpenIndices((prevOpenIndices) =>
+            prevOpenIndices.includes(index)
+                ? prevOpenIndices.filter((i) => i !== index)
+                : [...prevOpenIndices, index]
+        );
     };
 
     return (
@@ -25,11 +29,11 @@ function Accordeon({ contentElements, header }) {
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
-                            className={`transform transition-transform ${openIndex === index ? 'rotate-180' : 'rotate-0'}`}
+                            className={`transform transition-transform ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
                         />
                     </button>
                     <div
-                        className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-screen' : 'max-h-0'}`}
+                        className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
                         <div className="p-4">
                             <p>{element.text}</p>

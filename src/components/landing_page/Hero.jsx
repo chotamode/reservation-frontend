@@ -1,5 +1,6 @@
 import MethHero from "./../../assets/images/meth_hero.svg";
 import MethHeroHand from "./../../assets/images/meth_hero_hand.svg";
+import MethHeroAnimation from "./../../assets/images/meth_hero_animation.gif";
 
 function Hero() {
     return (

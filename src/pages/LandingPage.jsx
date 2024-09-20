@@ -31,10 +31,15 @@ function LandingPage() {
 
     const contentElements = [{
         title: "О проекте",
-        text: "METOD - это онлайн-платформа, которая помогает людям найти психолога и записаться на консультацию онлайн."
+        text: "Метод это безопасное пространство, помогающее наполнить себя и свое состояние. Мы бережно создаём «Метод» в котором вы можете освободиться от не нужных и лишних мыслей. Останьтесь наедине со своими чувствами, проведите время с собой. \n" +
+            "\n" +
+            "В команде проекта собрались специалисты, отражающие нашу любовь и сакральный подход  к психологии. Мы дорожим своей профессиональной репутацией и поэтому выбирая своего терапевта, вы можете быть абсолютно спокойны."
     }, {
         title: "Как работает METOD?",
-        text: "Мы собрали для вас лучших психологов, которые помогут вам решить ваши проблемы. Выберите психолога, который вам подходит, и запишитесь на консультацию онлайн."
+        text: "Приём и запись на консультацию осуществляется на нашей платформе. Вы можете выбрать для себя удобную дату и время, а так же самостоятельно ознакомиться и записаться к специалисту.\n" +
+            "Точное время консультации обговаривается  непосредственно на консультации, но как правило составляет 50-60 минут.\n" +
+            "\n" +
+            "Так же вы можете заполнить анкету и указать ваш запрос, мы свяжемся с вами и предложим несколько вариантов психологов. Наша команда состоит из терапевтов работающих в разных направлениях и методах. Поэтому вы можете быть спокойны, что с вашим запросом мы можем вам помочь."
     },];
 
     const emotionCardsData = [
@@ -80,16 +85,24 @@ function LandingPage() {
                         Запросы с которыми работаем:
                     </p>
                 </span>
-                <BigButton
-                    text={"ОТКРЫТЬ ПОЛНЫЙ СПИСОК"}
-                    icon={<img src={Arrow} alt="Arrow" />}
-                    onClick={handleOpenFullList}
-                />
+                {/*<BigButton*/}
+                {/*    text={"ОТКРЫТЬ ПОЛНЫЙ СПИСОК"}*/}
+                {/*    icon={<img src={Arrow} alt="Arrow" />}*/}
+                {/*    onClick={handleOpenFullList}*/}
+                {/*/>*/}
             </div>
             <div className="">
                 <div className="grid grid-cols-4 gap-5 h-custom-440">
                     {emotionCardsData.map((card, index) => (
-                        <EmotionCard key={index} index={card.index} title={card.title} description={card.description} />
+                        <EmotionCard
+                            key={index}
+                            index={card.index}
+                            title={card.title}
+                            description={card.description}
+                            icon={card.icon}
+                            iconX={card.iconX}
+                            iconY={card.iconY}
+                        />
                     ))}
                 </div>
             </div>
@@ -99,11 +112,11 @@ function LandingPage() {
                 ) : error ? (
                     <div>Error: {error}</div>
                 ) : (
-                    <Carousel psychologists={psychologists} />
+                    <Carousel psychologists={psychologists}/>
                 )}
             </div>
             <div className="flex h-44 w-full">
-                <BigButton
+            <BigButton
                     text={"ЗАПИСАТЬСЯ"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
