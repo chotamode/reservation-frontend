@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function FormField({ id, label, type, value, onChange, placeholder, rightButton }) {
+function FormField({ id, label, type, value, onChange = () => {}, placeholder, rightButton }) {
     return (
         <div className="relative">
             <label className="hidden" htmlFor={id}>
@@ -33,7 +33,7 @@ FormField.propTypes = {
     label: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
 };
 
 export default FormField;

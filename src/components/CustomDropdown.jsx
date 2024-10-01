@@ -2,9 +2,19 @@ import { useState } from 'react';
 
 function CustomDropdown({ options, selectedOptions, onChange }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [tempSelectedOptions, setTempSelectedOptions] = useState(selectedOptions);
 
     const handleCheckboxChange = (option) => {
-        onChange(option);
+        if (tempSelectedOptions.includes(option)) {
+            setTempSelectedOptions(tempSelectedOptions.filter((item) => item !== option));
+        } else {
+            setTempSelectedOptions([...tempSelectedOptions, option]);
+        }
+    };
+
+    const handleApply = () => {
+        onChange(tempSelectedOptions);
+        setIsOpen(false);
     };
 
     return (
@@ -23,12 +33,18 @@ function CustomDropdown({ options, selectedOptions, onChange }) {
                                 type="checkbox"
                                 value={option}
                                 onChange={() => handleCheckboxChange(option)}
-                                checked={selectedOptions.includes(option)}
+                                checked={tempSelectedOptions.includes(option)}
                                 className="mr-2"
                             />
                             {option}
                         </label>
                     ))}
+                    <button
+                        className="w-full bg-blue-500 text-white p-2 rounded-b-xl"
+                        onClick={handleApply}
+                    >
+                        Применить
+                    </button>
                 </div>
             )}
         </div>

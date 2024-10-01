@@ -3,15 +3,26 @@ import FormField2 from "./FormField2.jsx";
 
 function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     const [educationEntries, setEducationEntries] = useState([{ degree: '', institution: '', graduationYear: '' }]);
+    const [courses, setCourses] = useState([{ position: '', organization: '', duration: '' }]);
 
     const handleAddEducation = () => {
         setEducationEntries([...educationEntries, { degree: '', institution: '', graduationYear: '' }]);
+    };
+
+    const handleAddCourse = () => {
+        setCourses([...courses, { position: '', organization: '', duration: '' }]);
     };
 
     const handleEducationChange = (index, field, value) => {
         const newEntries = [...educationEntries];
         newEntries[index][field] = value;
         setEducationEntries(newEntries);
+    };
+
+    const handleCourseChange = (index, field, value) => {
+        const newCourses = [...courses];
+        newCourses[index][field] = value;
+        setCourses(newCourses);
     };
 
     return (
@@ -63,10 +74,38 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
 
             <div>
                 <h2>Курсы профессионального развития</h2>
-
+                {courses.map((course, index) => (
+                    <div key={index} className="course-entry">
+                        <FormField2
+                            id={`position-${index}`}
+                            label="Ваша должность"
+                            type="text"
+                            placeholder="Ваша должность"
+                            value={course.position}
+                            onChange={(e) => handleCourseChange(index, 'position', e.target.value)}
+                        />
+                        <FormField2
+                            id={`organization-${index}`}
+                            label="Организация"
+                            type="text"
+                            placeholder="Организация"
+                            value={course.organization}
+                            onChange={(e) => handleCourseChange(index, 'organization', e.target.value)}
+                        />
+                        <FormField2
+                            id={`duration-${index}`}
+                            label="Срок"
+                            type="text"
+                            placeholder="Срок"
+                            value={course.duration}
+                            onChange={(e) => handleCourseChange(index, 'duration', e.target.value)}
+                        />
+                    </div>
+                ))}
+                <button type="button" onClick={handleAddCourse}>Добавить курс</button>
             </div>
         </form>
-);
+    );
 }
 
 export default PsychologistRegistrationForm;
