@@ -20,6 +20,13 @@ function PsychologistCard2({ psychologist }) {
             setIsAuthModalOpen(true);
         }
     }
+    const therapy_type_colors = ['#DBEAFE','#DCFCE7', '#DBFAFE', '#FEDBDB', '#FEF3DB', '#E4DCFC', '#FCE4DC', '#F3DCFC', '#EAFCDC', '#FAFCDC', '#DBEAFE',
+                                    '#FEDBEA'];
+    
+    // const therapy_type_themes[] = ['КПТ', 'Гуманистическая', 'АСТ', 'ПДД', 'Семейная терапия','ДПДГ', 'ДПГД', 'НЛП', 'Логотерапия', 'Ценностно-ориентированный метод',
+    //                        'Эмоционально образная терапия', 'Расстановка по Берту Хеллингеру'];
+
+
 
     return (
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
@@ -40,7 +47,11 @@ function PsychologistCard2({ psychologist }) {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-10">
                     {psychologist.therapy_type.map((practice, index) => (
-                        <span key={index} className="rounded-lg bg-[#D3DBA8] p-1 px-2 text-xs">
+                        <span key={index} className="rounded-lg p-1 px-2 text-xs"
+                            style={{
+                            backgroundColor: therapy_type_colors[index % therapy_type_colors.length],
+                        }
+                        }>
                             {practice}
                         </span>
                     ))}

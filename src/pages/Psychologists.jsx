@@ -25,16 +25,18 @@ function Psychologists() {
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
                 <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-3/4 w-full">
+                    <div className="flex h-[92%] w-full">
                         <Hero/>
                     </div>
-                    <div className="flex h-1/4 w-full">
+
+                    {/*<div className="flex h-1/4 w-full">
                         <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
                     </div>
+                    */}
                 </div>
             </div>
 
-            <div className="bg-white text-black p-10 rounded-3xl my-10 font-raleway flex flex-col gap-5 border-black">
+            <div className="bg-white text-black p-10 rounded-3xl font-raleway flex flex-col gap-5 border-black">
                 <h1 className={"text-2xl font-semibold"}>
                     Вы следуете за своим призванием, мы заботимся об организации
                 </h1>
@@ -44,7 +46,7 @@ function Psychologists() {
 
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2 border-black">
                 <h1 className="text-2xl font-bold mb-5">
-                    Давай познакомимся?
+                    Давайте познакомимся?
                 </h1>
 
                 <div className="flex flex-col gap-3">

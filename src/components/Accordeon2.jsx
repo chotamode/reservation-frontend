@@ -2,10 +2,13 @@ import { useState } from 'react';
 import ArrowIcon from './../assets/images/dropdown_arrow.svg?react';
 
 function Accordeon2({ contentElements, header, className }) {
-    const [openIndex, setOpenIndex] = useState(null);
+    const [openIndices, setOpenIndices] = useState([]);
 
     const toggleAccordion = (index) => {
-        setOpenIndex(openIndex === index ? null : index);
+        setOpenIndices((prevOpenIndices) =>
+            prevOpenIndices.includes(index)
+                ? prevOpenIndices.filter((i) => i !== index)
+                : [...prevOpenIndices, index]);
     };
 
     return (
@@ -18,7 +21,7 @@ function Accordeon2({ contentElements, header, className }) {
             {contentElements.map((element, index) => (
                 <div
                     key={index}
-                    className={`rounded-3xl p-7 ${openIndex === index ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
+                    className={`rounded-3xl p-7 ${openIndices.includes(index) ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
                 >
                     <button
                         className="w-full text-left focus:outline-none flex justify-between items-center rounded-3xl"
@@ -26,11 +29,11 @@ function Accordeon2({ contentElements, header, className }) {
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
-                            className={`transform transition-transform ${openIndex === index ? 'rotate-180' : 'rotate-0'}`}
+                            className={`transform transition-transform duration-300 ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
                         />
                     </button>
                     <div
-                        className={`transition-all duration-300 overflow-hidden ${openIndex === index ? 'max-h-96' : 'max-h-0'}`}
+                        className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
                         <div className="pt-4">
                             <p>{element.text}</p>

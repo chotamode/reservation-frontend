@@ -29,7 +29,7 @@ function Accordeon({ contentElements, header }) {
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
-                            className={`transform transition-transform ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
+                            className={`transform transition-transform duration-300 ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
                         />
                     </button>
                     <div

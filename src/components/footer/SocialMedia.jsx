@@ -7,9 +7,9 @@ function SocialMedia({ socialMedia }) {
                     href={social.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-center rounded-2xl w-24 h-20 bg-[#FDFDF1]"
+                    className="flex items-center justify-center rounded-2xl w-16 h-12 bg-[#FDFDF1]"
                 >
-                    <div className="w-10 h-10">
+                    <div className="w-7 h-7">
                         {social.icon}
                     </div>
                 </a>
