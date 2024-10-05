@@ -7,7 +7,7 @@ const useReserveSlot = () => {
 
     const reserveSlot = async (slotId, customerId) => {
         try {
-            const response = await fetch(`${config.backendUrl}/slot/reserve-slot`, {
+            const response = await fetch(`${config.backendUrl}/slot/create-reservation-request`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
