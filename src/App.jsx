@@ -54,7 +54,7 @@ function App() {
     return (
         <Router>
             <Layout>
-                <div className=" mx-auto ">
+                <div className="mx-auto">
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
                         <Route path="/admin" element={user && isAdmin ? <AdminPage/> : <Navigate to="/"/>}/>
