@@ -24,11 +24,18 @@ function Psychologists() {
                     <TopNav/>
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
-                <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-[92%] w-full">
+                <div className="flex flex-grow flex-col w-full h-full">
+                    <div className="flex w-full">
                         <Hero/>
                     </div>
-
+                    <div className="bg-white text-black p-10 rounded-3xl font-raleway flex flex-col gap-5 border-black mt-16">
+                        <h1 className={"text-2xl font-semibold"}>
+                            Вы следуете за своим призванием, мы заботимся об организации
+                        </h1>
+                        <p>Мы активно поддерживаем молодых специалистов и даем им возможность реализовать свой
+                            профессиональный
+                            путь на нашей платформе, а нашим клиентам — сделать первые шаги к себе</p>
+                    </div>
                     {/*<div className="flex h-1/4 w-full">
                         <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
                     </div>
@@ -36,15 +43,8 @@ function Psychologists() {
                 </div>
             </div>
 
-            <div className="bg-white text-black p-10 rounded-3xl font-raleway flex flex-col gap-5 border-black">
-                <h1 className={"text-2xl font-semibold"}>
-                    Вы следуете за своим призванием, мы заботимся об организации
-                </h1>
-                <p>Мы активно поддерживаем молодых специалистов и даем им возможность реализовать свой профессиональный
-                    путь на нашей платформе, а нашим клиентам — сделать первые шаги к себе</p>
-            </div>
 
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2 border-black">
+            <div className="bg-white p-10 rounded-3xl font-roboto flex flex-col gap-2 border-black">
                 <h1 className="text-2xl font-bold mb-5">
                     Давайте познакомимся?
                 </h1>

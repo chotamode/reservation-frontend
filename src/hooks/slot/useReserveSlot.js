@@ -20,6 +20,10 @@ const useReserveSlot = () => {
                 throw new Error('Failed to reserve slot');
             }
 
+            const data = await response.json();
+            const invoiceUrl = data.invoice_url;
+            window.location.href = invoiceUrl;
+
             return await response.json();
         } catch (error) {
             setError(error.message);
