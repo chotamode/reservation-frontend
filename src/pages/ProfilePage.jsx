@@ -196,12 +196,16 @@ function ProfilePage() {
                         <p>Записаться на новую консультацию</p>
                     </div>
                 </button>
+                {/*  Кнопка купить абонемент
+
                 <button className={"rounded-3xl bg-[#39442B]"} onClick={handleBuySubscriptionClick}>
                     <div className={"flex flex-row gap-2 justify-center py-6 text-white"}>
                         <img src={starIcon} alt="Star Icon"/>
                         <p>Купить абонемент</p>
                     </div>
                 </button>
+
+                */}
                 <button className={"rounded-3xl bg-[#EEE8E3]"} onClick={handleGiftCertificateClick}>
                     <div className={"flex flex-row gap-2 justify-center py-6"}>
                         <img src={giftIcon} alt="Gift Icon"/>

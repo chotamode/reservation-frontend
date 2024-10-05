@@ -23,7 +23,7 @@ function Carousel({ psychologists }) {
 
     return (
         <div
-            className="bg-white rounded-3xl border-black w-full h-full flex flex-col items-center justify-center p-14">
+            className="bg-white rounded-3xl border-black w-[75rem] flex flex-col items-center justify-center p-14">
             <div className="flex justify-between w-full items-center">
                 <h1 className="font-semibold font-raleway">
                     Мы поможем вам выбрать специалиста:

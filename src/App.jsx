@@ -54,9 +54,7 @@ function App() {
     return (
         <Router>
             <Layout>
-                <div className="w-[1200px] mx-auto
-                py-10
-                ">
+                <div className=" mx-auto ">
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
                         <Route path="/admin" element={user && isAdmin ? <AdminPage/> : <Navigate to="/"/>}/>

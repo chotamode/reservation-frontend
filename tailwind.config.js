@@ -5,6 +5,9 @@
             borderWidth: {
                 '1': '1px',
             },
+            borderRadius: {
+                'custom-xl': '35px',
+            },
             colors: {
                 greenLight: '#D3DBA8',
                 greenDark: '#39442B',

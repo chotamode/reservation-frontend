@@ -22,7 +22,6 @@ function PsychologistCard2({ psychologist }) {
     }
     const therapy_type_colors = ['#DBEAFE','#DCFCE7', '#DBFAFE', '#FEDBDB', '#FEF3DB', '#E4DCFC', '#FCE4DC', '#F3DCFC', '#EAFCDC', '#FAFCDC', '#DBEAFE',
                                     '#FEDBEA'];
-    
     // const therapy_type_themes[] = ['КПТ', 'Гуманистическая', 'АСТ', 'ПДД', 'Семейная терапия','ДПДГ', 'ДПГД', 'НЛП', 'Логотерапия', 'Ценностно-ориентированный метод',
     //                        'Эмоционально образная терапия', 'Расстановка по Берту Хеллингеру'];
 
