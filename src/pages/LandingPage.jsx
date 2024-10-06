@@ -78,10 +78,10 @@ function LandingPage() {
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
                 <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-3/4 w-full">
-                        <Hero />
+                    <div className="flex h-auto w-full">
+                        <Hero/>
                     </div>
-                    <div className="flex h-1/4 w-full">
+                    <div className="flex h-1/4 w-full mb-0">
                         <BigButton
                             text={"ЗАПИСАТЬСЯ"}
                             icon={<img src={Arrow} alt="Arrow" />}
@@ -90,7 +90,7 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="my-32">
+            <div className="-mt-64 md:my-32">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
             <div className="flex flex-row h-44 gap-5 mb-5">
