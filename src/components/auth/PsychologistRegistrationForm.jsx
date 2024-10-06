@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FormField2 from "./FormField2.jsx";
 
+
 function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     const [educationEntries, setEducationEntries] = useState([{ degree: '', institution: '', graduationYear: '' }]);
     const [courses, setCourses] = useState([{ position: '', organization: '', duration: '' }]);
@@ -33,20 +34,20 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     }
 
     const therapyTypes = [
-        { id: 'cbt', name: { en: 'Cognitive Behavioral Therapy', ru: 'Когнитивно-поведенческая терапия (КПТ: Изменяет негативные мысли и поведение, способствующие эмоциональным проблемам.)' } },
-        { id: 'gestalt', name: { en: 'Gestalt Therapy', ru: 'Гештальт-терапия (Фокусируется на осознании настоящего момента и интеграции различных аспектов личности)' } },
-        { id: 'family', name: { en: 'Family Therapy', ru: 'Семейная терапия (Улучшает коммуникацию и решает конфликты в семье)' } },
-        { id: 'group', name: { en: 'Group Therapy', ru: 'Групповая терапия (Обсуждение опыта и поддержка в группе с похожими проблемами)' } },
-        { id: 'psychodynamic', name: { en: 'Psychoanalysis / Psychodynamic Therapy', ru: 'Психоанализ / психодинамическая терапия (Работает с бессознательными процессами, внутренними конфликтами и прошлым опытом)' } },
-        { id: 'dbt', name: { en: 'Dialectical Behavior Therapy', ru: 'Диалектическая поведенческая терапия (Для работы с эмоциональной нестабильностью и пограничным расстройством личности)' } },
-        { id: 'humanistic', name: { en: 'Humanistic Therapy', ru: 'Гуманистическая терапия (Ориентирована на личностный рост, самореализацию и развитие потенциала)' } },
-        { id: 'trauma', name: { en: 'Trauma Therapy', ru: 'Травматерапия (Обработка травматических воспоминаний и восстановление после ПТСР)' } },
-        { id: 'emdr', name: { en: 'EMDR', ru: 'Метод ДПДГ - для лечения посттравматических стрессовых расстройств' } },
+        { id: 'cbt', name: { en: 'Cognitive Behavioral Therapy', ru: 'КПТ' } },
+        { id: 'group', name: { en: 'Group Therapy ', ru: 'Групповая терапия' } },
+        { id: 'humanistic', name: { en: 'Humanistic Therapy', ru: 'Гуманистическая' } },
+        { id: 'nlp', name: { en: 'NLP - Neuro-Linguistic Programming ', ru: 'НЛП' } },
+        { id: 'logotherapy', name: { en: 'Logotherapy by V. Frankl ', ru: 'Логотерапия по В.Франклу' } },
+        { id: 'gestalt', name: { en: 'Gestalt Therapy ', ru: 'Гештальт' } },
+        { id: 'psychodynamic', name: { en: 'Psychoanalysis / Psychodynamic Therapy', ru: 'Психоанализ' } },
+        { id: 'trauma', name: { en: 'Trauma Therapy', ru: 'Травматерапия' } },
+        { id: 'emotion_imagery', name: { en: 'Emotion-Imagery Therapy ', ru: 'Эмоционально-образная' } },
         { id: 'value_oriented', name: { en: 'Value-Oriented Method', ru: 'Ценностно-ориентированный метод' } },
-        { id: 'emotion_imagery', name: { en: 'Emotion-Imagery Therapy', ru: 'Эмоционально-образная терапия' } },
-        { id: 'hellinger', name: { en: 'Hellinger Constellations', ru: 'Расстановки по Берту Хеллингеру' } },
-        { id: 'logotherapy', name: { en: 'Logotherapy by V. Frankl', ru: 'Логотерапия по В. Франклу' } },
-        { id: 'nlp', name: { en: 'NLP - Neuro-Linguistic Programming', ru: 'НЛП - Нейролингвистическое программирование' } },
+        { id: 'family', name: { en: 'Family Therapy', ru: 'Семейная' } },
+        { id: 'dbt', name: { en: 'Dialectical Behavior Therapy', ru: 'Диалектическая поведенческая терапия' } },
+        { id: 'emdr', name: { en: 'EMDR ', ru: 'ДПДГ' } },
+        { id: 'hellinger', name: { en: 'Hellinger Constellations ', ru: 'Расстановка по Берту Хеллингеру' } },
     ];
 
     const communicationChannels = [
@@ -59,30 +60,44 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
         { id: 'yandex_telemost', name: 'Яндекс телемост' },
     ];
 
+
+
     return (
-        <form>
-            <div>
-                <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
-                <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия"/>
-                <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество"/>
-                <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения"/>
-                <FormField2 id="email" label="Email" type="email" placeholder="Email"/>
-                <div className="form-field">
-                    <label htmlFor="profile_photo">Фото профиля</label>
-                    <input id="profile_photo" type="file" accept="image/*"/>
+        <form className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
+                <div className="flex flex-row gap-2">
+                    <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
+                    <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия"/>
+                    <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество"/>
+                </div>
+                <div className="flex  flex-col gap-6 items-start">
+                    <div className="flex flex-row gap-2">
+                        <FormField2 id="birth_date"  label="Дата рождения" type="date"    placeholder="Дата рождения"/>
+                        <FormField2 id="email" label="Email" type="email"  placeholder="Email"/>
+                    </div>
+                    <div className=" mx-2 flex flex-col gap-1 form-field">
+
+                        <label className=" flex items-center justify-center px-4 py-2 bg-[#D3DBA8] rounded-xl shadow-md cursor-pointer" htmlFor="profile_photo">
+
+                            <span>Добавьте фото профиля</span>
+                            <input className="absolute w-32 opacity-0 cursor-pointer" id="profile_photo" type="file" accept="image/*"/>
+
+                        </label>
+                    </div>
+
                 </div>
             </div>
             {/*Биография*/}
             <div>
-                <FormField2 id="biography" label="Биография" type="text" placeholder="Биография"/>
+                <FormField2 id="biography" label="Биография" isTextarea={true} type="textarea" placeholder="Биография"/>
             </div>
             <div>
                 <FormField2 id="mini_bio" label="Краткая биография" type="text" placeholder="Краткая биография"/>
             </div>
             <div>
-                <h2>Образование</h2>
+                <h2 className="font-roboto font-semibold text-xl my-2">Образование</h2>
                 {educationEntries.map((entry, index) => (
-                    <div key={index} className="education-entry">
+                    <div key={index} className="education-entry flex flex-row gap-2 ">
                         <FormField2
                             id={`degree-${index}`}
                             label="Степень"
@@ -109,13 +124,13 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button type="button" onClick={handleAddEducation}>Добавить учебное заведение</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddEducation}>Добавить</button>
             </div>
 
             <div>
-                <h2>Курсы профессионального развития</h2>
+                <h2 className="font-roboto font-semibold text-xl my-2">Курсы профессионального развития</h2>
                 {courses.map((course, index) => (
-                    <div key={index} className="course-entry">
+                    <div key={index} className="course-entry flex flex-row gap-2">
                         <FormField2
                             id={`position-${index}`}
                             label="Ваша должность"
@@ -142,16 +157,16 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button type="button" onClick={handleAddCourse}>Добавить курс</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddCourse}>Добавить</button>
             </div>
 
             <div>
-                <h2>Опыт работы</h2>
+                <h2 className="font-roboto font-semibold text-xl my-2">Опыт работы</h2>
                 {/*Введите вашу должность*/}
                 {/*Введите название организации*/}
                 {/*Введите даты работы*/}
                 {workExperience.map((entry, index) => (
-                    <div key={index} className="work-entry">
+                    <div key={index} className="work-entry flex flex-row gap-2">
                         <FormField2
                             id={`position-${index}`}
                             label="Ваша должность"
@@ -178,42 +193,44 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button type="button" onClick={handleAddWorkExperience}>Добавить место работы</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddWorkExperience}>Добавить</button>
             </div>
 
         {/*    типы клиентов*/}
-            <div>
-                <h2>Типы клиентов</h2>
-                <div>
-                    <input type="checkbox" id="adult" name="adult"/>
+            <div className="flex flex-col gap-1 items-start justify-center">
+                <h2 className="font-roboto font-semibold text-xl my-2">Типы клиентов</h2>
+                <div className="flex flex-row gap-1 items-center">
+                    <input className="cursor-pointer" type="checkbox" id="adult" name="adult"/>
                     <label htmlFor="adult">Взрослые</label>
                 </div>
-                <div>
-                    <input type="checkbox" id="teen" name="teen"/>
+                <div className="flex flex-row gap-1 items-center">
+                    <input className="cursor-pointer" type="checkbox" id="teen" name="teen"/>
                     <label htmlFor="couples">Пары</label>
                 </div>
-                <div>
-                    <input type="checkbox" id="child" name="child"/>
+                <div className="flex flex-row gap-1 items-center">
+                    <input className="cursor-pointer" type="checkbox" id="child" name="child"/>
                     <label htmlFor="child">Дети</label>
                 </div>
             </div>
             {/*типы терапии которые вы используете в работе*/}
             <div>
-                <h2>Типы терапии которые вы используете в работе</h2>
-                {therapyTypes.map((type) => (
-                    <div key={type.id}>
-                        <input type="checkbox" id={type.id} name={type.id}/>
-                        <label htmlFor={type.id}>{type.name.ru}</label>
-                    </div>
-                ))}
+                <h2 className="font-roboto font-semibold text-xl my-2">Типы терапии которые вы используете в работе</h2>
+                <div className="grid grid-cols-5  gap-x-2 gap-y-1 text-sm">
+                    {therapyTypes.map((type) => (
+                        <div className="flex flex-row gap-1 items-center" key={type.id}>
+                            <input className="cursor-pointer" type="checkbox" id={type.id} name={type.id}/>
+                            <label htmlFor={type.id}>{type.name.ru}</label>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/*Типы каких платформ для коммуникации с клиентов вам удобнее всего использовать?*/}
-            <div>
-                <h2>Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
+            <div className="flex flex-col gap-1 items-start justify-center">
+                <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
                 {communicationChannels.map((channel) => (
-                    <div key={channel.id}>
-                        <input type="checkbox" id={channel.id} name={channel.id}/>
+                    <div className="flex flex-row gap-1 items-center" key={channel.id}>
+                        <input className="cursor-pointer" type="checkbox" id={channel.id} name={channel.id}/>
                         <label htmlFor={channel.id}>{channel.name}</label>
                     </div>
                 ))}
