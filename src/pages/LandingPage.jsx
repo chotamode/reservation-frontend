@@ -90,10 +90,10 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="-mt-64 md:my-32">
+            <div className="-mt-80 md:my-32">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
-            <div className="flex flex-row h-44 gap-5 mb-5">
+            <div className="flex flex-row h-44 gap-5 mb-5 mt-8">
                 <span className="rounded-3xl bg-white border-greenDark w-full h-full flex items-center justify-center">
                     <p className="font-bold">
                         Запросы с которыми работаем:
@@ -106,7 +106,7 @@ function LandingPage() {
                 {/*/>*/}
             </div>
             <div className="">
-                <div className="grid grid-cols-4 gap-5 h-custom-440">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-5 h-auto md:h-custom-440">
                     {emotionCardsData.map((card, index) => (
                         <EmotionCard
                             key={index}
