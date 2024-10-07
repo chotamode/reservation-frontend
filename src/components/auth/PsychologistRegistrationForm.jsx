@@ -215,7 +215,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             {/*типы терапии которые вы используете в работе*/}
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы терапии которые вы используете в работе</h2>
-                <div className="grid grid-cols-5  gap-x-2 gap-y-1 text-sm">
+                <div className="grid grid-cols-[0.7fr_1fr_0.8fr_1fr_1fr]  gap-x-2 gap-y-1 text-sm">
                     {therapyTypes.map((type) => (
                         <div className="flex flex-row gap-1 items-center" key={type.id}>
                             <input className="cursor-pointer" type="checkbox" id={type.id} name={type.id}/>
