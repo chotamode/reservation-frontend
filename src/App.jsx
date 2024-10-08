@@ -54,7 +54,7 @@ function App() {
     return (
         <Router>
             <Layout>
-                <div className="w-[1200px] mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px]
+                <div className="w-[75rem] mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px]
                 py-10
                 ">
                     <Routes>
