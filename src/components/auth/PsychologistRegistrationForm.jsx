@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import FormField2 from "./FormField2.jsx";
-
+import useRegisterPsychologist from '../../hooks/psychologist/useRegisterPsychologist.js';
 
 function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     const [educationEntries, setEducationEntries] = useState([{ degree: '', institution: '', graduationYear: '' }]);
     const [courses, setCourses] = useState([{ position: '', organization: '', duration: '' }]);
     const [workExperience, setWorkExperience] = useState([{ position: '', organization: '', duration: '' }]);
+    const { registerPsychologist, loading, error, success } = useRegisterPsychologist();
+
 
     const handleAddEducation = () => {
         setEducationEntries([...educationEntries, { degree: '', institution: '', graduationYear: '' }]);
@@ -14,6 +16,10 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     const handleAddCourse = () => {
         setCourses([...courses, { position: '', organization: '', duration: '' }]);
     };
+
+    const handleAddWorkExperience = () => {
+        setWorkExperience([...workExperience, { position: '', organization: '', duration: '' }]);
+    }
 
     const handleEducationChange = (index, field, value) => {
         const newEntries = [...educationEntries];
@@ -27,18 +33,39 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
         setCourses(newCourses);
     };
 
-    // Функция для обновления полей
     const handleWorkExperienceChange = (index, field, value) => {
         const newWorkExperience = [...workExperience];
         newWorkExperience[index][field] = value;
         setWorkExperience(newWorkExperience);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = {
+            educationEntries,
+            courses,
+            workExperience,
+            name: e.target.name.value,
+            surname: e.target.surname.value,
+            patronymic: e.target.patronymic.value,
+            birth_date: e.target.birth_date.value,
+            email: e.target.email.value,
+            password: e.target.password.value,
+            password_confirmation: e.target.password_confirmation.value,
+            profile_photo: e.target.profile_photo.files[0],
+            biography: e.target.biography.value,
+            mini_description: e.target.mini_description.value,
+            clientTypes: {
+                adult: e.target.adult.checked,
+                teen: e.target.teen.checked,
+                child: e.target.child.checked,
+            },
+            therapyTypes: therapyTypes.filter(type => e.target[type.id].checked).map(type => type.id),
+            communicationChannels: communicationChannels.filter(channel => e.target[channel.id].checked).map(channel => channel.id)
+        };
+        await registerPsychologist(formData);
     };
 
-    // Функция для добавления нового опыта работы
-    const handleAddWorkExperience = () => {
-        const newWorkExperience = [...workExperience, { position: '', organization: '', duration: '' }];
-        setWorkExperience(newWorkExperience);
-    };
 
     const therapyTypes = [
         { id: 'cbt', name: { en: 'Cognitive Behavioral Therapy', ru: 'КПТ' } },
@@ -70,7 +97,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
 
 
     return (
-        <form className="flex flex-col gap-8">
+        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
                 <div className="flex flex-row gap-2">
                     <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
@@ -79,8 +106,13 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                 </div>
                 <div className="flex  flex-col gap-6 items-start">
                     <div className="flex flex-row gap-2">
-                        <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения"/>
-                        <FormField2 id="email" label="Email" type="email" placeholder="Email"/>
+                        <FormField2 id="birth_date"  label="Дата рождения" type="date"    placeholder="Дата рождения"/>
+                        <FormField2 id="email" label="Email" type="email"  placeholder="Email"/>
+                    </div>
+                    {/*password*/}
+                    <div className="flex flex-row gap-2">
+                        <FormField2 id="password" label="Пароль" type="password" placeholder="Пароль"/>
+                        <FormField2 id="password_confirmation" label="Подтверждение пароля" type="password" placeholder="Подтверждение пароля"/>
                     </div>
                     <div className=" mx-2 flex flex-col gap-1 form-field">
 
@@ -102,7 +134,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                 <FormField2 id="biography" label="Биография" isTextarea={true} type="textarea" placeholder="Биография"/>
             </div>
             <div>
-                <FormField2 id="mini_bio" label="Краткая биография" type="text" placeholder="Краткая биография"/>
+                <FormField2 id="mini_description" label="Краткая биография" type="text" placeholder="Краткая биография"/>
             </div>
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Образование</h2>
@@ -134,9 +166,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
-                        onClick={handleAddEducation}>Добавить
-                </button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddEducation}>Добавить</button>
             </div>
 
             <div>
@@ -169,9 +199,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
-                        onClick={handleAddCourse}>Добавить
-                </button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddCourse}>Добавить</button>
             </div>
 
             <div>
@@ -207,9 +235,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
-                        onClick={handleAddWorkExperience}>Добавить
-                </button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddWorkExperience}>Добавить</button>
             </div>
 
             {/*    типы клиентов*/}
@@ -231,7 +257,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             {/*типы терапии которые вы используете в работе*/}
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы терапии которые вы используете в работе</h2>
-                <div className="grid grid-cols-[0.7fr_1fr_0.8fr_1fr_1fr]  gap-x-2 gap-y-1 text-sm">
+                <div className="grid grid-cols-5  gap-x-2 gap-y-1 text-sm">
                     {therapyTypes.map((type) => (
                         <div className="flex flex-row gap-1 items-center" key={type.id}>
                             <input className="cursor-pointer" type="checkbox" id={type.id} name={type.id}/>
@@ -243,8 +269,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
 
             {/*Типы каких платформ для коммуникации с клиентов вам удобнее всего использовать?*/}
             <div className="flex flex-col gap-1 items-start justify-center">
-                <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами
-                    вам удобнее всего использовать?</h2>
+                <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
                 {communicationChannels.map((channel) => (
                     <div className="flex flex-row gap-1 items-center" key={channel.id}>
                         <input className="cursor-pointer" type="checkbox" id={channel.id} name={channel.id}/>
@@ -253,13 +278,13 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                 ))}
             </div>
 
-            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto w-full">
+            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto w-full" type="submit">
                 <p className="text-black p-2">
                     Присоединиться к команде
                 </p>
             </button>
         </form>
-    );
+);
 }
 
 export default PsychologistRegistrationForm;
