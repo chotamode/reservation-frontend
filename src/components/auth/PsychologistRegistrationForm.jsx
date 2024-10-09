@@ -27,11 +27,18 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
         setCourses(newCourses);
     };
 
-    const handleAddWorkExperience = (index, field, value) => {
+    // Функция для обновления полей
+    const handleWorkExperienceChange = (index, field, value) => {
         const newWorkExperience = [...workExperience];
         newWorkExperience[index][field] = value;
         setWorkExperience(newWorkExperience);
-    }
+    };
+
+    // Функция для добавления нового опыта работы
+    const handleAddWorkExperience = () => {
+        const newWorkExperience = [...workExperience, { position: '', organization: '', duration: '' }];
+        setWorkExperience(newWorkExperience);
+    };
 
     const therapyTypes = [
         { id: 'cbt', name: { en: 'Cognitive Behavioral Therapy', ru: 'КПТ' } },
@@ -72,15 +79,18 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                 </div>
                 <div className="flex  flex-col gap-6 items-start">
                     <div className="flex flex-row gap-2">
-                        <FormField2 id="birth_date"  label="Дата рождения" type="date"    placeholder="Дата рождения"/>
-                        <FormField2 id="email" label="Email" type="email"  placeholder="Email"/>
+                        <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения"/>
+                        <FormField2 id="email" label="Email" type="email" placeholder="Email"/>
                     </div>
                     <div className=" mx-2 flex flex-col gap-1 form-field">
 
-                        <label className=" flex items-center justify-center px-4 py-2 bg-[#D3DBA8] rounded-xl shadow-md cursor-pointer" htmlFor="profile_photo">
+                        <label
+                            className=" flex items-center justify-center px-4 py-2 bg-[#D3DBA8] rounded-xl shadow-md cursor-pointer"
+                            htmlFor="profile_photo">
 
                             <span>Добавьте фото профиля</span>
-                            <input className="absolute w-32 opacity-0 cursor-pointer" id="profile_photo" type="file" accept="image/*"/>
+                            <input className="absolute w-32 opacity-0 cursor-pointer" id="profile_photo" type="file"
+                                   accept="image/*"/>
 
                         </label>
                     </div>
@@ -124,7 +134,9 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddEducation}>Добавить</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
+                        onClick={handleAddEducation}>Добавить
+                </button>
             </div>
 
             <div>
@@ -157,7 +169,9 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddCourse}>Добавить</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
+                        onClick={handleAddCourse}>Добавить
+                </button>
             </div>
 
             <div>
@@ -193,10 +207,12 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                         />
                     </div>
                 ))}
-                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddWorkExperience}>Добавить</button>
+                <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button"
+                        onClick={handleAddWorkExperience}>Добавить
+                </button>
             </div>
 
-        {/*    типы клиентов*/}
+            {/*    типы клиентов*/}
             <div className="flex flex-col gap-1 items-start justify-center">
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы клиентов</h2>
                 <div className="flex flex-row gap-1 items-center">
@@ -227,7 +243,8 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
 
             {/*Типы каких платформ для коммуникации с клиентов вам удобнее всего использовать?*/}
             <div className="flex flex-col gap-1 items-start justify-center">
-                <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
+                <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами
+                    вам удобнее всего использовать?</h2>
                 {communicationChannels.map((channel) => (
                     <div className="flex flex-row gap-1 items-center" key={channel.id}>
                         <input className="cursor-pointer" type="checkbox" id={channel.id} name={channel.id}/>
@@ -235,8 +252,14 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                     </div>
                 ))}
             </div>
+
+            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto w-full">
+                <p className="text-black p-2">
+                    Присоединиться к команде
+                </p>
+            </button>
         </form>
-);
+    );
 }
 
 export default PsychologistRegistrationForm;

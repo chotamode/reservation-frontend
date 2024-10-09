@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Cross from '../assets/images/cross.svg';
 
-function Modal({ isOpen, onClose, children, header, type }) {
+function Modal({ isOpen, onClose, children, header, marginRegForm}) {
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {
@@ -27,8 +27,8 @@ function Modal({ isOpen, onClose, children, header, type }) {
 
 
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className={'bg-white p-6 rounded-3xl border-1 border-black relative w-[1200px] mx-auto py-14 px-20 max-h-full scrollbar-hide mt-20 overflow-y-auto ${psychologistModalStyles}'}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
+            <div className={`bg-white p-6 rounded-3xl border-1 border-black relative w-[1200px] mx-auto py-14 px-20 max-h-full scrollbar-hide overflow-y-auto ${marginRegForm}`}>
                 <div className="flex flex-row justify-between items-center mb-12">
                     <h1 className="text-2xl text-[#39442B] font-bold ml-0">
                         {header}

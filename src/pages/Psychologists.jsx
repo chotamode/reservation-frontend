@@ -53,11 +53,7 @@ function Psychologists() {
 
                 <PsychologistRegistrationForm/>
 
-                <button className="rounded-lg bg-[#D3DBA8] mt-5 mx-auto w-full">
-                    <p className="text-black p-2">
-                        Присоединиться к команде
-                    </p>
-                </button>
+
             </div>
 
             <Footer/>
