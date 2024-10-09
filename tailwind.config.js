@@ -2,6 +2,10 @@
     content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}",],
     theme: {
         extend: {
+            rotate: {
+                '0': '0deg',
+                '90': '90deg',
+            },
             borderWidth: {
                 '1': '1px',
             },

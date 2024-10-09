@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AuthModal from "../components/AuthModal.jsx";
 import useAuth from "../hooks/useAuth.js";
 import CustomDropdown from "../components/CustomDropdown.jsx";
+import { therapyTypes } from '../utils/therapyTypes.js';
 
 function PsychologistCard2({ psychologist }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -22,10 +23,6 @@ function PsychologistCard2({ psychologist }) {
     }
     const therapy_type_colors = ['#DBEAFE','#DCFCE7', '#DBFAFE', '#FEDBDB', '#FEF3DB', '#E4DCFC', '#FCE4DC', '#F3DCFC', '#EAFCDC', '#FAFCDC', '#DBEAFE',
                                     '#FEDBEA'];
-    // const therapy_type_themes[] = ['КПТ', 'Гуманистическая', 'АСТ', 'ПДД', 'Семейная терапия','ДПДГ', 'ДПГД', 'НЛП', 'Логотерапия', 'Ценностно-ориентированный метод',
-    //                        'Эмоционально образная терапия', 'Расстановка по Берту Хеллингеру'];
-
-
 
     return (
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
@@ -71,17 +68,15 @@ function ChoosePsychologist() {
     const { psychologists, loading, error } = useFetchPsychologists();
     const [selectedPractices, setSelectedPractices] = useState([]);
 
-    const handleCheckboxChange = (practice) => {
-        setSelectedPractices((prevSelectedPractices) =>
-            prevSelectedPractices.includes(practice)
-                ? prevSelectedPractices.filter((p) => p !== practice)
-                : [...prevSelectedPractices, practice]
-        );
+    const handleCheckboxChange = (selectedOptions) => {
+        setSelectedPractices(selectedOptions);
+        console.log(selectedOptions);
     };
 
-    const filteredPsychologists = psychologists.filter((psychologist) =>
-        selectedPractices.length === 0 ||
-        psychologist.therapy_type.some((practice) => selectedPractices.includes(practice))
+    const filteredPsychologists = psychologists.filter(psychologist => {
+        if (selectedPractices.length === 0) return true;
+        return selectedPractices.some(practice => psychologist.therapy_type.includes(practice));
+    }
     );
 
     return (
@@ -91,9 +86,8 @@ function ChoosePsychologist() {
                 <h1 className="font-semibold font-[#39442B]">
                     Идеальный специалист для вас:
                 </h1>
-                {/* Custom dropdown with checkboxes */}
                 <CustomDropdown
-                    options={["CBT", "psychoanalysis", "gestalt", "humanistic"]}
+                    options={therapyTypes} // Use the English names from therapyTypes
                     selectedOptions={selectedPractices}
                     onChange={handleCheckboxChange}
                 />
@@ -106,7 +100,7 @@ function ChoosePsychologist() {
                     <div>Error: {error}</div>
                 ) : (
                     filteredPsychologists.map(psychologist => (
-                        <PsychologistCard2 key={psychologist.name} psychologist={psychologist} />
+                        <PsychologistCard2 key={psychologist.system_users.id} psychologist={psychologist} />
                     ))
                 )}
             </div>

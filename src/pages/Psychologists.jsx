@@ -5,6 +5,7 @@ import BigButton from "../components/landing_page/BigButton.jsx";
 import Drawer from "../components/landing_page/Drawer.jsx";
 import {useState} from "react";
 import Footer from "../components/footer/Footer.jsx";
+import PsychologistRegistrationForm from "../components/auth/PsychologistRegistrationForm.jsx";
 
 function Psychologists() {
 
@@ -50,32 +51,9 @@ function Psychologists() {
                     Давайте познакомимся?
                 </h1>
 
-                <div className="flex flex-col gap-3">
-                    <label htmlFor="name" className="font-bold">
-                        Полное имя
-                    </label>
-                    <input type="text" id="name" className="rounded-lg p-2 border-1 border-gray-300"/>
-                </div>
+                <PsychologistRegistrationForm/>
 
-                <div className="flex flex-col gap-3">
-                    <label htmlFor="email" className="font-bold">
-                        Email
-                    </label>
-                    <input type="email" id="email" className="rounded-lg p-2 border-1 border-gray-300"/>
-                </div>
 
-                <div className="flex flex-col gap-3">
-                    <label htmlFor="phone" className="font-bold">
-                        Номер телефона
-                    </label>
-                    <input type="text" id="phone" className="rounded-lg p-2 border-1 border-gray-300"/>
-                </div>
-
-                <button className="rounded-lg bg-[#D3DBA8] mt-5 mx-auto w-full">
-                    <p className="text-black p-2">
-                        Отправить
-                    </p>
-                </button>
             </div>
 
             <Footer/>

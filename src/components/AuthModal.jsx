@@ -18,8 +18,16 @@ function AuthModal({ isOpen, onClose }) {
         }
     }, [isOpen]);
 
+    // Добавляем класс отступа сверху, если открыта форма для психологов
+    const modalClass = isPsychologistRegisterOpen ? 'mt-20' : '';
+
     return (
-        <Modal isOpen={isOpen} onClose={onClose} header="Вход в личный кабинет">
+        <Modal
+            isOpen={isOpen}
+            onClose={onClose}
+            header="Вход в личный кабинет"
+            marginRegForm={modalClass}  // Передаем класс для отступа
+        >
             {isLoginOpen && (
                 <LoginForm
                     onClose={onClose}
