@@ -32,7 +32,7 @@ function PsychologistCard({ psychologist }) {
                 </h3>
                 <p className={"text-sm md:text-base text-center"}>{mini_description}</p>
                 <div className="w-full h-full flex flex-col justify-end">
-                    <button onClick={handleNavigate} className="rounded-2xl border-1 border-[#6A704C] w-full font-bold text-sm md:text-xl py-3 md:py-2">
+                    <button onClick={handleNavigate} className="rounded-2xl border-1 border-[#6A704C] w-full font-bold text-sm md:text-xl py-3 md:py-2 ">
                         Записаться
                     </button>
                 </div>

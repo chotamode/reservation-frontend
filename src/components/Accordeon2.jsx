@@ -11,7 +11,7 @@ function Accordeon2({ contentElements, header, className }) {
 
     return (
         <div className={`w-full space-y-6 bg-white rounded-3xl p-6 sm:p-12 md:p-24 relative  ${className} mb-32`}>
-            <div className="flex flex-row h-16 items-end pt-40 sm:pt-12 md:pt-24">
+            <div className="flex flex-row h-12 items-end pt-40 sm:pt-12 md:pt-24">
                 <h1 className="text-4xl font-bold">
                     {header}
                 </h1>

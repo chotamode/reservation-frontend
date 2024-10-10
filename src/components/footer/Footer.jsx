@@ -29,16 +29,16 @@ function Footer() {
                 <div className="line border-b-1 border-[#FDFDF1] opacity-25"></div>
                 {/*<div className="flex justify-between items-center"></div>*/}
                 <div className={"flex flex-col sm:flex-row justify-between items-center mt-4"}>
-                    <a href="/rules" className="flex flex-row items-center font-bold text-greenDark mb-2 sm:mb-0">
+                    <a href="/rules" className="flex flex-row items-center font-bold text-greenDark text-sm sm:text-base -mb-1 sm:mb-0">
                         ПРАВИЛА МЕТОДА
                         <Arrow className="ml-1"/>
                     </a>
-                    <a href="/terms" className="flex flex-row items-center font-bold text-greenDark">
+                    <a href="/terms" className="flex flex-row items-center font-bold text-sm sm:text-base text-greenDark">
                         ПОЛЬЗОВАТЕЛЬСКИЕ СОГЛАШЕНИЯ
                         <Arrow className="ml-1"/>
                     </a>
                 </div>
-                <p className={"font-inter text-[#7D7D7D] font-normal mt-4 text-center sm:text-left"}>
+                <p className={"font-inter text-[#7D7D7D] font-normal mt-4 text-center sm:text-left text-xs sm:text-base px-9"}>
                     Индивидуальный предприниматель Вахитов-Брук Руслан Эмилевич ИНН 165808340907 ГРНИП 324169000184999
                     Расч. сч. 40802810429930006967 БИК 042202824 Кор. сч. 30101810200000000824
                 </p>
