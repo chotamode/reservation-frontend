@@ -72,15 +72,20 @@ function PsychologistInfoPage() {
 
                     <div>
                         <h2 className="text-xl font-bold mb-2">Специализации</h2>
-                        <SpecializationPills specializations={psychologist.specializations} />
+                        <SpecializationPills specializations={psychologist.therapy_type} />
                     </div>
 
                     <div>
                         <h2 className="text-xl font-bold mb-2">Сертификаты</h2>
-                        {psychologist.certificates.map((certificate) => (
-                            <p key={certificate} className="font-normal text-[#374151]">
-                                {certificate}
-                            </p>))}
+                        {psychologist.certificates && psychologist.certificates.length > 0 ? (
+                            psychologist.certificates.map((certificate) => (
+                                <p key={certificate} className="font-normal text-[#374151]">
+                                    {certificate}
+                                </p>
+                            ))
+                        ) : (
+                            <p></p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -100,7 +105,7 @@ function PsychologistInfoPage() {
 
             </div>
             <Footer/>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal} header="Book an Appointment">
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                 <AppointmentWindow psychologistId={id} onSlotSelect={handleSlotSelect} />
             </Modal>
         </div>

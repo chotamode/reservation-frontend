@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import AuthModal from "../components/AuthModal.jsx";
 import useAuth from "../hooks/useAuth.js";
 import CustomDropdown from "../components/CustomDropdown.jsx";
-import { therapyTypes } from '../utils/therapyTypes.js';
+import { therapyTypes } from '../utils/constants/therapyTypes.js';
 
 function PsychologistCard2({ psychologist }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -21,8 +21,10 @@ function PsychologistCard2({ psychologist }) {
             setIsAuthModalOpen(true);
         }
     }
-    const therapy_type_colors = ['#DBEAFE','#DCFCE7', '#DBFAFE', '#FEDBDB', '#FEF3DB', '#E4DCFC', '#FCE4DC', '#F3DCFC', '#EAFCDC', '#FAFCDC', '#DBEAFE',
-                                    '#FEDBEA'];
+
+    const getTherapyTypeDetails = (typeId) => {
+        return therapyTypes.find(type => type.id === typeId);
+    };
 
     return (
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
@@ -42,15 +44,18 @@ function PsychologistCard2({ psychologist }) {
                     {psychologist.mini_description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-10">
-                    {psychologist.therapy_type.map((practice, index) => (
-                        <span key={index} className="rounded-lg p-1 px-2 text-xs"
-                            style={{
-                            backgroundColor: therapy_type_colors[index % therapy_type_colors.length],
-                        }
-                        }>
-                            {practice}
-                        </span>
-                    ))}
+                    {psychologist.therapy_type?.map((practice, index) => {
+                        const therapyType = getTherapyTypeDetails(practice);
+                        return (
+                            <span key={index} className="rounded-lg p-1 px-2 text-xs"
+                                style={{
+                                    backgroundColor: therapyType ? therapyType.color : '#FFFFFF',
+                                }}
+                            >
+                                {therapyType ? therapyType.name.ru : practice}
+                            </span>
+                        );
+                    })}
                 </div>
             </div>
             <button
@@ -76,8 +81,7 @@ function ChoosePsychologist() {
     const filteredPsychologists = psychologists.filter(psychologist => {
         if (selectedPractices.length === 0) return true;
         return selectedPractices.some(practice => psychologist.therapy_type.includes(practice));
-    }
-    );
+    });
 
     return (
         <div>

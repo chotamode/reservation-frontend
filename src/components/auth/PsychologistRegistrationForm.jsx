@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import FormField2 from "./FormField2.jsx";
 import useRegisterPsychologist from '../../hooks/psychologist/useRegisterPsychologist.js';
+import therapyTypes from '../../utils/constants/therapyTypes.js';
+import communicationChannels from '../../utils/constants/communicationChannels.js';
 
 function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     const [educationEntries, setEducationEntries] = useState([{ degree: '', institution: '', graduationYear: '' }]);
@@ -57,7 +59,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             mini_description: e.target.mini_description.value,
             clientTypes: {
                 adult: e.target.adult.checked,
-                teen: e.target.teen.checked,
+                couples: e.target.couples.checked,
                 child: e.target.child.checked,
             },
             therapyTypes: therapyTypes.filter(type => e.target[type.id].checked).map(type => type.id),
@@ -65,36 +67,6 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
         };
         await registerPsychologist(formData);
     };
-
-
-    const therapyTypes = [
-        { id: 'cbt', name: { en: 'Cognitive Behavioral Therapy', ru: 'КПТ' } },
-        { id: 'group', name: { en: 'Group Therapy ', ru: 'Групповая терапия' } },
-        { id: 'humanistic', name: { en: 'Humanistic Therapy', ru: 'Гуманистическая' } },
-        { id: 'nlp', name: { en: 'NLP - Neuro-Linguistic Programming ', ru: 'НЛП' } },
-        { id: 'logotherapy', name: { en: 'Logotherapy by V. Frankl ', ru: 'Логотерапия по В.Франклу' } },
-        { id: 'gestalt', name: { en: 'Gestalt Therapy ', ru: 'Гештальт' } },
-        { id: 'psychodynamic', name: { en: 'Psychoanalysis / Psychodynamic Therapy', ru: 'Психоанализ' } },
-        { id: 'trauma', name: { en: 'Trauma Therapy', ru: 'Травматерапия' } },
-        { id: 'emotion_imagery', name: { en: 'Emotion-Imagery Therapy ', ru: 'Эмоционально-образная' } },
-        { id: 'value_oriented', name: { en: 'Value-Oriented Method', ru: 'Ценностно-ориентированный метод' } },
-        { id: 'family', name: { en: 'Family Therapy', ru: 'Семейная' } },
-        { id: 'dbt', name: { en: 'Dialectical Behavior Therapy', ru: 'Диалектическая поведенческая терапия' } },
-        { id: 'emdr', name: { en: 'EMDR ', ru: 'ДПДГ' } },
-        { id: 'hellinger', name: { en: 'Hellinger Constellations ', ru: 'Расстановка по Берту Хеллингеру' } },
-    ];
-
-    const communicationChannels = [
-        { id: 'telegram', name: 'Telegram' },
-        { id: 'whatsapp', name: 'WhatsApp' },
-        { id: 'viber', name: 'Viber' },
-        { id: 'zoom', name: 'Zoom' },
-        { id: 'skype', name: 'Skype' },
-        { id: 'google_meet', name: 'Google Meet' },
-        { id: 'yandex_telemost', name: 'Яндекс телемост' },
-    ];
-
-
 
     return (
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -246,7 +218,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                     <label htmlFor="adult">Взрослые</label>
                 </div>
                 <div className="flex flex-row gap-1 items-center">
-                    <input className="cursor-pointer" type="checkbox" id="teen" name="teen"/>
+                    <input className="cursor-pointer" type="checkbox" id="couples" name="teen"/>
                     <label htmlFor="couples">Пары</label>
                 </div>
                 <div className="flex flex-row gap-1 items-center">

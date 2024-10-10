@@ -217,8 +217,7 @@ function ProfilePage() {
             <Footer/>
 
             {isAppointmentWindowOpen && (
-                <Modal isOpen={isAppointmentWindowOpen} onClose={() => setAppointmentWindowOpen(false)}
-                       header="Book an Appointment">
+                <Modal isOpen={isAppointmentWindowOpen} onClose={() => setAppointmentWindowOpen(false)}>
                     <AppointmentWindow psychologistId={psychologistId} onSlotSelect={handleSlotSelect}
                                        onClose={() => setAppointmentWindowOpen(false)}/>
                 </Modal>
