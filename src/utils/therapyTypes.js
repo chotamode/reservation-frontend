@@ -1,0 +1,16 @@
+export const therapyTypes = [
+    { id: 'CBT', name: { en: 'Cognitive Behavioral Therapy', ru: 'Когнитивно-поведенческая терапия (КПТ: Изменяет негативные мысли и поведение, способствующие эмоциональным проблемам.)' } },
+    { id: 'gestalt', name: { en: 'Gestalt Therapy', ru: 'Гештальт-терапия (Фокусируется на осознании настоящего момента и интеграции различных аспектов личности)' } },
+    { id: 'family', name: { en: 'Family Therapy', ru: 'Семейная терапия (Улучшает коммуникацию и решает конфликты в семье)' } },
+    { id: 'group', name: { en: 'Group Therapy', ru: 'Групповая терапия (Обсуждение опыта и поддержка в группе с похожими проблемами)' } },
+    { id: 'psychoanalysis', name: { en: 'Psychoanalysis / Psychodynamic Therapy', ru: 'Психоанализ / психодинамическая терапия (Работает с бессознательными процессами, внутренними конфликтами и прошлым опытом)' } },
+    { id: 'dbt', name: { en: 'Dialectical Behavior Therapy', ru: 'Диалектическая поведенческая терапия (Для работы с эмоциональной нестабильностью и пограничным расстройством личности)' } },
+    { id: 'humanistic', name: { en: 'Humanistic Therapy', ru: 'Гуманистическая терапия (Ориентирована на личностный рост, самореализацию и развитие потенциала)' } },
+    { id: 'trauma', name: { en: 'Trauma Therapy', ru: 'Травматерапия (Обработка травматических воспоминаний и восстановление после ПТСР)' } },
+    { id: 'emdr', name: { en: 'EMDR', ru: 'Метод ДПДГ - для лечения посттравматических стрессовых расстройств' } },
+    { id: 'value_oriented', name: { en: 'Value-Oriented Method', ru: 'Ценностно-ориентированный метод' } },
+    { id: 'emotion_imagery', name: { en: 'Emotion-Imagery Therapy', ru: 'Эмоционально-образная терапия' } },
+    { id: 'hellinger', name: { en: 'Hellinger Constellations', ru: 'Расстановки по Берту Хеллингеру' } },
+    { id: 'logotherapy', name: { en: 'Logotherapy by V. Frankl', ru: 'Логотерапия по В. Франклу' } },
+    { id: 'nlp', name: { en: 'NLP - Neuro-Linguistic Programming', ru: 'НЛП - Нейролингвистическое программирование' } },
+];
