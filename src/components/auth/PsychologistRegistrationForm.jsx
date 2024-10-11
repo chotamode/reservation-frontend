@@ -155,7 +155,6 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister, formData }) {
                 <div className="flex  flex-col gap-6 items-start">
                     <div className="flex flex-row gap-2">
                         <FormField2 id="birth_date"  label="Дата рождения" type="date"    placeholder="Дата рождения"/>
-                        <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения"/>
 
                         <FormField2
                             id="email"
