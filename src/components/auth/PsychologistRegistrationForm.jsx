@@ -1,11 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormField2 from "./FormField2.jsx";
 
 
-function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
+function PsychologistRegistrationForm({ onClose, onOpenRegister, formData }) {
     const [educationEntries, setEducationEntries] = useState([{ degree: '', institution: '', graduationYear: '' }]);
     const [courses, setCourses] = useState([{ position: '', organization: '', duration: '' }]);
     const [workExperience, setWorkExperience] = useState([{ position: '', organization: '', duration: '' }]);
+    const [formValues, setFormValues] = useState({
+        name: '',
+        surname: '',
+        patronymic: '',
+        phone: '',
+        email: '',
+    });
+
+    useEffect(() => {
+        if (formData) {
+            setFormValues((prev) => ({
+                ...prev,
+                ...formData,
+            }));
+        }
+    }, [formData]);
+
+    const handleInputChange = (e) => {
+        const { id, value } = e.target;
+        setFormValues((prev) => ({
+            ...prev,
+            [id]: value,
+        }));
+    };
+
+
 
     const handleAddEducation = () => {
         setEducationEntries([...educationEntries, { degree: '', institution: '', graduationYear: '' }]);
@@ -73,14 +99,52 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
         <form className="flex flex-col gap-8">
             <div className="flex flex-col gap-6">
                 <div className="flex flex-row gap-2">
-                    <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
-                    <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия"/>
-                    <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество"/>
+                    <FormField2
+                        id="name"
+                        label="Имя"
+                        type="text"
+                        placeholder="Имя"
+                        value={formValues.name}
+                        onChange={handleInputChange}
+                    />
+
+                    <FormField2
+                        id="surname"
+                        label="Фамилия"
+                        type="text"
+                        placeholder="Фамилия"
+                        value={formValues.surname}
+                        onChange={handleInputChange}
+                    />
+                    <FormField2
+                        id="patronymic"
+                        label="Отчество"
+                        type="text"
+                        placeholder="Отчество"
+                        value={formValues.patronymic}
+                        onChange={handleInputChange}
+                    />
                 </div>
                 <div className="flex  flex-col gap-6 items-start">
                     <div className="flex flex-row gap-2">
                         <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения"/>
-                        <FormField2 id="email" label="Email" type="email" placeholder="Email"/>
+
+                        <FormField2
+                            id="email"
+                            label="Email"
+                            type="email"
+                            placeholder="Email"
+                            value={formValues.email}
+                            onChange={handleInputChange}
+                        />
+                        <FormField2
+                            id="phone"
+                            label="Телефон"
+                            type="tel"
+                            placeholder="Телефон"
+                            value={formValues.phone}
+                            onChange={handleInputChange}
+                        />
                     </div>
                     <div className=" mx-2 flex flex-col gap-1 form-field">
 

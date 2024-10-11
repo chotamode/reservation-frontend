@@ -19,27 +19,31 @@ function Accordeon2({ contentElements, header, className }) {
                 </h1>
             </div>
             {contentElements.map((element, index) => (
+
                 <div
                     key={index}
-                    className={`rounded-3xl p-7 ${openIndices.includes(index) ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
+                    className={`rounded-3xl cursor-pointer p-7  ${openIndices.includes(index) ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'} drop-shadow-sm`}
+                    onClick={() => toggleAccordion(index)}
                 >
-                    <button
-                        className="w-full text-left focus:outline-none flex justify-between items-center rounded-3xl"
-                        onClick={() => toggleAccordion(index)}
+                    <div
+                        className="w-full cursor-pointer text-left focus:outline-none flex justify-between items-center "
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
                             className={`transform transition-transform duration-300 ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
                         />
-                    </button>
+                    </div>
                     <div
                         className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
-                        <div className="pt-4">
-                            <p>{element.text}</p>
+                        <div className=" cursor-auto pt-4">
+                            <p onClick={(e) => e.stopPropagation()}>{element.text}</p>
                         </div>
                     </div>
                 </div>
+
+
+
             ))}
         </div>
     );
