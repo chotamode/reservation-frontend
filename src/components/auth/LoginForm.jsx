@@ -63,7 +63,6 @@ function LoginForm({ onClose, onOpenRegister, onOpenPsychologistRegister }) {
             <div className="flex flex-col gap-7 items-center justify-between">
                 <AuthButton text="ВОЙТИ" onClick={handleSubmit} />
                 <AuthButton text="ЗАРЕГИСТРИРОВАТЬСЯ" onClick={onOpenRegister} color="[#DBEAFE]" />
-                <AuthButton text="РЕГИСТРАЦИЯ ДЛЯ ПСИХОЛОГА" onClick={onOpenPsychologistRegister} color="[#DBEAFE]" />
             </div>
         </form>
     );
