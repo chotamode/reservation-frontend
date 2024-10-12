@@ -84,7 +84,8 @@ function RegistrationForm({ onClose, onOpenLogin }) {
             </div>
             <div className={"grid grid-cols-2 gap-x-10 gap-y-7"}>
                 <FormField id="birth_date" label="Дата рождения" type="date" value={formData.birth_date}
-                           onChange={handleChange} placeholder={"Дата рождения"} required />
+                           onChange={handleChange} placeholder={"Дата рождения"} required
+                />
                 <FormField id="email" label="Email" type="email" value={formData.email} onChange={handleChange}
                            placeholder={"Ваша почта"} required />
                 <FormField id="tg_username" label="Telegram username" type="text" value={formData.tg_username}

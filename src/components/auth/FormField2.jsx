@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function FormField2({ id, label, type, value, onChange, placeholder, isTextarea  }) {
+function FormField2({ id, label, type, value, onChange, placeholder, isTextarea, min, max  }) {
 
     const [isFocused, setIsFocused] = useState(false);
     return (
@@ -24,6 +24,8 @@ function FormField2({ id, label, type, value, onChange, placeholder, isTextarea 
                 type={type}
                 id={id}
                 value={value}
+                min={min}
+                max={max}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 onChange={onChange}
