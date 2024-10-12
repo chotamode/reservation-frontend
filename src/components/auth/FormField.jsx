@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function FormField({ id, label, type, value, onChange = () => {}, placeholder, rightButton }) {
+function FormField({ id, label, type, value, onChange = () => {}, placeholder, rightButton, error }) {
     return (
         <div className="relative">
             <label className="hidden" htmlFor={id}>
@@ -12,7 +12,7 @@ function FormField({ id, label, type, value, onChange = () => {}, placeholder, r
                 id={id}
                 value={value}
                 onChange={onChange}
-                className="border-1 border-[#39442B] appearance-none rounded-[25px] h-14 w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-[#39442B] text-lg px-10"
+                className={`border-1 border-[#39442B] appearance-none rounded-[25px] h-14 w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline placeholder-[#39442B] text-lg px-10 ${error ? 'border-red-500' : ''}`}
                 required
             />
             {rightButton && (
@@ -24,6 +24,7 @@ function FormField({ id, label, type, value, onChange = () => {}, placeholder, r
                     {rightButton.icon}
                 </button>
             )}
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
         </div>
     );
 }
@@ -34,6 +35,7 @@ FormField.propTypes = {
     type: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func,
+    error: PropTypes.string,
 };
 
 export default FormField;

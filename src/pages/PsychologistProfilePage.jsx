@@ -94,10 +94,11 @@ function PsychologistProfilePage() {
 
     const transformEntitiesToEvents = (entities) => {
         return entities.map(entity => {
-            let start, end, title;
+            let start, end, title, id;
 
             if (entity.time) {
                 // First type of entity
+                id = entity.id;
                 start = new Date(entity.time);
                 end = new Date(new Date(entity.time).getTime() + entity.duration * 60000);
                 if(entity.reservation){
@@ -107,12 +108,13 @@ function PsychologistProfilePage() {
                 }
             } else if (entity.slots) {
                 // Second type of entity
+                id = entity.slots.id;
                 start = new Date(entity.slots.time);
                 end = new Date(new Date(entity.slots.time).getTime() + entity.slots.duration * 60000);
                 title = `${entity.reservation.customers.system_users.name} ${entity.reservation.customers.system_users.surname} - ${entity.reservation.status}`;
             }
 
-            return { start, end, title };
+            return { start, end, title, id };
         });
     };
 
@@ -171,6 +173,7 @@ function PsychologistProfilePage() {
                     onSlotAdd={handleSlotAdd}
                     onSlotDelete={handleSlotDelete}
                     onSlotUpdate={handleSlotUpdate}
+                    psychologistId={id}
                 />
 
             </div>

@@ -3,39 +3,52 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
+import useCreateSlot from '../hooks/slot/useCreateSlot.js';
+import useDeleteSlot from '../hooks/slot/useDeleteSlot.js';
+import Modal from './Modal.jsx'; // Assuming you have a Modal component
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 
-function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate }) {
+function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate, psychologistId }) {
     const [events, setEvents] = useState(slots);
+    const [selectedEvent, setSelectedEvent] = useState(null);
+    const { createSlot, loading: createLoading, error: createError } = useCreateSlot();
+    const { deleteSlot, loading: deleteLoading, error: deleteError } = useDeleteSlot();
 
-    const handleSelectSlot = ({ start }) => {
-        const title = window.prompt('New Slot');
+    const predefinedDuration = 60; // Define the duration in minutes
+
+    const handleSelectSlot = async ({ start }) => {
+        const title = "Not reserved";
         if (title) {
-            const duration = parseInt(window.prompt('Duration in minutes'), 10);
-            if (!isNaN(duration) && duration > 0) {
+            const duration = predefinedDuration;
+            const time = start.toISOString();
+            try {
+                const newSlot = await createSlot(psychologistId, duration, time);
                 const end = moment(start).add(duration, 'minutes').toDate();
-                const newEvent = { start, end, title };
+                const newEvent = { start, end, title, id: newSlot.id }; // Include id here
                 setEvents([...events, newEvent]);
                 onSlotAdd(newEvent);
-            } else {
-                alert('Invalid duration');
+            } catch (err) {
+                alert('Failed to create slot: ' + err.message);
             }
         }
     };
 
     const handleSelectEvent = (event) => {
-        const action = window.prompt('Update or Delete? (u/d)');
-        if (action === 'd') {
-            setEvents(events.filter(e => e !== event));
-            onSlotDelete(event);
-        } else if (action === 'u') {
-            const title = window.prompt('New Title', event.title);
-            if (title) {
-                const updatedEvent = { ...event, title };
-                setEvents(events.map(e => (e === event ? updatedEvent : e)));
-                onSlotUpdate(updatedEvent);
+        setSelectedEvent(event);
+    };
+
+    const handleDeleteSlot = async () => {
+        console.log(selectedEvent);
+        if (selectedEvent) {
+            try {
+                await deleteSlot(selectedEvent.id);
+                setEvents(events.filter(e => e.id !== selectedEvent.id));
+                onSlotDelete(selectedEvent);
+                setSelectedEvent(null);
+            } catch (err) {
+                alert('Failed to delete slot: ' + err.message);
             }
         }
     };
@@ -79,6 +92,18 @@ function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate }) 
                 resizable
                 style={{ height: 500 }}
             />
+            {createLoading && <p>Loading...</p>}
+            {createError && <p>Error: {createError}</p>}
+            {deleteLoading && <p>Loading...</p>}
+            {deleteError && <p>Error: {deleteError}</p>}
+            {selectedEvent && (
+                <Modal isOpen={!!selectedEvent} onClose={() => setSelectedEvent(null)} header="Delete Slot">
+                    <p>Are you sure you want to delete this slot?</p>
+                    <button onClick={handleDeleteSlot} disabled={deleteLoading}>
+                        {deleteLoading ? 'Deleting...' : 'Delete'}
+                    </button>
+                </Modal>
+            )}
         </div>
     );
 }
