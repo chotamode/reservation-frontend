@@ -14,7 +14,7 @@ function Accordeon({ contentElements, header }) {
     };
 
     return (
-        <div className="w-full space-y-4 bg-white rounded-3xl border-black p-8 md:p-28 relative">
+        <div className="w-full space-y-4 bg-white rounded-3xl border-black p-6 md:p-28 relative">
             <div className="flex flex-row h-16 items-end">
                 <AccordeonPerson className="h-full" />
                 <h1 className="text-2xl md:text-4xl font-bold ml-4">

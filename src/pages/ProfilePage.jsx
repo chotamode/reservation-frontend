@@ -130,42 +130,43 @@ function ProfilePage() {
             <TopNav/>
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <div>
-                    <div className={"flex flex-row justify-between items-center mb-7"}>
+                    <div className={"flex flex-col md:flex-row justify-between items-center mb-7"}>
                         <h1 className="text-2xl font-bold">
                             Добро пожаловать в личный кабинет, {userDetails?.name}!
                         </h1>
-                        <button className={"rounded-2xl bg-red-500 text-white px-7 h-10"} onClick={handleLogoutClick}>
+                        <div className={"hidden md:flex"}>
+                        <button className={"rounded-2xl bg-red-500 text-white px-7 h-10 md:font-bold"} onClick={handleLogoutClick}>
                             Logout
                         </button>
 
                         <button
-                            className="rounded-3xl bg-[#E9EFC8] p-2"
+                            className="rounded-3xl bg-[#E9EFC8] p-2 "
                             onClick={handleActivateCertificateClick}
                         >
                             Активировать сертификат
                         </button>
-
                         <button className={"rounded-2xl bg-[#E5E7EB] px-7 h-10 flex items-center"}
                                 onClick={handleProfileClick}>
                             Мой профиль
                             <img src={userIcon} alt="User Icon" className="ml-2 h-6 w-6"/>
                         </button>
                     </div>
+                    </div>
 
-                    <div className={"flex flex-row gap-5 justify-between"}>
-                        <div className={"rounded-3xl bg-[#E9EFC8] p-5 w-full"}>
+                    <div className={"flex flex-col md:flex-row gap-5 justify-between"}>
+                        <div className={"rounded-3xl bg-[#E9EFC8] p-5 w-full font-bold"}>
                             <h3>Предстощая сессия:</h3>
                             {nearestSession ? (
                                 <p>{new Date(nearestSession.time).toLocaleString()}</p>
                             ) : (
-                                <p>Пока сессий нет</p>
+                                <p>10/10/2007 23:23</p>
                             )}
                         </div>
-                        <div className={"rounded-3xl bg-[#DBEAFE] p-5 w-full"}>
+                        <div className={"rounded-3xl bg-[#DBEAFE] p-5 w-full font-bold"}>
                             <h3>Всего консультаций:</h3>
                             <p>{finishedSessionsCount}</p>
                         </div>
-                        <div className={"rounded-3xl bg-[#E9EFC8] p-5 w-full"}>
+                        <div className={"rounded-3xl bg-[#E9EFC8] p-5 w-full font-bold"}>
                             <h3>Баланс счета:</h3>
                             <p>{balance} ₽</p>
                         </div>
@@ -177,7 +178,7 @@ function ProfilePage() {
             {upcomingSessions(upcomingReservations, handleReschedule, showCancelModal, rescheduleLoading, cancelLoading, rescheduleError, cancelError)}
             {finishedSessions(canceledReservations, finishedReservations)}
 
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+            <div className="bg-white p-6 sm:p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">
                     Сводка по платежам:
                 </h1>
@@ -247,7 +248,7 @@ function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, resc
         return (
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">Предстоящие сессии</h1>
-                <p>Пока что новых резенваций нет</p>
+                <p>Пока что новых резерваций нет</p>
             </div>
         );
     }
@@ -295,7 +296,7 @@ function finishedSessions(canceledSessions, finishedSessions) {
         return (
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">Завершенные сессии</h1>
-                <p>пока что завершенных сессий нет</p>
+                <p>Пока что завершенных сессий нет</p>
             </div>
         );
     }

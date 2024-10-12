@@ -69,7 +69,7 @@ function LandingPage() {
 
     return (
         <div className="">
-            <div className="flex flex-col gap-8 h-screen">
+            <div className="flex flex-col gap-8">
                 <div className="md:hidden">
                     <button onClick={toggleDrawer} className="text-black">Menu</button>
                 </div>
@@ -77,11 +77,11 @@ function LandingPage() {
                     <TopNav />
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
-                <div className="flex flex-grow flex-col gap-8 w-full h-full">
+                <div className="flex flex-grow flex-col gap-5 w-full h-full">
                     <div className="flex h-auto w-full">
                         <Hero/>
                     </div>
-                    <div className="flex h-1/4 w-full mb-0">
+                    <div className="flex h-48 md:h-52 w-full -mb-11">
                         <BigButton
                             text={"ЗАПИСАТЬСЯ"}
                             icon={<img src={Arrow} alt="Arrow" />}
@@ -90,23 +90,18 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="-mt-80 md:my-32">
+            <div className="mt-0 md:my-32 md:pt-0">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
-            <div className="flex flex-row h-44 gap-5 mb-5 mt-8">
+            <div className="flex flex-row h-40 md:h-56 py-9 -mb-5 md:mb-2 mt-7 ">
                 <span className="rounded-3xl bg-white border-greenDark w-full h-full flex items-center justify-center">
                     <p className="font-bold">
                         Запросы с которыми работаем:
                     </p>
                 </span>
-                {/*<BigButton*/}
-                {/*    text={"ОТКРЫТЬ ПОЛНЫЙ СПИСОК"}*/}
-                {/*    icon={<img src={Arrow} alt="Arrow" />}*/}
-                {/*    onClick={handleOpenFullList}*/}
-                {/*/>*/}
             </div>
             <div className="">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-5 h-auto md:h-custom-440">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 h-auto md:h-custom-440">
                     {emotionCardsData.map((card, index) => (
                         <EmotionCard
                             key={index}
@@ -129,9 +124,9 @@ function LandingPage() {
                     <Carousel psychologists={psychologists}/>
                 )}
             </div>
-            <div className="flex h-44 w-full mb-24 mt-8">
+            <div className="flex h-40 w-full mb-24 mt-8">
             <BigButton
-                    text={"ЗАПИСАТЬСЯ"}
+                    text={"ОТКРЫТЬ ПОЛНЫЙ СПИСОК"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
                 />

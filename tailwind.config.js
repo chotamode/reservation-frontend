@@ -8,6 +8,7 @@
             colors: {
                 greenLight: '#D3DBA8',
                 greenDark: '#39442B',
+                customGreen: 'rgb(160,172,67)',
             },
             backgroundImage: {
                 'custom-bg': "url('/src/assets/images/background.png')",

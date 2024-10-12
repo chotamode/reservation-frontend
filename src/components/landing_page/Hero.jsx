@@ -4,7 +4,7 @@ import MethHeroAnimation from "./../../assets/images/meth_hero_animation.gif";
 
 function Hero() {
     return (
-        <div className="flex flex-col md:flex-row rounded-3xl border-black w-full h-full bg-white items-center p-14 md:p-12">
+        <div className="flex flex-col md:flex-row rounded-3xl border-black w-full h-full bg-white items-center p-12 md:p-12">
             <div className={`h-full flex items-center justify-center w-full`}>
                 <img src={MethHero} alt="MethHero" />
             </div>
