@@ -50,42 +50,56 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
     if (slotsError) return <div>Error: {slotsError}</div>;
 
     return (
-        <div>
-            <h1>Выберите дату и время</h1>
-            <div className="flex">
-                <div className="w-1/2 p-4">
-                    <Calendar
-                        onChange={handleDateChange}
-                        tileClassName={tileClassName}
-                    />
+        <div className={"flex flex-row gap-5 w-full my-12"}>
+            <div>
+                <h1 className={"font-semibold"}>
+                    Календарь
+                </h1>
+                <div className="flex">
+                    <div className="w-1/2 p-4">
+                        <Calendar
+                            onChange={handleDateChange}
+                            tileClassName={tileClassName}
+                        />
+                    </div>
+                    <div className="w-1/2 p-4">
+                        {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
+                        <h2 className="text-xl font-bold mb-4">Свободное время</h2>
+                        <ul>
+                            {availableSlots.length > 0 ? (
+                                availableSlots.map((slot) => (
+                                    <li key={slot.id} className="mb-2 p-2 bg-green-200 rounded">
+                                        {new Date(slot.time).toLocaleTimeString()}
+                                        <button
+                                            className="ml-4 p-2 bg-blue-500 text-white rounded"
+                                            onClick={() => handleSlotSelect(slot.id, user.id)}
+                                            disabled={reserveLoading}
+                                        >
+                                            Select
+                                        </button>
+                                    </li>
+                                ))
+                            ) : (
+                                <p>Нет свободных мест в этот день</p>
+                            )}
+                        </ul>
+                        {reserveError && <p>Error: {reserveError}</p>}
+                    </div>
                 </div>
-                <div className="w-1/2 p-4">
-                    {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
-                    <h2 className="text-xl font-bold mb-4">Свободное время</h2>
-                    <ul>
-                        {availableSlots.length > 0 ? (
-                            availableSlots.map((slot) => (
-                                <li key={slot.id} className="mb-2 p-2 bg-green-200 rounded">
-                                    {new Date(slot.time).toLocaleTimeString()}
-                                    <button
-                                        className="ml-4 p-2 bg-blue-500 text-white rounded"
-                                        onClick={() => handleSlotSelect(slot.id, user.id)}
-                                        disabled={reserveLoading}
-                                    >
-                                        Select
-                                    </button>
-                                </li>
-                            ))
-                        ) : (
-                            <p>Нет свободных мест в этот день</p>
-                        )}
-                    </ul>
-                    {reserveError && <p>Error: {reserveError}</p>}
-                </div>
+            </div>
+            <div>
+                <h1>Выберите тему сессии</h1>
+                <label>
+                    <input type="text" name="theme" className="border rounded p-2 w-full" required/>
+                </label>
+                <h1>Заметки по желаему</h1>
+                <label>
+                    <input type="text" name="notes" className="border rounded p-2 w-full" required/>
+                </label>
             </div>
         </div>
 
-    );
+);
 }
 
 export default AppointmentWindow;
