@@ -35,7 +35,7 @@ function LoginForm({ onClose, onOpenRegister, onOpenPsychologistRegister }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded mx-44 gap-7 flex flex-col">
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded mx-4 sm:mx-10 md:mx-44 gap-7 flex flex-col">
             {error && <p className="text-red-500 text-center">{error}</p>}
             <FormField
                 id="email"
@@ -60,7 +60,7 @@ function LoginForm({ onClose, onOpenRegister, onOpenPsychologistRegister }) {
             <button className="flex justify-end text-[#39442B]">
                 <p>Забыли пароль?</p>
             </button>
-            <div className="flex flex-col gap-7 items-center justify-between">
+            <div className="flex flex-col gap-3 sm:gap-5 items-center justify-between">
                 <AuthButton text="ВОЙТИ" onClick={handleSubmit} />
                 <AuthButton text="ЗАРЕГИСТРИРОВАТЬСЯ" onClick={onOpenRegister} color="[#DBEAFE]" />
                 <AuthButton text="РЕГИСТРАЦИЯ ДЛЯ ПСИХОЛОГА" onClick={onOpenPsychologistRegister} color="[#DBEAFE]" />

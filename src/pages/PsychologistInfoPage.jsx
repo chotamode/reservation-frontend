@@ -1,4 +1,3 @@
-// src/pages/PsychologistInfoPage.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -49,14 +48,14 @@ function PsychologistInfoPage() {
     return (
         <div>
             <TopNav />
-            <div className="grid grid-cols-4 gap-4 my-4 rounded-3xl items-center h-full font-roboto">
-                <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-col font-roboto items-center w-full justify-center">
-                    <img src={psychologist.system_users.image || defaultImage} alt="psychologist" className="rounded-full w-40 h-40 filter grayscale object-cover" />
-                    <h1 className="text-3xl font-bold">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4 my-4 rounded-3xl items-center h-full font-roboto">
+                <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-col font-roboto items-center w-full justify-center p-9 md:p-3">
+                    <img src={psychologist.system_users.image || defaultImage} alt="psychologist" className="rounded-full w-28 h-28 md:w-40 md:h-40 filter grayscale object-cover" />
+                    <h1 className="text-2xl md:text-3xl font-bold">
                         {psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}
                     </h1>
-                    <h3 className="text-xl font-normal text-[#4B5563]">Психолог</h3>
-                    <div className="my-16">
+                    <h3 className="text-lg md:text-xl font-normal text-[#4B5563]">Психолог</h3>
+                    <div className="my-8 md:my-16 text-left">
                         <p>{psychologist.system_users.email}</p>
                         <p>{psychologist.system_users.tg_username}</p>
                     </div>

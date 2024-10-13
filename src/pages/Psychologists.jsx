@@ -17,31 +17,27 @@ function Psychologists() {
 
     return (
         <div>
-            <div className="flex flex-col h-[38rem] gap-8 ">
-                <div className="md:hidden">
-                    <button onClick={toggleDrawer} className="text-black">Menu</button>
-                </div>
-                <div className="hidden md:block">
+            <div className="flex flex-col gap-8">
+                <div className={"-mt-4 -md:pt-5 -md:mt-4"}>
                     <TopNav/>
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
                 <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-[25.5rem] w-full">
+                    <div className="flex h-3/4 w-full">
                         <Hero/>
                     </div>
-
-                    {/*<div className="flex h-1/4 w-full">
+                    <div className="flex h-48  w-full pb-10 -mb-12 md:mb-0">
                         <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
                     </div>
-                    */}
                 </div>
             </div>
 
-            <div className="bg-white text-black p-10 rounded-3xl  mb-10 font-raleway flex flex-col gap-5 border-black">
-                <h1 className={"text-2xl font-semibold"}>
-                    Вы следуете за своим призванием, мы заботимся об организации
+            <div className="bg-white text-black p-4 md:p-12 rounded-3xl pb-6 -mt-8 md:my-11 font-raleway flex flex-col gap-5 border-black mb-10 md:mb-20">
+                <h1 className={"text-xl md:text-2xl font-bold"}>
+                    Вы следуете за своим призванием, мы заботимся об организации!
                 </h1>
-                <p>Мы активно поддерживаем молодых специалистов и даем им возможность реализовать свой профессиональный
+                <p className={"bg-[#EDF2CF] border-[#EDF2CF] p-3 rounded-3xl text-base md:text-lg"}>
+                    Мы активно поддерживаем молодых специалистов и даем им возможность реализовать свой профессиональный
                     путь на нашей платформе, а нашим клиентам — сделать первые шаги к себе</p>
             </div>
 

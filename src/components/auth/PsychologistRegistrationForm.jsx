@@ -69,20 +69,20 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     };
 
     return (
-        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-8 p-2 md:p-0" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-col md:flex-row gap-2">
                     <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
                     <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия"/>
                     <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество"/>
                 </div>
                 <div className="flex  flex-col gap-6 items-start">
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-col md:flex-row gap-2">
                         <FormField2 id="birth_date"  label="Дата рождения" type="date"    placeholder="Дата рождения"/>
                         <FormField2 id="email" label="Email" type="email"  placeholder="Email"/>
                     </div>
                     {/*password*/}
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-col md:flex-row gap-2">
                         <FormField2 id="password" label="Пароль" type="password" placeholder="Пароль"/>
                         <FormField2 id="password_confirmation" label="Подтверждение пароля" type="password" placeholder="Подтверждение пароля"/>
                     </div>
@@ -111,7 +111,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Образование</h2>
                 {educationEntries.map((entry, index) => (
-                    <div key={index} className="education-entry flex flex-row gap-2 ">
+                    <div key={index} className="education-entry flex flex-col md:flex-row gap-2 ">
                         <FormField2
                             id={`degree-${index}`}
                             label="Степень"
@@ -144,7 +144,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Курсы профессионального развития</h2>
                 {courses.map((course, index) => (
-                    <div key={index} className="course-entry flex flex-row gap-2">
+                    <div key={index} className="course-entry flex flex-col md:flex-row gap-2">
                         <FormField2
                             id={`position-${index}`}
                             label="Ваша должность"
@@ -180,7 +180,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                 {/*Введите название организации*/}
                 {/*Введите даты работы*/}
                 {workExperience.map((entry, index) => (
-                    <div key={index} className="work-entry flex flex-row gap-2">
+                    <div key={index} className="work-entry flex flex-col md:flex-row gap-2">
                         <FormField2
                             id={`position-${index}`}
                             label="Ваша должность"
@@ -217,7 +217,7 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                     <input className="cursor-pointer" type="checkbox" id="adult" name="adult"/>
                     <label htmlFor="adult">Взрослые</label>
                 </div>
-                <div className="flex flex-row gap-1 items-center">
+                <div className="flex md:flex-row gap-1 items-center">
                     <input className="cursor-pointer" type="checkbox" id="couples" name="teen"/>
                     <label htmlFor="couples">Пары</label>
                 </div>
@@ -229,9 +229,9 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             {/*типы терапии которые вы используете в работе*/}
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы терапии которые вы используете в работе</h2>
-                <div className="grid grid-cols-5  gap-x-2 gap-y-1 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-x-11 gap-y-1 md:gap-x-2 md:gap-y-1 text-base md:text-sm">
                     {therapyTypes.map((type) => (
-                        <div className="flex flex-row gap-1 items-center" key={type.id}>
+                        <div className="flex md:flex-row gap-1 items-center" key={type.id}>
                             <input className="cursor-pointer" type="checkbox" id={type.id} name={type.id}/>
                             <label htmlFor={type.id}>{type.name.ru}</label>
                         </div>
@@ -240,17 +240,17 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             </div>
 
             {/*Типы каких платформ для коммуникации с клиентов вам удобнее всего использовать?*/}
-            <div className="flex flex-col gap-1 items-start justify-center">
+            <div className="flex flex-col gap-1 items-start justify-center gap-y-2 ">
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
                 {communicationChannels.map((channel) => (
-                    <div className="flex flex-row gap-1 items-center" key={channel.id}>
+                    <div className="flex flex-row gap-2 items-center" key={channel.id}>
                         <input className="cursor-pointer" type="checkbox" id={channel.id} name={channel.id}/>
                         <label htmlFor={channel.id}>{channel.name}</label>
                     </div>
                 ))}
             </div>
 
-            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto w-full" type="submit">
+            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto h-[4rem] w-full" type="submit">
                 <p className="text-black p-2">
                     Присоединиться к команде
                 </p>

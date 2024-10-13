@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 function BigButton({ text, icon, onClick }) {
   return (
-    <button className="rounded-custom-xl bg-greenLight border-greenDark border-solid drop-shadow-lg w-[75rem] h-44 flex items-center justify-center" onClick={onClick}>
+    <button className="rounded-custom-xl bg-greenLight border-greenDark border-solid drop-shadow-lg w-full md:w-[73rem] h-1/2 md:h-44 flex items-center justify-center" onClick={onClick}>
       <p className="font-bold">
           {text}
       </p>
@@ -12,8 +12,8 @@ function BigButton({ text, icon, onClick }) {
 }
 
 BigButton.propTypes = {
-  text: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+    text: PropTypes.string.isRequired,
+    icon: PropTypes.node,
 };
 
 export default BigButton;

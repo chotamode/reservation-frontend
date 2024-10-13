@@ -51,13 +51,10 @@ function App() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-
     return (
         <Router>
             <Layout>
-                <div className="w-[75rem] mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px]
-                py-10
-                ">
+                <div className="w-full sm:w-[75rem] mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px] py-6 md:py-10 px-4">
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
                         <Route path="/admin" element={user && isAdmin ? <AdminPage/> : <Navigate to="/"/>}/>
@@ -76,7 +73,7 @@ function App() {
                         <Route path="/select-psychologist" element={<ChoosePsychologist/>}/>
                         <Route path="/requests" element={<Requests/>}/>
                         <Route path="/FAQ" element={<FAQ/>}/>
-                        <Route path="/psychologist-info/:id" element={<PsychologistInfoPage/>}/>
+                        <Route path="/psychologist-info/:id" element={<PsychologistInfoPage />} />
                     </Routes>
                 </div>
             </Layout>

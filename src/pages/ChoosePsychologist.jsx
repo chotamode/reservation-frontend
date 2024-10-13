@@ -27,12 +27,12 @@ function PsychologistCard2({ psychologist }) {
     };
 
     return (
-        <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
-            <div className="flex flex-col gap-7 flex-grow">
+        <div className="bg-white p-4 md:p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
+            <div className="flex flex-col gap-7 md:gap-5 flex-grow">
                 <div className="flex flex-row gap-5 justify-start items-center">
                     <img src={psychologist.img || defaultImage} alt="Psychologist" className="rounded-full w-24 h-24 filter grayscale object-cover" />
                     <div className="flex flex-col">
-                        <h1 className="font-semibold text-xl">
+                        <h1 className="font-semibold text-lg md:text-xl">
                             {psychologist.system_users.name} {psychologist.system_users.surname}
                         </h1>
                         <p className="text-gray-500 text-md">
@@ -40,17 +40,17 @@ function PsychologistCard2({ psychologist }) {
                         </p>
                     </div>
                 </div>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-sm md:text-base">
                     {psychologist.mini_description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-10">
-                    {psychologist.therapy_type?.map((practice, index) => {
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-10">
+                    {psychologist.therapy_type.map((practice, index) => {
                         const therapyType = getTherapyTypeDetails(practice);
                         return (
-                            <span key={index} className="rounded-lg p-1 px-2 text-xs"
-                                style={{
-                                    backgroundColor: therapyType ? therapyType.color : '#FFFFFF',
-                                }}
+                            <span key={index} className="rounded-lg bg-[#D3DBA8] p-1 px-2 text-xs"
+                                  style={{
+                                      backgroundColor: therapyType ? therapyType.color : '#FFFFFF',
+                                  }}
                             >
                                 {therapyType ? therapyType.name.ru : practice}
                             </span>
@@ -59,7 +59,7 @@ function PsychologistCard2({ psychologist }) {
                 </div>
             </div>
             <button
-                className="rounded-2xl bg-[#D3DBA8] w-full h-10 text-sm font-semibold mt-auto"
+                className="rounded-2xl bg-[#D3DBA8] w-full h-11 md:h-10 text-sm font-semibold mt-auto"
                 onClick={handleButtonClick}
             >
                 Записаться
@@ -84,7 +84,7 @@ function ChoosePsychologist() {
     });
 
     return (
-        <div>
+        <div className={"-mt-4 -md:pt-5 -md:mt-4"}>
             <TopNav />
             <div className="flex flex-col gap-5 my-9">
                 <h1 className="font-semibold font-[#39442B]">
