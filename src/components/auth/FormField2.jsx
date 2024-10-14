@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-function FormField2({ id, label, type, value, onChange, placeholder, isTextarea, error }) {
+function FormField2({ id, label, type, value, onChange, placeholder, isTextarea, min, max, error }) {
+
+    const [isFocused, setIsFocused] = useState(false);
     return (
         <div className="relative">
             <label className="p-3" htmlFor={id}>
@@ -29,15 +31,5 @@ function FormField2({ id, label, type, value, onChange, placeholder, isTextarea,
         </div>
     );
 }
-
-FormField2.propTypes = {
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
-    isTextarea: PropTypes.bool,
-    error: PropTypes.string,
-};
 
 export default FormField2;
