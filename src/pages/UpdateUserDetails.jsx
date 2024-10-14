@@ -57,10 +57,10 @@ function UpdateUserDetails() {
 
         <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
           <h1 className="text-2xl font-bold mb-5">
-            Добро пожаловать в ваш профиль, Ольга!
+            Добро пожаловать в ваш профиль, pussy_destroyer_3000!
           </h1>
           <div className={"flex flex-row items-center"}>
-            <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-20 w-20"/>
+            <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-24 w-24 md:h-20 md:w-20"/>
             <button className={"rounded-xl bg-[#E5E7EB] px-7 h-10 flex items-center ml-5"}>
               Сменить аватар
             </button>
@@ -147,7 +147,7 @@ function UpdateUserDetails() {
 
 function creditCard(cardNumber, expiryDate, paymentSystem) {
   return (
-      <div className={"border-gray-300 border-1 rounded-md flex flex-row justify-between p-6"}>
+      <div className={"border-gray-300 border-1 rounded-md flex flex-col md:flex-row justify-between p-6"}>
         <div>
           <p className={"font-semibold"}>{paymentSystem} **** {cardNumber}</p>
           <p>Окончание: {expiryDate}</p>

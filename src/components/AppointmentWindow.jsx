@@ -50,19 +50,19 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
     if (slotsError) return <div>Error: {slotsError}</div>;
 
     return (
-        <div className={"flex flex-row gap-5 w-full my-12"}>
-            <div>
-                <h1 className={"font-semibold"}>
+        <div className={"flex flex-col md:flex-row gap-6 md:gap-5 w-full my-0 md:my-12 p-4 md:p-0"}>
+            <div className={"w-full md:w-1/2"}>
+                <h1 className={"font-bold mb-2 pl-4 md:pl-1"}>
                     Календарь
                 </h1>
-                <div className="flex">
-                    <div className="w-1/2 p-4">
+                <div className="flex flex-col md:flex-row">
+                    <div className="w-full p-2 md:p-0">
                         <Calendar
                             onChange={handleDateChange}
                             tileClassName={tileClassName}
                         />
                     </div>
-                    <div className="w-1/2 p-4">
+                    <div className="w-full md:w-1/2 p-2 md:p-4">
                         {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
                         <h2 className="text-xl font-bold mb-4">Свободное время</h2>
                         <ul>
@@ -87,13 +87,13 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
                     </div>
                 </div>
             </div>
-            <div>
-                <h1>Выберите тему сессии</h1>
-                <label>
+            <div className={"w-full md:w-1/3 mx-0 md:mx-10"}>
+                <h1 className={"font-semibold mb-4"}>Выберите тему сессии</h1>
+                <label className="block mb-4">
                     <input type="text" name="theme" className="border rounded p-2 w-full" required/>
                 </label>
-                <h1>Заметки по желаему</h1>
-                <label>
+                <h1 className="font-semibold mb-4">Заметки по желаему</h1>
+                <label className="block mb-4">
                     <input type="text" name="notes" className="border rounded p-2 w-full" required/>
                 </label>
             </div>

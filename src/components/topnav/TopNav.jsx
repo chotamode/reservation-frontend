@@ -103,7 +103,7 @@ function TopNav() {
             </nav>
 
             {/* Мобильная навигация */}
-            <nav className="bg-white shadow-lg p-2 rounded-2xl flex items-center h-16 md:hidden">
+            <nav className="bg-white shadow-lg p-2 rounded-2xl flex items-center h-16 md:hidden relative">
                 <div className="flex-grow flex items-center pl-2 justify-between">
                     <button onClick={toggleMenu} className="text-[#586E1D]">
                         <FaBars size={28}/>
@@ -115,7 +115,7 @@ function TopNav() {
                         onClick={handleLoginClick}
                     />
                     {isDropdownOpen && (
-                        <div>
+                        <div className={"absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg flex flex-col items-end p-2"}>
                             <button className={"rounded-2xl bg-red-500 text-white px-7 h-10 md:font-bold"}
                                     onClick={handleLogoutClick}>
                                 Logout
