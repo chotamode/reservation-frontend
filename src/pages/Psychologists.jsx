@@ -11,9 +11,6 @@ import FormField2 from "../components/auth/FormField2.jsx";
 import Modal from "../components/Modal.jsx";
 
 
-
-
-
 function Psychologists() {
 
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
