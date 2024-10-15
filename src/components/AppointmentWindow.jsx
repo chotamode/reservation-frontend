@@ -53,7 +53,7 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
     return (
 
             <div className="flex py-8 w-full justify-between flex-row ">
-                    <div className="flex w-[600px] flex-row gap-5">
+                    <div className="flex w-[600px] flex-row">
 
                         <div className="flex w-1/2 flex-col">
                             <h2 className="mb-2 ml-2 font-bold text-lg">
@@ -74,7 +74,7 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
 
                             <div className="border-1 rounded-lg p-4">
                                 {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
-                                <ul>
+                                <ul className="h-80">
                                     {availableSlots.length > 0 ? (
                                         availableSlots.map((slot) => (
                                             <li key={slot.id} className="mb-2">
@@ -109,31 +109,45 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
                     </div>
 
 
-                <div className="flex flex-col gap-6 w-1/2" >
+                <div className="flex flex-col w-1/2">
 
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col gap-6 max-w-[445px]">
 
-                        <h1 className="ml-6 mb-3 font-semibold text-xl">Выберите тему сессии</h1>
+                        <div className="flex flex-col ">
 
-                        <FormField2
-                            type="text"
-                            name="theme"
-                            isCustomInput={true}
-                            className="border-1 p-2  w-full"/>
+                            <h1 className="ml-6 mb-3 font-semibold text-xl">Выберите тему сессии</h1>
 
-                    </div>
+                            <FormField2
+                                type="text"
+                                name="theme"
+                                isCustomInput={true}
+                                className="border-1 p-2  w-full"/>
 
-                    <div className="flex flex-col ">
+                        </div>
 
-                        <h1 className="ml-6 mb-3 font-semibold text-xl">Заметки по желанию</h1>
+                        <div className="flex flex-col ">
+
+                            <h1 className="ml-6 mb-3 font-semibold text-xl">Заметки по желанию</h1>
                             <FormField2
                                 type="text"
                                 name="notes"
                                 isTextarea={true}
-                                className="border rounded p-2 w-full"
+                                className="border  rounded p-2 w-full"
                             />
 
+                        </div>
+
                     </div>
+
+                    <div className="flex w-full h-10 justify-center mt-4">
+                        <button
+                            className="bg-[#D3DBA8] w-80 rounded-xl"
+                            onClick={onClose}
+                        >
+                            Записаться
+                        </button>
+                    </div>
+
 
                 </div>
             </div>

@@ -11,10 +11,11 @@ function FormField2({ id, label, type, value, onChange, placeholder, isCustomInp
             {isTextarea ? (
                 <textarea
                     id={id}
-                    className={`w-full h-48 p-2 border rounded-lg focus:outline-none `}
+                    className={`w-full h-48 p-2 resize-none border rounded-lg focus:outline-none `}
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+
                 />
             ) : isCustomInput ? (
                 <input
