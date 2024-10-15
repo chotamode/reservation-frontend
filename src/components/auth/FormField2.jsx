@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function FormField2({ id, label, type, value, onChange, placeholder, isTextarea, min, max, error }) {
+function FormField2({ id, label, type, value, onChange, placeholder, isCustomInput, isTextarea, min, max, error }) {
 
     const [isFocused, setIsFocused] = useState(false);
     return (
@@ -11,10 +11,20 @@ function FormField2({ id, label, type, value, onChange, placeholder, isTextarea,
             {isTextarea ? (
                 <textarea
                     id={id}
-                    className={`w-full h-48 p-2 border rounded-lg ${error ? 'border-red-500' : ''}`}
+                    className={`w-full h-48 p-2 border rounded-lg focus:outline-none `}
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
+                />
+            ) : isCustomInput ? (
+                <input
+                    placeholder={placeholder}
+                    type={type}
+                    id={id}
+                    value={value}
+                    onChange={onChange}
+                    className={`border-2 rounded-lg h-12 w-full p-2 text-gray-800 focus:outline-none`}
+                   required
                 />
             ) : (
                 <input

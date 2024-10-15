@@ -35,7 +35,7 @@ function LoginForm({ onClose, onOpenRegister, onOpenPsychologistRegister }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded mx-44 gap-7 flex flex-col">
+        <form onSubmit={handleSubmit} className="bg-white p-6 py-12 rounded mx-44 gap-7 flex flex-col">
             {error && <p className="text-red-500 text-center">{error}</p>}
             <FormField
                 id="email"

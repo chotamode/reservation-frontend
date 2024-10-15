@@ -22,7 +22,7 @@ function Footer() {
                 METOD@GMAIL.COM
             </h1>
             <p className="text-white text-2xl font-inter mt-6 mb-2 font-normal">
-                +7 920 786 456 67
+                +7 917 786 79 79
             </p>
             <div className="w-[80%]">
                 <div className="line border-b-1 border-[#FDFDF1]  opacity-25"></div>
@@ -32,15 +32,18 @@ function Footer() {
                 <div className="opacity-25"></div>
                 <div className="flex justify-between items-center"></div>
 
-                <div className={"flex justify-between items-center mt-4"}>
-                     <a href="/rules" className="flex flex-row items-center font-bold text-greenDark">
+                <div className={"flex justify-between mt-4"}>
+                    <a href="https://kjiwmnulxldoemzlwexk.supabase.co/storage/v1/object/public/PublicPDF/privacy_policy.pdf?t=2024-10-14T23%3A24%3A28.532Z" className="flex flex-row items-center font-bold text-greenDark">
                         ПРАВИЛА МЕТОДА
-                        <Arrow className="ml-1"/>
+                        {/*<Arrow className="ml-1"/>*/}
                     </a>
 
-                    <a href="/terms" className="flex flex-row items-center font-bold text-greenDark">
+                    <a href="https://kjiwmnulxldoemzlwexk.supabase.co/storage/v1/object/public/PublicPDF/Offer.pdf?t=2024-10-14T23%3A24%3A04.423Z" className="flex flex-row items-center font-bold text-greenDark">
+                        ОФЕРТА
+                    </a>
+
+                    <a href="https://kjiwmnulxldoemzlwexk.supabase.co/storage/v1/object/public/PublicPDF/User%20Agreement.pdf?t=2024-10-14T23%3A24%3A18.744Z" className="flex flex-row items-center font-bold text-greenDark">
                         ПОЛЬЗОВАТЕЛЬСКИЕ СОГЛАШЕНИЯ
-                        <Arrow className="ml-1"/>
                     </a>
 
                 </div>

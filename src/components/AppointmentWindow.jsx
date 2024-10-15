@@ -5,6 +5,7 @@ import '../styles/calendar.css';
 import useFetchFreeSlots from '../hooks/slot/useFetchFreeSlots';
 import useReserveSlot from '../hooks/slot/useReserveSlot';
 import useAuth from '../hooks/useAuth';
+import FormField2 from "./auth/FormField2.jsx";
 
 function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
     const { user } = useAuth();
@@ -50,56 +51,94 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
     if (slotsError) return <div>Error: {slotsError}</div>;
 
     return (
-        <div className={"flex flex-row gap-5 w-full my-12"}>
-            <div>
-                <h1 className={"font-semibold"}>
-                    Календарь
-                </h1>
-                <div className="flex">
-                    <div className="w-1/2 p-4">
-                        <Calendar
-                            onChange={handleDateChange}
-                            tileClassName={tileClassName}
-                        />
+
+            <div className="flex py-8 w-full justify-between flex-row ">
+                    <div className="flex w-[600px] flex-row gap-5">
+
+                        <div className="flex w-1/2 flex-col">
+                            <h2 className="mb-2 ml-2 font-bold text-lg">
+                                Календарь
+                            </h2>
+                            <div className="">
+                                <Calendar
+                                    onChange={handleDateChange}
+                                    tileClassName={tileClassName}
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="flex flex-col w-1/2">
+
+                            <h2 className="text-xl font-bold mb-2">Свободное время</h2>
+
+                            <div className="border-1 rounded-lg p-4">
+                                {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
+                                <ul>
+                                    {availableSlots.length > 0 ? (
+                                        availableSlots.map((slot) => (
+                                            <li key={slot.id} className="mb-2">
+
+                                                <button
+                                                    className="w-full p-3 text-left bg-[#D3DBA8] hover:border-1 border-[#646A46] rounded-md"
+                                                    onClick={() => handleSlotSelect(slot.id, user.id)}
+                                                    disabled={reserveLoading}
+                                                >
+
+                                                     <span className="text-left font-inter">
+                                                        {new Date(slot.time).toLocaleTimeString([], {
+                                                            hour: '2-digit',
+                                                            minute: '2-digit'
+                                                        })}
+                                                     </span>
+
+                                                    <span className="ml-1 text-start font-inter">
+                                                        {new Date(slot.time).toLocaleTimeString([], { hour12: true }).split(' ')[1]}
+                                                    </span>
+
+                                                </button>
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <p>Нет свободных мест в этот день</p>
+                                    )}
+                                </ul>
+                                {reserveError && <p>Error: {reserveError}</p>}
+                            </div>
+                        </div>
                     </div>
-                    <div className="w-1/2 p-4">
-                        {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
-                        <h2 className="text-xl font-bold mb-4">Свободное время</h2>
-                        <ul>
-                            {availableSlots.length > 0 ? (
-                                availableSlots.map((slot) => (
-                                    <li key={slot.id} className="mb-2 p-2 bg-green-200 rounded">
-                                        {new Date(slot.time).toLocaleTimeString()}
-                                        <button
-                                            className="ml-4 p-2 bg-blue-500 text-white rounded"
-                                            onClick={() => handleSlotSelect(slot.id, user.id)}
-                                            disabled={reserveLoading}
-                                        >
-                                            Select
-                                        </button>
-                                    </li>
-                                ))
-                            ) : (
-                                <p>Нет свободных мест в этот день</p>
-                            )}
-                        </ul>
-                        {reserveError && <p>Error: {reserveError}</p>}
+
+
+                <div className="flex flex-col gap-6 w-1/2" >
+
+                    <div className="flex flex-col ">
+
+                        <h1 className="ml-6 mb-3 font-semibold text-xl">Выберите тему сессии</h1>
+
+                        <FormField2
+                            type="text"
+                            name="theme"
+                            isCustomInput={true}
+                            className="border-1 p-2  w-full"/>
+
                     </div>
+
+                    <div className="flex flex-col ">
+
+                        <h1 className="ml-6 mb-3 font-semibold text-xl">Заметки по желанию</h1>
+                            <FormField2
+                                type="text"
+                                name="notes"
+                                isTextarea={true}
+                                className="border rounded p-2 w-full"
+                            />
+
+                    </div>
+
                 </div>
             </div>
-            <div>
-                <h1>Выберите тему сессии</h1>
-                <label>
-                    <input type="text" name="theme" className="border rounded p-2 w-full" required/>
-                </label>
-                <h1>Заметки по желаему</h1>
-                <label>
-                    <input type="text" name="notes" className="border rounded p-2 w-full" required/>
-                </label>
-            </div>
-        </div>
 
-);
+    );
 }
 
 export default AppointmentWindow;

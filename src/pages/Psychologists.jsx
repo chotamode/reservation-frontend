@@ -9,6 +9,7 @@ import Accordeon from "../components/landing_page/Accordeon.jsx";
 import PsychologistRegistrationForm from "../components/auth/PsychologistRegistrationForm.jsx";
 import FormField2 from "../components/auth/FormField2.jsx";
 import Modal from "../components/Modal.jsx";
+import PreRegistrationForm from "../components/auth/PreRegistrationForm.jsx";
 
 
 function Psychologists() {
@@ -177,59 +178,19 @@ function Psychologists() {
                     Давай познакомимся?
                 </h1>
 
-                {step === 1 && (
-                    <form onSubmit={handleFirstFormSubmit} className="flex flex-col gap-4">
-                        <div className="flex flex-row gap-4">
 
-                            <FormField2
-                                id="name"
-                                label="Имя"
-                                type="text"
-                                placeholder="Введите ваше имя"
-                                value={formData.name}
-                                onChange={handleInputChange}
-                            />
 
-                            <FormField2
-                                id="surname"
-                                label="Фамилия"
-                                type="text"
-                                placeholder="Введите вашу фамилию"
-                                value={formData.surname}
-                                onChange={handleInputChange}
-                            />
 
-                            <FormField2
-                                id="patronymic"
-                                label="Отчество"
-                                type="text"
-                                placeholder="Введите ваше отчество"
-                                value={formData.patronymic}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <FormField2
-                            id="phone"
-                            label="Номер телефона"
-                            type="tel"
-                            placeholder="Введите ваш номер телефона"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                        />
-                        <FormField2
-                            id="email"
-                            label="Mail"
-                            type="email"
-                            placeholder="Введите ваш адрес электронной почты"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                        />
-                        <button type="submit" className="bg-[#D3DBA8] text-black mt-6 py-2 px-6 rounded-lg mx-auto">
-                            Отправить
-                        </button>
-                    </form>
+                <PreRegistrationForm/>
+                {/*
+
+                   {step === 1 && (
+
+
+
                 )}
 
+                */}
 
 
             </div>

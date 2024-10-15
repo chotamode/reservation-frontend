@@ -1,15 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+
 
 // Определяем схему валидации с помощью Zod
 const initialFormSchema = z.object({
-    name: z.string().min(1, 'Name is required'),
-    email: z.string().email('Invalid email address'),
+    name: z.string().min(1, 'Имя обязательно'),
+    surname: z.string().min(1, 'Фамилия обязательна'),
+    patronymic: z.string().min(1, 'Отчество!!!'),
+    email: z.string().email('Некорректный email'),
+    phone: z.string().min(1, 'Телефон обязателен'),
+
 });
 
-const InitialForm = ({ onNext }) => {
+const PreRegistrationForm = ({ onNext }) => {
     // Используем react-hook-form для управления формой
     const {
         register,
@@ -26,20 +31,46 @@ const InitialForm = ({ onNext }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label htmlFor="name">Name:</label>
-                <input id="name" {...register('name')} />
-                {errors.name && <span>{errors.name.message}</span>}
+        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+
+            <div className="flex flex-row justify-around">
+                <div className="border-1 rounded-xl">
+                    <input id="name" {...register('name')} />
+                    {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="surname">Surname:</label>
+                    <input id="surname" {...register('surname')} />
+                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                </div>
+
+                <div>
+                    <label htmlFor="patronymic">Patronymic:</label>
+                    <input id="patronymic" {...register('patronymic')} />
+                    {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                </div>
+
             </div>
+
+
             <div>
                 <label htmlFor="email">Email:</label>
                 <input id="email" {...register('email')} />
-                {errors.email && <span>{errors.email.message}</span>}
+                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
             </div>
+
+
+
+            <div>
+                <label htmlFor="phone">Phone:</label>
+                <input id="phone" {...register('phone')} />
+                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            </div>
+
             <button type="submit">Next</button>
         </form>
     );
 };
 
-export default InitialForm;
+export default PreRegistrationForm;
