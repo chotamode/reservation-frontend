@@ -18,6 +18,7 @@ function useAuth() {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         localStorage.setItem('supabaseSession', JSON.stringify(session));
+        localStorage.setItem('token', session.access_token);
         setSession(session);
         setUser(session.user);
         checkIfPsychologist(session.user.id);

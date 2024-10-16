@@ -19,3 +19,8 @@
     border-radius: 0.5rem;
     color: black !important;
 }
+
+abbr:where([title]) {
+    -webkit-text-decoration: none !important;
+    text-decoration: none !important;
+}
