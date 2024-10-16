@@ -16,7 +16,7 @@ function PsychologistCalendar({ slots, onSlotAdd, onSlotDelete, onSlotUpdate, ps
     const { createSlot, loading: createLoading, error: createError } = useCreateSlot();
     const { deleteSlot, loading: deleteLoading, error: deleteError } = useDeleteSlot();
 
-    const predefinedDuration = 60; // Define the duration in minutes
+    const predefinedDuration = 50; // Define the duration in minutes
 
     const handleSelectSlot = async ({ start }) => {
         const title = "Not reserved";

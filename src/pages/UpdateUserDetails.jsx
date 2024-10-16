@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useUpdateUserDetails from '../hooks/useUpdateUserDetails';
+import useUploadAvatar from '../hooks/useUploadAvatar';
 import TopNav from "../components/topnav/TopNav.jsx";
 import Footer from "../components/footer/Footer.jsx";
 
@@ -12,6 +13,7 @@ const creditCards = [
 function UpdateUserDetails() {
   const { id } = useParams();
   const { userDetails, setUserDetails, loading, error, fetchUserDetails, updateUserDetails } = useUpdateUserDetails(id);
+  const { uploadAvatar, loading: avatarLoading, error: avatarError, success: avatarSuccess } = useUploadAvatar();
   const [validationErrors, setValidationErrors] = useState({});
 
   useEffect(() => {
@@ -21,6 +23,13 @@ function UpdateUserDetails() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserDetails((prevDetails) => ({ ...prevDetails, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      uploadAvatar(id, file);
+    }
   };
 
   const validate = () => {
@@ -61,10 +70,14 @@ function UpdateUserDetails() {
           </h1>
           <div className={"flex flex-row items-center"}>
             <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-20 w-20"/>
-            <button className={"rounded-xl bg-[#E5E7EB] px-7 h-10 flex items-center ml-5"}>
-              Сменить аватар
-            </button>
+            <label className={"rounded-xl bg-[#E5E7EB] px-7 h-10 flex items-center ml-5 cursor-pointer"}>
+              <span>Сменить аватар</span>
+              <input type="file" accept="image/*" onChange={handleFileChange} className="hidden"/>
+            </label>
           </div>
+          {avatarLoading && <p>Uploading...</p>}
+          {avatarError && <p className="text-red-500">{avatarError}</p>}
+          {avatarSuccess && <p className="text-green-500">{avatarSuccess}</p>}
           <form className={"grid grid-cols-2 gap-5"} onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700">Name</label>
