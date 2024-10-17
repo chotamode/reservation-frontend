@@ -20,14 +20,29 @@ export async function signup(formData) {
 }
 
 export async function login({ email, password }) {
-  const { error, session } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+  try {
+    const response = await fetch(`${BASE_URL}/user/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password }),
+    });
 
-  if (error) {
-    throw new Error(error.message);
+    const data = await response.json();
+    console.log(data);
+    if (!response.ok) {
+      throw new Error(data.message || 'Something went wrong');
+    }
+
+    if(response.ok){
+      const {access_token, refresh_token} = data;
+
+      await supabase.auth.setSession({
+        access_token,
+        refresh_token,
+      });
+      }
+
+  }catch (err) {
+    throw new Error(err.message);
   }
-
-  return session;
 }
