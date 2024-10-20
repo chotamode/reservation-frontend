@@ -57,7 +57,7 @@ function UpdateUserDetails() {
 
         <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
           <h1 className="text-2xl font-bold mb-5">
-            Добро пожаловать в ваш профиль, pussy_destroyer_3000!
+            Добро пожаловать в ваш профиль, Мария!
           </h1>
           <div className={"flex flex-row items-center"}>
             <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-24 w-24 md:h-20 md:w-20"/>

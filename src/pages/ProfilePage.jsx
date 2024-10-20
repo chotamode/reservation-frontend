@@ -11,7 +11,7 @@ import starIcon from '../assets/images/profile/star.svg';
 import giftIcon from '../assets/images/profile/gift.svg';
 import { PaymentTable } from "../components/PaymentTable.jsx";
 import useFetchCustomerReservations from "../hooks/useFetchCustomerReservations.ts";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import useRescheduleReservation from "../hooks/slot/useRescheduleReservation.ts";
 import useCancelReservation from "../hooks/slot/useCancelReservation.ts";
 import AppointmentWindow from "../components/AppointmentWindow.jsx";
@@ -21,6 +21,7 @@ import useFetchFinishedSessionsCount from '../hooks/slot/useFetchFinishedSession
 import ActivateCertificateModal from "../components/ActivateCertificateModal.jsx";
 import useFetchUserBalance from "../hooks/useFetchUserBalance.js";
 import useFetchNearestSession from "../hooks/useFetchNearestSession.js";
+
 
 const payments = [
     { date: '01/01/2023', amount: '500', status: 'Completed' },
@@ -54,7 +55,7 @@ function ProfilePage() {
     const { count: finishedSessionsCount, loading: loadingFinishedSessionsCount, error: errorFinishedSessionsCount } = useFetchFinishedSessionsCount(user.id);
     const { balance, loading: loadingBalance, error: errorBalance } = useFetchUserBalance(user.id);
     const { nearestSession, loading: loadingNearestSession, error: errorNearestSession } = useFetchNearestSession(user.id);
-
+    const welcomeTextRef = useRef(null);
 
   const { rescheduleReservation, error: rescheduleError, loading: rescheduleLoading } = useRescheduleReservation();
     const { cancelReservation, error: cancelError, loading: cancelLoading } = useCancelReservation();
@@ -65,9 +66,11 @@ function ProfilePage() {
     const [psychologistId, setPsychologistId] = useState(null);
     const [isCancelModalOpen, setCancelModalOpen] = useState(false);
     const [reservationToCancel, setReservationToCancel] = useState(null);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
 
-    if (loadingPsychologists || loadingReservations || loadingUserDetails || loadingNearestSlots || loadingFinishedSessionsCount || loadingBalance || loadingNearestSession) return <div>Loading...</div>;
+    if (loadingPsychologists || loadingReservations || loadingUserDetails || loadingNearestSlots || loadingFinishedSessionsCount || loadingBalance || loadingNearestSession)
+        return <div>Loading...</div>;
     // if (errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount || errorBalance || errorNearestSession) return <div>Error: {errorPsychologists || errorReservations || errorUserDetails || errorNearestSlots || errorFinishedSessionsCount}</div>;
 
     const handleActivateCertificateClick = () => {
@@ -125,20 +128,43 @@ function ProfilePage() {
         }
     };
 
+    const handleLoginClick = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
+
     return (
         <div className="container mx-auto p-4">
-            <TopNav/>
+            <TopNav onLoginClick={handleLoginClick} />
+
+            {/*Блок с приветствием*/}
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
-                <div>
+                <div ref={welcomeTextRef}>
                     <div className={"flex flex-col md:flex-row justify-between items-center mb-7"}>
                         <h1 className="text-2xl font-bold">
                             Добро пожаловать в личный кабинет, {userDetails?.name}!
                         </h1>
-                        <div className={"hidden md:flex"}>
-
                     </div>
-                    </div>
+                    {isDropdownOpen && (
+                        <div
+                            className="absolute bg-white border rounded-lg shadow-lg p-4"
+                            style={{
+                                top: welcomeTextRef.current ? welcomeTextRef.current.getBoundingClientRect().bottom + window.scrollY : 0,
+                                left: welcomeTextRef.current ? welcomeTextRef.current.getBoundingClientRect().left + window.scrollX : 0,
+                            }}
+                        >
+                            <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={handleLogoutClick}>
+                                Logout
+                            </button>
+                            <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={handleActivateCertificateClick}>
+                                Активировать Сертификат
+                            </button>
+                            <button className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100" onClick={handleProfileClick}>
+                                Мой профиль
+                            </button>
+                        </div>
+                    )}
 
+                    {/*Блок с Сессиями*/}
                     <div className={"flex flex-col md:flex-row gap-5 justify-between"}>
                         <div className={"rounded-3xl bg-[#E9EFC8] p-5 w-full font-bold"}>
                             <h3>Предстощая сессия:</h3>
@@ -164,6 +190,7 @@ function ProfilePage() {
             {upcomingSessions(upcomingReservations, handleReschedule, showCancelModal, rescheduleLoading, cancelLoading, rescheduleError, cancelError)}
             {finishedSessions(canceledReservations, finishedReservations)}
 
+            {/*Блок с платежами*/}
             <div className="bg-white p-6 sm:p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">
                     Сводка по платежам:
