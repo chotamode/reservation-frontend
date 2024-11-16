@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import Cross from '../assets/images/cross.svg';
 
-function Modal({ isOpen, onClose, children, header, marginRegForm}) {
+function Modal({isOpen, onClose, children, header}) {
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape') {
@@ -31,10 +31,10 @@ function Modal({ isOpen, onClose, children, header, marginRegForm}) {
 
     if (!isOpen) return null;
 
-
     return ReactDOM.createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
-            <div className="bg-white p-6 rounded-3xl border-1 border-black relative w-full max-w-[90%] md:max-w-[1200px] mx-auto py-4 px-3 sm:px-10 md:px-20 sm:py-10 md:py-14 max-h-[90vh] md:max-h-full overflow-y-auto md:overflow-visible ${marginRegForm} ">
+            <div
+                className="bg-white p-6 rounded-3xl border-1 border-black relative w-full max-w-[90%] md:max-w-[1200px] mx-auto py-4 px-3 sm:px-10 md:px-20 sm:py-10 md:py-14 max-h-[90vh] md:max-h-full overflow-y-auto md:overflow-visible">
                 <div className={"flex flex-row justify-between items-center mb-6 md:mb-12 "}>
                     <h1 className={"text-xl md:text-2xl text-[#39442B] font-bold ml-2"}>
                         {header}

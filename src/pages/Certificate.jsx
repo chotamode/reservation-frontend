@@ -50,11 +50,11 @@ function Certificate() {
   };
 
   return (
-      <div className={"-mt-4 -md:pt-5 -md:mt-4"}>
+      <div>
         <TopNav/>
         <div className="bg-white p-7 sm:p-10 rounded-3xl my-10 font-roboto">
           <h1 className="text-2xl font-bold mb-5">Подарочные сертификаты на сеансы терапии</h1>
-          <p className={"bg-[#EDF2CF] border-[#EDF2CF] p-4 rounded-3xl text-base md:text-lg"}>Подарочные сертификаты на платформе METOD позволяют людям поддерживать себя или других в получении терапии.
+          <p>Подарочные сертификаты на платформе METOD позволяют людям поддерживать себя или других в получении терапии.
             Они подчеркивают личную ответственность за изменения в жизни и ценность самостоятельной оплаты своего роста.
             Иногда перемены приходят в нашу жизнь неожиданно, как подарок, и такие сертификаты — это значимый способ
             предложить этот подарок себе или другим. Сертификаты можно использовать позже, когда это будет
@@ -62,7 +62,7 @@ function Certificate() {
         </div>
         <div className="bg-white p-5 sm:p-10 rounded-3xl my-10 font-roboto w-full">
           <h1 className="text-2xl font-bold mb-4 sm:mb-7">Выберите свой подарочный сертификат</h1>
-          <div className="flex flex-col sm:flex-row gap-4 w-full pb-4 md:pb-0">
+          <div className="flex flex-col sm:flex-row gap-4 w-full">
             {certificates.map(certificate => (
                 <CertificateCard
                     key={certificate.price}
@@ -78,17 +78,17 @@ function Certificate() {
         <div className="bg-white p-10 rounded-3xl my-10 font-roboto">
           <h1 className="text-2xl font-bold mb-5">Как приобрести и использовать сертификат</h1>
           <ul className="list-none space-y-2">
-            <li className="relative pl-5 before:absolute before:-left-1 md:before:-left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
               Выберите свой предпочтительный сертификат из представленных вариантов.
             </li>
-            <li className="relative pl-5 before:absolute before:-left-1 md:before:-left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
               Нажмите на кнопку "Выбрать", чтобы продолжить покупку.
             </li>
-            <li className="relative pl-5 before:absolute before:-left-1 md:before:-left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
               Заполните форму, указав ваше имя и электронную почту, а затем нажмите кнопку оплаты, чтобы завершить
               покупку.
             </li>
-            <li className="relative pl-5 before:absolute before:-left-1 md:before:-left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
+            <li className="relative pl-5 before:absolute before:left-0 before:top-1/2 before:transform before:-translate-y-1/2 before:w-3 before:h-3 before:bg-[#D3DBA8] before:rounded-full">
               Вы получите электронное письмо с деталями сертификата, который можно использовать для будущих сеансов
               терапии на платформе METOD.
             </li>
@@ -100,12 +100,12 @@ function Certificate() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-3">
               <label htmlFor="name" className="font-bold">Имя</label>
-              <input type="text" id="name" name="name" placeholder={"Введите ваше имя"} className="rounded-lg border-2 border-gray-300 p-2"
+              <input type="text" id="name" name="name" className="rounded-lg border-2 border-gray-300 p-2"
                      value={formData.name} onChange={handleInputChange}/>
             </div>
             <div className="flex flex-col gap-3">
               <label htmlFor="email" className="font-bold">Email</label>
-              <input type="email" id="email" name="email" placeholder={"Введите ваш адрес электронной почты"} className="rounded-lg border-2 border-gray-300 p-2"
+              <input type="email" id="email" name="email" className="rounded-lg border-2 border-gray-300 p-2"
                      value={formData.email} onChange={handleInputChange}/>
             </div>
             <button type="submit" className="rounded-lg bg-[#D3DBA8] mt-5 mx-auto ml-0" disabled={loading}>

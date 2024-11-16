@@ -51,26 +51,29 @@ function LandingPage() {
     },];
 
     const emotionCardsData = [
-        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд.", icon: icon1, iconX: "80px", iconY: "3px" },
-        { index: 2, title: "Состояния души", description: "C родителями/партнерами", icon: icon2, iconX: "110px", iconY: "95px" },
+        { index: 1, title: "Эмоциональные состояния", description: "Агрессия, ревность, страх, апатия и тд.", icon: icon1, iconX: "130px", iconY: "10px" },
+        { index: 2, title: "Состояния души", description: "C родителями/партнерами", icon: icon2, iconX: "130px", iconY: "80px" },
         { index: 3, title: "Коммуникативные трудности", description: "Обидчивость, застенчивость,\n" +
-                "конфликтность и тд.", icon: icon3, iconX: "140px", iconY: "25px" },
+                "конфликтность и тд.", icon: icon3, iconX: "160px", iconY: "40px" },
         { index: 4, title: "Депрессивные, \n" +
                 "невротические \n" +
-                "состояния", description: "Личностные кризисы", icon: icon4, iconX: "180px", iconY: "110px" },
+                "состояния", description: "Личностные кризисы", icon: icon4, iconX: "180px", iconY: "100px" },
         { index: 5, title: "Психосоматические\n" +
-                "расстройства", description: "", icon: icon5, iconX: "160px", iconY: "105px" },
+                "расстройства", description: "", icon: icon5, iconX: "130px", iconY: "110px" },
         { index: 6, title: "Фобические\n" +
-                "расстройства", description: "Панические состояния", icon: icon6, iconX: "115px", iconY: "97px" },
-        { index: 7, title: "Зависимости", description: "В том числе и химические", icon: icon7, iconX: "155px", iconY: "25px" },
+                "расстройства", description: "Панические состояния", icon: icon6, iconX: "130px", iconY: "110px" },
+        { index: 7, title: "Зависимости", description: "В том числе и химические", icon: icon7, iconX: "130px", iconY: "10px" },
         { index: 8, title: "Работа с детьми \n" +
-                "и семьями", description: "", icon: icon8, iconX: "35px", iconY: "130px" },
+                "и семьями", description: "", icon: icon8, iconX: "60px", iconY: "130px" },
     ];
 
     return (
         <div className="">
             <div className="flex flex-col gap-8">
-                <div className={"-mt-4 -md:pt-5 -md:mt-4"}>
+                <div className="md:hidden">
+                    <button onClick={toggleDrawer} className="text-black">Menu</button>
+                </div>
+                <div className="hidden md:block">
                     <TopNav />
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
@@ -87,18 +90,18 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="mt-0 md:my-28 md:pt-0 w-full">
+            <div className="mt-0 md:my-32 md:pt-0">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
-            <div className="flex flex-row h-24 md:h-44 gap-5 -mb-3 md:mb-2 mt-12">
-                <span className="rounded-3xl bg-white border-greenDark w-full md:w-[75rem] flex items-center justify-center">
-                    <p className="font-bold text-lg">
-                        Запросы с которыми мы работаем:
+            <div className="flex flex-row h-40 md:h-56 py-9 -mb-5 md:mb-2 mt-7 ">
+                <span className="rounded-3xl bg-white border-greenDark w-full h-full flex items-center justify-center">
+                    <p className="font-bold">
+                        Запросы с которыми работаем:
                     </p>
                 </span>
             </div>
-            <div className="pt-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-5 h-auto md:h-custom-440">
+            <div className="">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 h-auto md:h-custom-440">
                     {emotionCardsData.map((card, index) => (
                         <EmotionCard
                             key={index}
@@ -112,7 +115,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            <div className={"mt-32 w-full px-4 md:px-0"}>
+            <div className={"mt-32"}>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -121,14 +124,14 @@ function LandingPage() {
                     <Carousel psychologists={psychologists}/>
                 )}
             </div>
-            <div className="flex h-40 md:h-44 w-full mb-24 mt-8 px-4 md:px-0">
+            <div className="flex h-40 w-full mb-24 mt-8">
             <BigButton
-                    text={"ЗАПИСАТЬСЯ"}
+                    text={"ОТКРЫТЬ ПОЛНЫЙ СПИСОК"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
                 />
             </div>
-            <div className={"w-full px-4 md:px-0"}>
+            <div className={""}>
                 <Footer />
             </div>
         </div>

@@ -54,7 +54,7 @@ function App() {
     return (
         <Router>
             <Layout>
-                <div className="w-full sm:w-[75rem] mx-auto md:w-[800px] lg:w-[1000px] xl:w-[1200px] py-6 md:py-10 px-4">
+                <div className="w-full max-w-[1200px] mx-auto py-10 px-4">
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
                         <Route path="/admin" element={user && isAdmin ? <AdminPage/> : <Navigate to="/"/>}/>

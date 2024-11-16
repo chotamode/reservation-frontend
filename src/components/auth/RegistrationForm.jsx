@@ -97,14 +97,10 @@ function RegistrationForm({ onClose, onOpenLogin }) {
                            value={formData.confirmPassword} onChange={handleChange} placeholder={"Подтвердите пароль"} required />
             </div>
 
-            {/*
-
             <div className="flex flex-row gap-2 items-center justify-center">
                 <input type="checkbox" id="terms" name="terms" value="terms" className="checkbox-circle" required />
                 <label htmlFor="terms" className="text-[#39442B] text-lg">Я ознакомлен с Политикой конфиденциальности и даю согласие на обработку персональных данных</label>
             </div>
-
-            */}
 
             <div className="flex flex-col gap-2 md:gap-7 items-center justify-between">
                 <AuthButton text="ЗАРЕГИСТРИРОВАТЬСЯ" onClick={handleSubmit} color="[#DBEAFE]" />

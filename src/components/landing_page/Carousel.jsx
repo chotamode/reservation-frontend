@@ -15,16 +15,15 @@ function Carousel({ psychologists }) {
 
     const getVisiblePsychologists = () => {
         const visiblePsychologists = [];
-        // На мобильных устройствах показываем одну карточку, на больших экранах — три
-        const numVisible = window.innerWidth < 768 ? 1 : 3;
-        for (let i = 0; i < numVisible; i++) {
+        for (let i = 0; i < 3; i++) {
             visiblePsychologists.push(psychologists[(currentIndex + i) % psychologists.length]);
         }
         return visiblePsychologists;
     };
 
     return (
-        <div className="bg-white rounded-3xl border-black w-full sm:rounded-3xl md:w-[75rem] h-full flex flex-col items-center justify-center p-14">
+        <div
+            className="bg-white rounded-3xl border-black w-full h-full flex flex-col items-center justify-center p-14">
             <div className="flex justify-between w-full items-center mb-4">
                 <h1 className="font-semibold font-raleway">
                     Мы поможем вам выбрать специалиста:
@@ -40,8 +39,7 @@ function Carousel({ psychologists }) {
                     </button>
                 </div>
             </div>
-            {/* Карусель */}
-            <div className="w-full h-[31.625rem] flex justify-center items-center space-x-6 mb-12 mt-4 md:mt-16">
+            <div className="w-full h-[31.625rem] flex justify-center items-center space-x-6 mb-12 mt-4">
                 {getVisiblePsychologists().map((psychologist, index) => (
                     <PsychologistCard key={index} psychologist={psychologist}/>
                 ))}

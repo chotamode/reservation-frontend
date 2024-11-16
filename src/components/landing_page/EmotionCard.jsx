@@ -3,7 +3,7 @@
 function EmotionCard({ index, title, description, icon, iconX, iconY }) {
     return (
         <span className="rounded-3xl bg-white border-greenDark w-full h-40 md:h-52 flex flex-col p-7 pr-12 relative font-montserrat font-normal">
-            <div className={"flex flex-col justify-between h-full w-3/4 p-3 md:p-2 text-left"}>
+            <div className={"flex flex-col justify-between h-full w-3/4 p-2 text-left"}>
             <p className={"font-montserrat font-bold text-customGreen"}>
                 / 0{index}
             </p>

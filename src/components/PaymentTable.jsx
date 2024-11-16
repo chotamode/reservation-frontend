@@ -29,22 +29,19 @@ export function PaymentTable({payments}) {
 
 
 
-    return (<div className="bg-[#DBEAFE] p-3 rounded-3xl font-roboto">
+    return (<div className="bg-[#DBEAFE] p-2 rounded-3xl font-roboto">
         <table className="min-w-full">
             <tbody>
             {payments.map((payment, index) => (
-                <tr key={index} className={`text-center  border-gray-300 ${getRowColor(payment.status)}`}>
-                    <td className="py-2 font-bold rounded-l-2xl">{payment.date}</td>
+                <tr key={index} className={`text-center border-t-1 border-gray-300 ${getRowColor(payment.status)} `}>
+                    <td className="py-2 font-bold">{payment.date}</td>
                     <td className="py-2">{payment.amount} ₽</td>
-                    <td className={`py-2 font-bold rounded-r-2xl ${getStatusTextColor(payment.status)}`}></td>
-                    <td className={`py-2 font-bold rounded-r-2xl ${getStatusTextColor(payment.status)}`}></td>
-                    <td className={`py-2 font-bold rounded-r-2xl ${getStatusTextColor(payment.status)}`}>
+                    <td className={`py-2 font-bold ${getStatusTextColor(payment.status)}`}>
                         {payment.status}
                     </td>
                 </tr>
             ))}
             </tbody>
         </table>
-    </div>
-);
+    </div>);
 }

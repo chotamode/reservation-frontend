@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import AuthModal from "../components/AuthModal.jsx";
 import useAuth from "../hooks/useAuth.js";
 import CustomDropdown from "../components/CustomDropdown.jsx";
-import { therapyTypes } from '../utils/constants/therapyTypes.js';
 
 function PsychologistCard2({ psychologist }) {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -21,10 +20,6 @@ function PsychologistCard2({ psychologist }) {
             setIsAuthModalOpen(true);
         }
     }
-
-    const getTherapyTypeDetails = (typeId) => {
-        return therapyTypes.find(type => type.id === typeId);
-    };
 
     return (
         <div className="bg-white p-4 md:p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
@@ -43,19 +38,12 @@ function PsychologistCard2({ psychologist }) {
                 <p className="text-gray-700 text-sm md:text-base">
                     {psychologist.mini_description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-4 md:mb-10">
-                    {psychologist.therapy_type.map((practice, index) => {
-                        const therapyType = getTherapyTypeDetails(practice);
-                        return (
-                            <span key={index} className="rounded-lg bg-[#D3DBA8] p-1 px-2 text-xs"
-                                  style={{
-                                      backgroundColor: therapyType ? therapyType.color : '#FFFFFF',
-                                  }}
-                            >
-                                {therapyType ? therapyType.name.ru : practice}
-                            </span>
-                        );
-                    })}
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-9">
+                    {psychologist.therapy_type.map((practice, index) => (
+                        <span key={index} className="rounded-lg bg-[#D3DBA8] p-1 px-2 text-xs">
+                            {practice}
+                        </span>
+                    ))}
                 </div>
             </div>
             <button
@@ -73,25 +61,29 @@ function ChoosePsychologist() {
     const { psychologists, loading, error } = useFetchPsychologists();
     const [selectedPractices, setSelectedPractices] = useState([]);
 
-    const handleCheckboxChange = (selectedOptions) => {
-        setSelectedPractices(selectedOptions);
-        console.log(selectedOptions);
+    const handleCheckboxChange = (practice) => {
+        setSelectedPractices((prevSelectedPractices) =>
+            prevSelectedPractices.includes(practice)
+                ? prevSelectedPractices.filter((p) => p !== practice)
+                : [...prevSelectedPractices, practice]
+        );
     };
 
-    const filteredPsychologists = psychologists.filter(psychologist => {
-        if (selectedPractices.length === 0) return true;
-        return selectedPractices.some(practice => psychologist.therapy_type.includes(practice));
-    });
+    const filteredPsychologists = psychologists.filter((psychologist) =>
+        selectedPractices.length === 0 ||
+        psychologist.therapy_type.some((practice) => selectedPractices.includes(practice))
+    );
 
     return (
-        <div className={"-mt-4 -md:pt-5 -md:mt-4"}>
+        <div>
             <TopNav />
             <div className="flex flex-col gap-5 my-9">
                 <h1 className="font-semibold font-[#39442B]">
                     Идеальный специалист для вас:
                 </h1>
+                {/* Custom dropdown with checkboxes */}
                 <CustomDropdown
-                    options={therapyTypes} // Use the English names from therapyTypes
+                    options={["CBT", "psychoanalysis", "gestalt", "humanistic"]}
                     selectedOptions={selectedPractices}
                     onChange={handleCheckboxChange}
                 />
@@ -104,7 +96,7 @@ function ChoosePsychologist() {
                     <div>Error: {error}</div>
                 ) : (
                     filteredPsychologists.map(psychologist => (
-                        <PsychologistCard2 key={psychologist.system_users.id} psychologist={psychologist} />
+                        <PsychologistCard2 key={psychologist.name} psychologist={psychologist} />
                     ))
                 )}
             </div>
