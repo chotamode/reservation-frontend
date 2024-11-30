@@ -91,7 +91,7 @@ function LandingPage() {
                 </div>
             </div>
             <div className="my-28">
-                <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
+                <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-raleway">METOD?</span></span>} />
             </div>
             <div className="flex flex-row h-44 gap-5 mb-5">
                 <span className="rounded-3xl bg-white border-greenDark w-[75rem] flex items-center justify-center">
