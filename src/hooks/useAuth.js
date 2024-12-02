@@ -43,10 +43,12 @@ function useAuth() {
         .select('id')
         .eq('id', userId)
         .single();
+      console.log(data);
       if (data) {
         setIsAdmin(true);
       }
     };
+    console.log('checkIfAdmin', isAdmin);
 
     getSession().then(r => r);
 
@@ -59,11 +61,14 @@ function useAuth() {
         localStorage.removeItem('supabaseSession');
         setIsPsychologist(false);
         setIsAdmin(false);
+        console.log('setIsAdmin', isAdmin);
+        console.log('setIsPsychologist', isPsychologist);
       }
       setSession(newSession);
       setUser(newSession?.user || null);
     });
 
+    console.log('checkIfAdmin2', isAdmin);
     return () => {
       if (authListener && authListener.subscription) {
         authListener.subscription.unsubscribe();
