@@ -9,6 +9,7 @@ function AuthModal({ isOpen, onClose }) {
     const [isLoginOpen, setIsLoginOpen] = useState(true);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [isPsychologistRegisterOpen, setIsPsychologistRegisterOpen] = useState(false);
+    const [header, setHeader] = useState('Вход в личный кабинет');
 
     useEffect(() => {
         if (!isOpen) {
@@ -18,6 +19,17 @@ function AuthModal({ isOpen, onClose }) {
         }
     }, [isOpen]);
 
+
+    useEffect(() => {
+        if (isLoginOpen) {
+            setHeader('Вход в личный кабинет');
+        } else if (isRegisterOpen) {
+            setHeader('Регистрация');
+        } else if (isPsychologistRegisterOpen) {
+            setHeader('Регистрация психолога');
+        }
+    }, [isLoginOpen, isRegisterOpen, isPsychologistRegisterOpen]);
+
     // Добавляем класс отступа сверху, если открыта форма для психологов
     const modalClass = isPsychologistRegisterOpen ? 'mt-20' : '';
 
@@ -25,11 +37,12 @@ function AuthModal({ isOpen, onClose }) {
         <Modal
             isOpen={isOpen}
             onClose={onClose}
-            header="Вход в личный кабинет"
-            marginRegForm={modalClass}  // Передаем класс для отступа
+            marginRegForm={modalClass} // Передаем класс для отступа
+            header={header}
         >
             {isLoginOpen && (
                 <LoginForm
+
                     onClose={onClose}
                     onOpenRegister={() => {
                         setIsLoginOpen(false);
@@ -41,6 +54,7 @@ function AuthModal({ isOpen, onClose }) {
                     }}
                 />
             )}
+
             {isRegisterOpen && (
                 <RegistrationForm
                     onClose={onClose}
@@ -53,6 +67,8 @@ function AuthModal({ isOpen, onClose }) {
             {isPsychologistRegisterOpen && (
                 <PsychologistRegistrationForm onClose={onClose} />
             )}
+
+
         </Modal>
     );
 }

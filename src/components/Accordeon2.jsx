@@ -34,7 +34,7 @@ function Accordeon2({ contentElements, header, className }) {
                         />
                     </div>
                     <div
-                        className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
+                        className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-[450px]' : 'max-h-0'}`}
                     >
                         <div className=" cursor-auto pt-4">
                             <p onClick={(e) => e.stopPropagation()}>{element.text}</p>

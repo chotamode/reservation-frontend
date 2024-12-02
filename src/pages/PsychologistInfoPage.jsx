@@ -105,7 +105,7 @@ function PsychologistInfoPage() {
 
             </div>
             <Footer/>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+            <Modal isOpen={isModalOpen} header="Выберите дату и время" onClose={handleCloseModal}>
                 <AppointmentWindow psychologistId={id} onSlotSelect={handleSlotSelect} />
             </Modal>
         </div>

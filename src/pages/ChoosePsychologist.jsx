@@ -26,6 +26,20 @@ function PsychologistCard2({ psychologist }) {
         return therapyTypes.find(type => type.id === typeId);
     };
 
+    const truncateText = (text, limit) => {
+        if (!text) return '';
+        if (text.length <= limit) return text;
+
+        // Обрезаем текст до предела
+        const truncated = text.slice(0, limit);
+
+        // Ищем последний пробел в обрезанной строке
+        const lastSpaceIndex = truncated.lastIndexOf(' ');
+
+        // Если пробел найден, обрезаем до него, иначе возвращаем как есть
+        return lastSpaceIndex > 0 ? `${truncated.slice(0, lastSpaceIndex)}...` : `${truncated}...`;
+    };
+
     return (
         <div className="bg-white p-5 rounded-3xl font-roboto drop-shadow-md flex flex-col h-full mb-5">
             <div className="flex flex-col gap-7 flex-grow">
@@ -41,7 +55,7 @@ function PsychologistCard2({ psychologist }) {
                     </div>
                 </div>
                 <p className="text-gray-700">
-                    {psychologist.mini_description}
+                    {truncateText(psychologist.mini_description, 300)}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-10">
                     {psychologist.therapy_type?.map((practice, index) => {

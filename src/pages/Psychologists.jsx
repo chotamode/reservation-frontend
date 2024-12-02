@@ -9,9 +9,7 @@ import Accordeon from "../components/landing_page/Accordeon.jsx";
 import PsychologistRegistrationForm from "../components/auth/PsychologistRegistrationForm.jsx";
 import FormField2 from "../components/auth/FormField2.jsx";
 import Modal from "../components/Modal.jsx";
-
-
-
+import PreRegistrationForm from "../components/auth/PreRegistrationForm.jsx";
 
 
 function Psychologists() {
@@ -180,6 +178,9 @@ function Psychologists() {
                     Давай познакомимся?
                 </h1>
 
+
+
+
                 {step === 1 && (
                     <form onSubmit={handleFirstFormSubmit} className="flex flex-col gap-4">
                         <div className="flex flex-row gap-4">
@@ -232,7 +233,6 @@ function Psychologists() {
                         </button>
                     </form>
                 )}
-
 
 
             </div>

@@ -29,7 +29,7 @@ function CustomDropdown({ options, selectedOptions, onChange }) {
                 <img
                     src={arrowIcon}
                     alt="Arrow Icon"
-                    className={`transform transition-transform duration-300 ${isOpen ? 'rotate-0' : 'rotate-90'}`}
+                    className={`transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
                 />
             </button>
             {isOpen && (
