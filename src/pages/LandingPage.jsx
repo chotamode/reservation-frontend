@@ -77,11 +77,11 @@ function LandingPage() {
                     <TopNav />
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
-                <div className="flex flex-grow flex-col gap-8 ">
-                    <div>
+                <div className="flex flex-grow flex-col gap-8 w-full h-full">
+                    <div className="flex h-auto w-full">
                         <Hero/>
                     </div>
-                    <div>
+                    <div className="flex h-48 md:h-52 w-full -mb-11">
                         <BigButton
                             text={"ЗАПИСАТЬСЯ"}
                             icon={<img src={Arrow} alt="Arrow" />}
@@ -90,10 +90,10 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="my-28">
+            <div className="mt-0 md:my-28 md:pt-0 w-full">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-raleway">METOD?</span></span>} />
             </div>
-            <div className="flex flex-row h-44 gap-5 mb-5">
+            <div className="flex flex-row h-24 md:h-44 gap-5 -mb-3 md:mb-5 mt-12">
                 <span className="rounded-3xl bg-white border-greenDark w-[75rem] flex items-center justify-center">
                     <p className="font-bold">
                         Запросы с которыми работаем:
@@ -120,7 +120,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            <div className={"mt-32"}>
+            <div className={"mt-32 w-full px-4 md:px-0"}>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -129,14 +129,14 @@ function LandingPage() {
                     <Carousel psychologists={psychologists}/>
                 )}
             </div>
-            <div className="flex h-44 mb-24 mt-8">
+            <div className="flex h-40 md:h-44 w-full mb-24 mt-8 px-4 md:px-0">
             <BigButton
                     text={"ЗАПИСАТЬСЯ"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
                 />
             </div>
-            <div className={""}>
+            <div className={"w-full px-4 md:px-0"}>
                 <Footer />
             </div>
         </div>

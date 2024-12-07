@@ -128,7 +128,7 @@ function PsychologistProfilePage() {
             <TopNav/>
 
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
-                <div>
+                <div>xw
                     <div className={"flex flex-row justify-between items-center mb-7"}>
                         <h1 className="text-2xl font-bold">
                             Добро пожаловать в личный кабинет, Мария!

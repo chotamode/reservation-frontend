@@ -14,17 +14,17 @@ function Accordeon({ contentElements, header }) {
     };
 
     return (
-        <div className="w-[75rem] space-y-4 bg-white rounded-3xl border-black pt-16 pb-20 px-20 relative">
+        <div className="w-full md:w-[75rem] space-y-4 bg-white rounded-3xl border-black pt-7 md:pt-16 pb-10 md:pb-20 px-4 md:px-20 relative">
             <div className="flex mb-8 flex-row h-16 items-end">
                 <AccordeonPerson className="h-full" />
-                <h1 className="text-xl ml-4 font-medium">
+                <h1 className="text-2xl md:text-xl ml-4 font-bold md:font-medium">
                     {header}
                 </h1>
             </div>
             {contentElements.map((element, index) => (
-                <div key={index} className="bg-greenLight border-black rounded-3xl">
+                <div key={index} className="bg-greenLight border-black rounded-3xl w-full">
                     <button
-                        className="w-full h-full text-left focus:outline-none flex justify-between items-center rounded-3xl p-7"
+                        className="w-full h-full text-left focus:outline-none flex justify-between items-center rounded-3xl p-4 md:p-7"
                         onClick={() => toggleAccordion(index)}
                     >
                         <h2 className="text-lg font-semibold">{element.title}</h2>
@@ -35,7 +35,7 @@ function Accordeon({ contentElements, header }) {
                     <div
                         className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
-                        <div className="px-7 pb-10">
+                        <div className="px-4 md:px-7 pb-4 md:pb-10">
                             <p>{element.text}</p>
                         </div>
                     </div>
