@@ -88,26 +88,32 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
     };
 
     return (
-        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-8 p-2 md:p-0" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
-                <div className="flex flex-row gap-2">
-                    <FormField2 id="name" label="Имя" type="text" placeholder="Имя" value={formData.name} onChange={handleChange} error={errors.name} />
-                    <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия" value={formData.surname} onChange={handleChange} error={errors.surname} />
-                    <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество" value={formData.patronymic} onChange={handleChange} error={errors.patronymic} />
+                <div className="flex flex-col md:flex-row gap-2">
+                    <FormField2 id="name" label="Имя" type="text" placeholder="Имя"/>
+                    <FormField2 id="surname" label="Фамилия" type="text" placeholder="Фамилия"/>
+                    <FormField2 id="patronymic" label="Отчество" type="text" placeholder="Отчество"/>
                 </div>
                 <div className="flex flex-col gap-6 items-start">
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-col md:flex-row gap-2">
                         <FormField2 id="birth_date" label="Дата рождения" type="date" placeholder="Дата рождения" value={formData.birth_date} onChange={handleChange} />
                         <FormField2 id="email" label="Email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} error={errors.email} />
                     </div>
-                    <div className="flex flex-row gap-2">
+                    <div className="flex flex-col md:flex-row gap-2">
                         <FormField2 id="password" label="Пароль" type="password" placeholder="Пароль" value={formData.password} onChange={handleChange} error={errors.password} />
                         <FormField2 id="password_confirmation" label="Подтверждение пароля" type="password" placeholder="Подтверждение пароля" value={formData.password_confirmation} onChange={handleChange} error={errors.password_confirmation} />
                     </div>
-                    <div className="mx-2 flex flex-col gap-1 form-field">
-                        <label className="flex items-center justify-center px-4 py-2 bg-[#D3DBA8] rounded-xl shadow-md cursor-pointer" htmlFor="profile_photo">
+                    <div className=" mx-2 flex flex-col gap-1 form-field">
+
+                        <label
+                            className=" flex items-center justify-center px-4 py-2 bg-[#D3DBA8] rounded-xl shadow-md cursor-pointer"
+                            htmlFor="profile_photo">
+
                             <span>Добавьте фото профиля</span>
-                            <input className="absolute w-32 opacity-0 cursor-pointer" id="profile_photo" type="file" accept="image/*" />
+                            <input className="absolute w-32 opacity-0 cursor-pointer" id="profile_photo" type="file"
+                                   accept="image/*"/>
+
                         </label>
                     </div>
                 </div>
@@ -121,36 +127,106 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Образование</h2>
                 {educationEntries.map((entry, index) => (
-                    <div key={index} className="education-entry flex flex-row gap-2">
-                        <FormField2 id={`degree-${index}`} label="Степень" type="text" placeholder="Степень" value={entry.degree} onChange={(e) => handleEducationChange(index, 'degree', e.target.value)} />
-                        <FormField2 id={`institution-${index}`} label="Учебное заведение" type="text" placeholder="Учебное заведение" value={entry.institution} onChange={(e) => handleEducationChange(index, 'institution', e.target.value)} />
-                        <FormField2 id={`graduationYear-${index}`} label="Год выпуска" type="date" placeholder="Год выпуска" value={entry.graduationYear} onChange={(e) => handleEducationChange(index, 'graduationYear', e.target.value)} />
+                    <div key={index} className="education-entry flex flex-col md:flex-row gap-2 ">
+                        <FormField2
+                            id={`degree-${index}`}
+                            label="Степень"
+                            type="text"
+                            placeholder="Степень"
+                            value={entry.degree}
+                            onChange={(e) => handleEducationChange(index, 'degree', e.target.value)}
+                        />
+                        <FormField2
+                            id={`institution-${index}`}
+                            label="Учебное заведение"
+                            type="text"
+                            placeholder="Учебное заведение"
+                            value={entry.institution}
+                            onChange={(e) => handleEducationChange(index, 'institution', e.target.value)}
+                        />
+                        <FormField2
+                            id={`graduationYear-${index}`}
+                            label="Год выпуска"
+                            type="date"
+                            placeholder="Год выпуска"
+                            value={entry.graduationYear}
+                            onChange={(e) => handleEducationChange(index, 'graduationYear', e.target.value)}
+                        />
                     </div>
                 ))}
                 <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddEducation}>Добавить</button>
             </div>
+
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Курсы профессионального развития</h2>
                 {courses.map((course, index) => (
-                    <div key={index} className="course-entry flex flex-row gap-2">
-                        <FormField2 id={`position-${index}`} label="Ваша должность" type="text" placeholder="Ваша должность" value={course.position} onChange={(e) => handleCourseChange(index, 'position', e.target.value)} />
-                        <FormField2 id={`organization-${index}`} label="Организация" type="text" placeholder="Организация" value={course.organization} onChange={(e) => handleCourseChange(index, 'organization', e.target.value)} />
-                        <FormField2 id={`duration-${index}`} label="Срок" type="text" placeholder="Срок" value={course.duration} onChange={(e) => handleCourseChange(index, 'duration', e.target.value)} />
+                    <div key={index} className="course-entry flex flex-col md:flex-row gap-2">
+                        <FormField2
+                            id={`position-${index}`}
+                            label="Ваша должность"
+                            type="text"
+                            placeholder="Ваша должность"
+                            value={course.position}
+                            onChange={(e) => handleCourseChange(index, 'position', e.target.value)}
+                        />
+                        <FormField2
+                            id={`organization-${index}`}
+                            label="Организация"
+                            type="text"
+                            placeholder="Организация"
+                            value={course.organization}
+                            onChange={(e) => handleCourseChange(index, 'organization', e.target.value)}
+                        />
+                        <FormField2
+                            id={`duration-${index}`}
+                            label="Срок"
+                            type="text"
+                            placeholder="Срок"
+                            value={course.duration}
+                            onChange={(e) => handleCourseChange(index, 'duration', e.target.value)}
+                        />
                     </div>
                 ))}
                 <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddCourse}>Добавить</button>
             </div>
+
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Опыт работы</h2>
+                {/*Введите вашу должность*/}
+                {/*Введите название организации*/}
+                {/*Введите даты работы*/}
                 {workExperience.map((entry, index) => (
-                    <div key={index} className="work-entry flex flex-row gap-2">
-                        <FormField2 id={`position-${index}`} label="Ваша должность" type="text" placeholder="Ваша должность" value={entry.position} onChange={(e) => handleWorkExperienceChange(index, 'position', e.target.value)} />
-                        <FormField2 id={`organization-${index}`} label="Организация" type="text" placeholder="Организация" value={entry.organization} onChange={(e) => handleWorkExperienceChange(index, 'organization', e.target.value)} />
-                        <FormField2 id={`duration-${index}`} label="Срок" type="text" placeholder="Срок" value={entry.duration} onChange={(e) => handleWorkExperienceChange(index, 'duration', e.target.value)} />
+                    <div key={index} className="work-entry flex flex-col md:flex-row gap-2">
+                        <FormField2
+                            id={`position-${index}`}
+                            label="Ваша должность"
+                            type="text"
+                            placeholder="Ваша должность"
+                            value={entry.position}
+                            onChange={(e) => handleWorkExperienceChange(index, 'position', e.target.value)}
+                        />
+                        <FormField2
+                            id={`organization-${index}`}
+                            label="Организация"
+                            type="text"
+                            placeholder="Организация"
+                            value={entry.organization}
+                            onChange={(e) => handleWorkExperienceChange(index, 'organization', e.target.value)}
+                        />
+                        <FormField2
+                            id={`duration-${index}`}
+                            label="Срок"
+                            type="text"
+                            placeholder="Срок"
+                            value={entry.duration}
+                            onChange={(e) => handleWorkExperienceChange(index, 'duration', e.target.value)}
+                        />
                     </div>
                 ))}
                 <button className="w-32 h-10 bg-[#D3DBA8] rounded-2xl mt-6" type="button" onClick={handleAddWorkExperience}>Добавить</button>
             </div>
+
+            {/*    типы клиентов*/}
             <div className="flex flex-col gap-1 items-start justify-center">
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы клиентов</h2>
                 <div className="flex flex-row gap-1 items-center">
@@ -162,31 +238,32 @@ function PsychologistRegistrationForm({ onClose, onOpenRegister }) {
                     <label htmlFor="couples">Пары</label>
                 </div>
                 <div className="flex flex-row gap-1 items-center">
-                    <input className="cursor-pointer" type="checkbox" id="child" name="child" />
+                    <input className="cursor-pointer" type="checkbox" id="child" name="child"/>
                     <label htmlFor="child">Дети</label>
                 </div>
             </div>
+            {/*типы терапии которые вы используете в работе*/}
             <div>
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы терапии которые вы используете в работе</h2>
-                <div className="grid grid-cols-5 gap-x-2 gap-y-1 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-x-11 gap-y-1 md:gap-x-2 md:gap-y-1 text-base md:text-sm">
                     {therapyTypes.map((type) => (
-                        <div className="flex flex-row gap-1 items-center" key={type.id}>
+                        <div className="flex md:flex-row gap-1 items-center" key={type.id}>
                             <input className="cursor-pointer" type="checkbox" id={type.id} name={type.id} />
                             <label htmlFor={type.id}>{type.name.ru}</label>
                         </div>
                     ))}
                 </div>
             </div>
-            <div className="flex flex-col gap-1 items-start justify-center">
+            <div className="flex flex-col gap-1 items-start justify-center gap-y-2 ">
                 <h2 className="font-roboto font-semibold text-xl my-2">Типы каких платформ для коммуникации с клиентами вам удобнее всего использовать?</h2>
                 {communicationChannels.map((channel) => (
-                    <div className="flex flex-row gap-1 items-center" key={channel.id}>
+                    <div className="flex flex-row gap-2 items-center" key={channel.id}>
                         <input className="cursor-pointer" type="checkbox" id={channel.id} name={channel.id} />
                         <label htmlFor={channel.id}>{channel.name}</label>
                     </div>
                 ))}
             </div>
-            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto w-full" type="submit">
+            <button className="rounded-lg bg-[#D3DBA8] my-8 mx-auto h-[4rem] w-full" type="submit">
                 <p className="text-black p-2">Присоединиться к команде</p>
             </button>
         </form>

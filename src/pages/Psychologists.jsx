@@ -154,7 +154,7 @@ function Psychologists() {
                 </div>
             </div>
 
-            <div className="bg-white text-black p-10 rounded-3xl  mb-10 font-raleway flex flex-col gap-5 border-black">
+            <div className="bg-white text-black p-4 md:p-10 rounded-3xl  mb-10 font-raleway flex flex-col gap-5 border-black">
                 <h1 className={"text-2xl font-semibold"}>
                     Доброго дня, драгоценный профессионал своего дела!
                 </h1>

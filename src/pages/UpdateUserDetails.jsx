@@ -69,7 +69,7 @@ function UpdateUserDetails() {
             Добро пожаловать в ваш профиль, Ольга!
           </h1>
           <div className={"flex flex-row items-center"}>
-            <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-20 w-20"/>
+            <img src="https://via.placeholder.com/150" alt="User Avatar" className="rounded-full h-24 w-24 md:h-20 md:w-20"/>
             <label className={"rounded-xl bg-[#E5E7EB] px-7 h-10 flex items-center ml-5 cursor-pointer"}>
               <span>Сменить аватар</span>
               <input type="file" accept="image/*" onChange={handleFileChange} className="hidden"/>
@@ -160,7 +160,7 @@ function UpdateUserDetails() {
 
 function creditCard(cardNumber, expiryDate, paymentSystem) {
   return (
-      <div className={"border-gray-300 border-1 rounded-md flex flex-row justify-between p-6"}>
+      <div className={"border-gray-300 border-1 rounded-md flex flex-col md:flex-row justify-between p-6"}>
         <div>
           <p className={"font-semibold"}>{paymentSystem} **** {cardNumber}</p>
           <p>Окончание: {expiryDate}</p>

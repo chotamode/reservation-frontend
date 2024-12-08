@@ -7,11 +7,10 @@ import useAuth from "../hooks/useAuth.js";
 function CertificateCard({ price, description, onSelect, selected }) {
   return (
       <div
-          className={`flex flex-col p-5 rounded-xl w-1/4 ${selected ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'}`}
-
+          className={`flex flex-col p-5 sm:p-4 md:p-5 rounded-xl w-full sm:w-1/2 md:w-1/3 lg:w-1/4 max-w-xs mx-auto  ${selected ? 'bg-[#E9EFC8]' : 'bg-[#DEECFF]'}`}
       >
-        <h2 className="text-2xl font-bold mb-5 mx-auto">{price.toLocaleString()} ₽</h2>
-        <p className="text-center">{description}</p>
+        <h2 className="text-xl sm:text-lg md:text-xl font-bold mb-5 mx-auto">{price.toLocaleString()} ₽</h2>
+        <p className="text-center text-sm sm:text-base">{description}</p>
         <button className="rounded-lg bg-[rgba(0,0,0,0.1)] mt-5 mx-auto" onClick={() => onSelect(price)}>
           <p className="text-black p-2">Выбрать</p>
         </button>
@@ -53,7 +52,7 @@ function Certificate() {
   return (
       <div>
         <TopNav/>
-        <div className="bg-white p-10 rounded-3xl my-10 font-roboto">
+        <div className="bg-white p-7 sm:p-10 rounded-3xl my-10 font-roboto">
           <h1 className="text-2xl font-bold mb-5">Подарочные сертификаты на сеансы терапии</h1>
           <p>Подарочные сертификаты на платформе METOD позволяют людям поддерживать себя или других в получении терапии.
             Они подчеркивают личную ответственность за изменения в жизни и ценность самостоятельной оплаты своего роста.
@@ -61,9 +60,9 @@ function Certificate() {
             предложить этот подарок себе или другим. Сертификаты можно использовать позже, когда это будет
             необходимо.</p>
         </div>
-        <div className="bg-white p-10 rounded-3xl my-10 font-roboto">
-          <h1 className="text-2xl font-bold mb-5">Выберите свой подарочный сертификат</h1>
-          <div className="flex flex-row gap-4 w-full">
+        <div className="bg-white p-5 sm:p-10 rounded-3xl my-10 font-roboto w-full">
+          <h1 className="text-2xl font-bold mb-4 sm:mb-7">Выберите свой подарочный сертификат</h1>
+          <div className="flex flex-col sm:flex-row gap-4 w-full">
             {certificates.map(certificate => (
                 <CertificateCard
                     key={certificate.price}

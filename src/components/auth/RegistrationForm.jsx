@@ -48,9 +48,9 @@ function RegistrationForm({ onClose, onOpenLogin }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded mx-44 gap-7 flex flex-col">
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded mx-4 sm:mx-8 md:mx-44 gap-7 flex flex-col">
             {errors.form && <p className="text-red-500 text-center">{errors.form}</p>}
-            <div className="flex flex-row gap-2 justify-between w-full">
+            <div className="flex flex-col sm:flex-row gap-2 justify-between w-full">
                 <FormField id="name" label="Имя" type="text" value={formData.name} onChange={handleChange}
                            placeholder={"Ваше имя"} error={errors.name} required />
                 <FormField id="surname" label="Фамилия" type="text" value={formData.surname} onChange={handleChange}
@@ -58,7 +58,7 @@ function RegistrationForm({ onClose, onOpenLogin }) {
                 <FormField id="patronymic" label="Отчество" type="text" value={formData.patronymic}
                            onChange={handleChange} placeholder={"Отчество"} error={errors.patronymic} />
             </div>
-            <div className={"grid grid-cols-2 gap-x-10 gap-y-7"}>
+            <div className={"grid grid-cols-1 sm:grid-cols-2 gap-x-10 sm:gap-x-10 gap-y-2 sm:gap-y-7"}>
                 <FormField id="birth_date" label="Дата рождения" type="date" value={formData.birth_date}
                            onChange={handleChange} placeholder={"Дата рождения"} required
                 />
@@ -74,7 +74,7 @@ function RegistrationForm({ onClose, onOpenLogin }) {
                            value={formData.confirmPassword} onChange={handleChange} placeholder={"Подтвердите пароль"} error={errors.confirmPassword} required />
             </div>
 
-            <div className="flex flex-col gap-7 items-center justify-between">
+            <div className="flex flex-col gap-2 md:gap-7 items-center justify-between">
                 <AuthButton text="ЗАРЕГИСТРИРОВАТЬСЯ" onClick={handleSubmit} color="[#DBEAFE]" />
                 <AuthButton text="ВОЙТИ" onClick={onOpenLogin} />
             </div>

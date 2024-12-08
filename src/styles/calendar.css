@@ -25,6 +25,18 @@
     color: black !important;
 }
 
+/* Mobile styles */
+@media (max-width: 768px) {
+    .react-calendar {
+        font-size: 0.875rem; /* Smaller font size */
+        padding: 0.5rem; /* Add padding */
+    }
+
+    .react-calendar__tile--selected {
+        border-width: 2px; /* Thicker border for better visibility */
+    }
+}
+
 .react-calendar {
     width: 250px;
     max-width: 100%;

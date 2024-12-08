@@ -1,4 +1,3 @@
-// src/pages/PsychologistInfoPage.jsx
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -47,25 +46,29 @@ function PsychologistInfoPage() {
     if (!psychologist) return <div>Error: Psychologist not found</div>;
 
     return (
-        <div>
+        <div >
             <TopNav />
-            <div className="grid grid-cols-4 gap-4 my-4 rounded-3xl items-center h-full font-roboto">
-                <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-col font-roboto items-center w-full justify-center">
-                    <img src={psychologist.system_users.image || defaultImage} alt="psychologist" className="rounded-full w-40 h-40 filter grayscale object-cover" />
-                    <h1 className="text-3xl font-bold">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4 my-4 pt-10 md:pt-0 rounded-3xl items-center h-full font-roboto">
+                <div className="bg-white rounded-3xl col-span-1 h-full mx-auto flex flex-row md:flex-col font-roboto items-center w-full justify-center p-7 md:p-3 mb-1 md:mb-0">
+                    <div className="flex flex-row md:flex-col items-center w-full">
+                    <img src={psychologist.system_users.image || defaultImage} alt="psychologist" className="rounded-full w-24 h-24 md:w-40 md:h-40 filter grayscale object-cover mb-20 -mt-4 md:mt-0 " />
+                    <div className={"ml-4 md:ml-0 mt-0 md:mt-4"}>
+                    <h1 className="text-2xl md:text-3xl font-bold">
                         {psychologist.system_users.name} {psychologist.system_users.surname} {psychologist.system_users.patronymic}
                     </h1>
-                    <h3 className="text-xl font-normal text-[#4B5563]">Психолог</h3>
-                    <div className="my-16">
+                    <h3 className="text-lg md:text-xl font-normal text-[#4B5563]">Психолог</h3>
+                    <div className="my-8 md:my-16 text-left w-full">
                         <p>{psychologist.system_users.email}</p>
                         <p>{psychologist.system_users.tg_username}</p>
                     </div>
+                    </div>
+                </div>
                 </div>
 
-                <div className="bg-white rounded-3xl col-span-3 h-full gap-4 p-9 flex flex-col font-roboto">
+                <div className="bg-white rounded-3xl col-span-3 h-full gap-3 p-5 md:p-9 flex flex-col font-roboto mt-10 md:pt-0">
                     <div>
-                        <h2 className="text-xl font-bold mb-2">Биография</h2>
-                        <p className="text-lg font-normal text-[#374151]">
+                        <h2 className="text-xl font-bold mb-4">Биография:</h2>
+                        <p className="text-lg font-normal text-[#374151] bg-[#EDF2CF] border-[#EDF2CF] rounded-3xl p-3">
                             {psychologist.biography}
                         </p>
                     </div>
@@ -89,8 +92,8 @@ function PsychologistInfoPage() {
                     </div>
                 </div>
             </div>
-            <div className="bg-white rounded-3xl h-full gap-4 p-9 flex flex-col font-roboto mb-5">
-                <h2 className="text-xl font-bold mb-2">Свободные временные интервалы</h2>
+            <div className="bg-white rounded-3xl h-full gap-2 p-5 md:p-9 flex flex-col font-roboto mb-12 mt-14">
+                <h2 className="text-xl font-bold mb-5 md:mb-2">Свободные временные интервалы:</h2>
                 <div className={"flex flex-row justify-between items-center"}>
                     <div className={"flex flex-row gap-2"}>
                         {nearestSlots.map(slot => (
