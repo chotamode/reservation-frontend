@@ -93,9 +93,9 @@ function LandingPage() {
             <div className="mt-0 md:my-28 md:pt-0">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
-            <div className="flex flex-row h-40 md:h-44 gap-5 py-9 -mb-5 md:mb-2 mt-7 "> {/*возможно придется пофиксить*/}
-                <span className="rounded-3xl bg-white border-greenDark w-[75rem] flex items-center justify-center">
-                    <p className="font-bold">
+            <div className="flex flex-col md:flex-row w-full h-auto md:h-44 gap-5 py-9 -mb-5 md:mb-2 mt-7 "> {/*возможно придется пофиксить*/}
+                <span className=" rounded-3xl bg-white border-greenDark p-10 w-full md:w-[75rem] flex items-center justify-center">
+                    <p className="font-bold ">
                         Запросы с которыми работаем:
                     </p>
                 </span>
@@ -105,8 +105,8 @@ function LandingPage() {
                 {/*    onClick={handleOpenFullList}*/}
                 {/*/>*/}
             </div>
-            <div className=""> {/*возможно стоит добавить w-[75rem]*/}
-                <div className="grid grid-cols-4 gap-5 h-custom-440">
+            <div className="w-full md:w-[75rem]"> {/*возможно стоит добавить w-[75rem]*/}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-5 h-auto md:h-custom-440">
                     {emotionCardsData.map((card, index) => (
                         <EmotionCard
                             key={index}
@@ -120,7 +120,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            <div className={"mt-32"}>
+            <div className={"mt-10 md:mt-32 w-full"}>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -136,7 +136,7 @@ function LandingPage() {
                     onClick={handleNavigateToSelectPsychologist}
                 />
             </div>
-            <div className={""}>
+            <div className={"w-full"}>
                 <Footer />
             </div>
         </div>

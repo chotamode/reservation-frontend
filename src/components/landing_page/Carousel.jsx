@@ -23,18 +23,18 @@ function Carousel({ psychologists }) {
 
     return (
         <div
-            className="bg-white rounded-3xl border-black w-full h-full flex flex-col items-center justify-center p-14">
-            <div className="flex justify-between w-full items-center mb-4">
-                <h1 className="font-semibold font-raleway">
+            className="bg-white rounded-3xl border-black w-full h-full flex flex-col items-center justify-center p-4 md:p-14">
+            <div className="flex flex-col md:flex-row justify-between w-full items-center mb-4">
+                <h1 className="font-semibold font-raleway text-center md:text-left">
                     Мы поможем вам выбрать специалиста:
                 </h1>
-                <div className="flex justify-center gap-5">
+                <div className="flex justify-center gap-2 md:gap-5 mt-4 md:mt-0">
                     <button onClick={handlePrev}
-                            className="w-12 h-12 border-1 border-black rounded-lg mx-1 flex items-center justify-center">
+                            className="w-10 h-10 md:w-12 md:h-12 border-1 border-black rounded-lg mx-1 flex items-center justify-center">
                         <PaginationArrow/>
                     </button>
                     <button onClick={handleNext}
-                            className="w-12 h-12 border-1 border-black rounded-lg mx-1 flex items-center justify-center">
+                            className="w-10 h-10 md:w-12 md:h-12 border-1 border-black rounded-lg mx-1 flex items-center justify-center">
                         <PaginationArrow className="transform rotate-180"/>
                     </button>
                 </div>

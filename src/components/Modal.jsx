@@ -28,8 +28,8 @@ function Modal({ isOpen, onClose, children, header, marginRegForm}) {
 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center  z-50">
-            <div className={`bg-white p-6 rounded-3xl border-1 border-black relative w-full max-w-[90%] md:w-[1200px] mx-auto py-4 md:py-14 px-3 sm:px-10 md:px-20 max-h-[90vh] md:max-h-full scrollbar-hide overflow-y-auto ${marginRegForm}`}>
-                <div className="flex flex-row justify-between items-center mb-6 md:mb-12">
+            <div className={`bg-white p-4 md:p-6 rounded-3xl border-1 border-black relative w-full max-w-[90%] md:w-[1200px] mx-auto py-4 md:py-14 px-3 sm:px-10 md:px-20 max-h-[90vh] md:max-h-full scrollbar-hide overflow-y-auto ${marginRegForm}`}>
+                <div className="flex flex-col md:flex-row justify-between items-center mb-4 md:mb-12">
                     <h1 className="text-xl md:text-2xl text-[#39442B] font-bold ml-0">
                         {header}
                     </h1>

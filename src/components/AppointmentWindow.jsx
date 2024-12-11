@@ -52,10 +52,10 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
 
     return (
 
-            <div className="flex py-8 w-full justify-between flex-row ">
-                    <div className="flex w-[600px] flex-row">
+            <div className="flex flex-col md:flex-row py-4 md:py-8 w-full justify-between  ">
+                    <div className="flex flex-row w-full md:w-[600px]">
 
-                        <div className="flex w-1/2 flex-col">
+                        <div className="flex w-full md:w-1/2 flex-col">
                             <h2 className="mb-2 ml-2 font-bold text-lg">
                                 Календарь
                             </h2>
@@ -68,13 +68,13 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
                         </div>
 
 
-                        <div className="flex flex-col w-1/2">
+                        <div className="flex flex-col w-full md:w-1/2">
 
                             <h2 className="text-xl font-bold mb-2">Свободное время</h2>
 
                             <div className="border-1 rounded-lg p-4">
                                 {/*<h2 className="text-xl font-bold mb-4">Available Slots on {selectedDate?.toISOString().split('T')[0]}</h2>*/}
-                                <ul className="h-80">
+                                <ul className="h-60 md:h-80">
                                     {availableSlots.length > 0 ? (
                                         availableSlots.map((slot) => (
                                             <li key={slot.id} className="mb-2">
@@ -109,9 +109,9 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
                     </div>
 
 
-                <div className="flex flex-col w-1/2">
+                <div className="flex flex-col w-full md:w-1/2">
 
-                    <div className="flex flex-col gap-6 max-w-[445px]">
+                    <div className="flex flex-col gap-6 max-w-full md:max-w-[445px]">
 
                         <div className="flex flex-col ">
 
@@ -141,7 +141,7 @@ function AppointmentWindow({ psychologistId, onSlotSelect, onClose }) {
 
                     <div className="flex w-full h-10 justify-center mt-4">
                         <button
-                            className="bg-[#D3DBA8] w-80 rounded-xl"
+                            className="bg-[#D3DBA8] w-full md:w-80 rounded-xl"
                             onClick={onClose}
                         >
                             Записаться

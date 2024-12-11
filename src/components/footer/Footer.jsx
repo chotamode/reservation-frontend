@@ -13,7 +13,7 @@ const socialMediaData = [
 function Footer() {
     return (
         <footer
-            className="rounded-3xl bg-[#BEC598] text-white w-[75rem]"
+            className="rounded-3xl bg-[#BEC598] text-white w-full md:w-[75rem]"
         >
             <div className="flex flex-col items-center justify-center py-4">
                 <div className="w-14 h-14 my-12">
@@ -40,10 +40,10 @@ function Footer() {
 
                 {/* Rules, Offer, User Agreement Links */}
                 <div className="w-full md:w-[85%]">
-                    <div className="flex flex-col sm:flex-row justify-between items-center mt-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-center mt-0 md:mt-4">
                         <a
                             href="/rules"
-                            className="flex flex-row items-center text-sm sm:text-base -mb-1 sm:mb-0 font-bold text-greenDark"
+                            className="flex flex-row items-center text-sm sm:text-base mb-1 sm:mb-0 font-bold text-greenDark"
                         >
                             ПРАВИЛА МЕТОДА
                             <Arrow className="ml-1" />
@@ -51,7 +51,7 @@ function Footer() {
 
                         <a
                             href="/pdfs/offer.pdf"
-                            className="flex flex-col sm:flex-row items-center text-sm sm:text-base mb-1 sm:mb-0 font-bold text-greenDark"
+                            className="flex flex-row items-center text-sm sm:text-base mb-1 sm:mb-0 font-bold text-greenDark"
                         >
                             ОФЕРТА
                             <Arrow className="ml-1" />

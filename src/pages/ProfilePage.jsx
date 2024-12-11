@@ -194,19 +194,19 @@ function ProfilePage() {
                 <button className={"rounded-3xl bg-[#E9EFC8]"} onClick={handleNewConsultationClick}>
                     <div className={"flex flex-row gap-2 justify-center py-6"}>
                         <img src={newConsultationIcon} alt="New Consultation Icon"/>
-                        <p>Записаться на новую консультацию</p>
+                        <p className="text-lg md:text-base">Записаться на новую консультацию</p>
                     </div>
                 </button>
                 <button className={"rounded-3xl bg-[#39442B]"} onClick={handleBuySubscriptionClick}>
                     <div className={"flex flex-row gap-2 justify-center py-6 text-white"}>
                         <img src={starIcon} alt="Star Icon"/>
-                        <p>Купить абонемент</p>
+                        <p className="text-lg md:text-base">Купить абонемент</p>
                     </div>
                 </button>
                 <button className={"rounded-3xl bg-[#EEE8E3]"} onClick={handleGiftCertificateClick}>
                     <div className={"flex flex-row gap-2 justify-center py-6"}>
                         <img src={giftIcon} alt="Gift Icon"/>
-                        <p>Подарочный сертификат</p>
+                        <p className="text-lg md:text-base">Подарочный сертификат</p>
                     </div>
                 </button>
             </div>
@@ -246,9 +246,9 @@ function ProfilePage() {
 function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, rescheduleLoading, cancelLoading, rescheduleError, cancelError) {
     if (upcomingSessions.length === 0) {
         return (
-            <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
+            <div className="bg-white p-9 md:p-10 rounded-3xl my-10 font-roboto flex flex-col gap-0 md:gap-2">
                 <h1 className="text-2xl font-bold mb-5">Предстоящие сессии</h1>
-                <p>Пока что новых резерваций нет</p>
+                <p className="text-lg md:text-base">Пока что новых резерваций нет</p>
             </div>
         );
     }
@@ -260,7 +260,7 @@ function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, resc
             </h1>
             <div className={"flex flex-col gap-2 overflow-auto max-h-96"}>
                 {upcomingSessions.map((session) => (
-                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-row justify-between ${getStatusColor(session.status)}`}>
+                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-col md:flex-row justify-between ${getStatusColor(session.status)}`}>
                         <div className={"flex flex-col gap-1"}>
                             <h3 className={"font-bold"}>{new Date(session.slots[0].time).toLocaleString('ru-RU', {
                                 year: 'numeric',
@@ -273,7 +273,7 @@ function upcomingSessions(upcomingSessions, handleReschedule, handleCancel, resc
                             <p>{session.status}</p>
                         </div>
                         {session.status !== 'finished' && (
-                            <div className={"flex flex-row gap-5"}>
+                            <div className={"flex flex-col md:flex-row gap-5"}>
                                 <button onClick={() => handleReschedule(session.id, session.slots[0].psychologists.id)} disabled={rescheduleLoading} className={"bg-[#D3DBA8] rounded-xl my-auto py-2 px-4"}>
                                     Перенести
                                 </button>
@@ -296,7 +296,7 @@ function finishedSessions(canceledSessions, finishedSessions) {
         return (
             <div className="bg-white p-10 rounded-3xl my-10 font-roboto flex flex-col gap-2">
                 <h1 className="text-2xl font-bold mb-5">Завершенные сессии</h1>
-                <p>Пока что завершенных сессий нет</p>
+                <p className="text-lg md:text-base">Пока что завершенных сессий нет</p>
             </div>
         );
     }
@@ -329,7 +329,7 @@ function finishedSessions(canceledSessions, finishedSessions) {
             </h1>
             <div className={"flex flex-col gap-2 overflow-auto max-h-96"}>
                 {combinedSessions.map((session) => (
-                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-row justify-between ${getStatusColor(session.reservation?.status)}`}>
+                    <div key={session.id} className={`rounded-3xl p-5 w-full flex flex-col md:flex-row justify-between ${getStatusColor(session.reservation?.status)}`}>
                         <div className={"flex flex-col gap-1"}>
                             <h3 className={"font-bold"}>{new Date(session.slots.time).toLocaleString('ru-RU', {
                                 year: 'numeric',
