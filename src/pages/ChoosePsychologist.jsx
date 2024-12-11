@@ -98,32 +98,34 @@ function ChoosePsychologist() {
     });
 
     return (
-        <div>
-            <TopNav />
-            <div className="flex flex-col gap-5 my-9">
-                <h1 className="font-semibold font-[#39442B]">
-                    Идеальный специалист для вас:
-                </h1>
-                <CustomDropdown
-                    options={therapyTypes} // Use the English names from therapyTypes
-                    selectedOptions={selectedPractices}
-                    onChange={handleCheckboxChange}
-                />
-            </div>
+        <div className="flex flex-col justify-center items-center px-4 md:px-0">
+            <div className="w-full md:w-[75rem]">
+                <TopNav />
+                <div className="flex flex-col gap-5 my-9">
+                    <h1 className="font-semibold text-[#39442B]">
+                        Идеальный специалист для вас:
+                    </h1>
+                    <CustomDropdown
+                        options={therapyTypes} // Use the English names from therapyTypes
+                        selectedOptions={selectedPractices}
+                        onChange={handleCheckboxChange}
+                    />
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-                {loading ? (
-                    <div>Loading...</div>
-                ) : error ? (
-                    <div>Error: {error}</div>
-                ) : (
-                    filteredPsychologists.map(psychologist => (
-                        <PsychologistCard2 key={psychologist.system_users.id} psychologist={psychologist} />
-                    ))
-                )}
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : error ? (
+                        <div>Error: {error}</div>
+                    ) : (
+                        filteredPsychologists.map(psychologist => (
+                            <PsychologistCard2 key={psychologist.system_users.id} psychologist={psychologist} />
+                        ))
+                    )}
+                </div>
 
-            <Footer />
+                <Footer />
+            </div>
         </div>
     );
 }

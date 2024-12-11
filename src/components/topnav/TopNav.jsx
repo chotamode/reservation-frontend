@@ -53,8 +53,8 @@ function TopNav({showDropDownMenu}) {
     return (
         <>
             {/* Навигация для ПК */}
-            <nav className="bg-white shadow-lg p-4 rounded-3xl flex items-center h-28 hidden md:flex">
-                <div className="flex-grow flex items-center w-full justify-between text-sm p-9">
+            <nav className="bg-white shadow-lg rounded-3xl items-center h-28 hidden md:flex">
+                <div className="flex-grow flex items-center w-full md:w-[75rem] justify-between text-sm p-9">
                     <Link to="/">
                         <img src={Logo} alt="Logo" className="" />
                     </Link>

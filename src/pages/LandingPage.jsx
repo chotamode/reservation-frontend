@@ -78,7 +78,7 @@ function LandingPage() {
                 </div>
                 <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
                 <div className="flex flex-grow flex-col gap-5 md:gap-8 w-full h-full">
-                    <div className="flex h-auto w-full">
+                    <div className="flex h-auto w-full ">
                         <Hero/>
                     </div>
                     <div className="flex h-48 md:h-52 w-full -mb-11">
@@ -90,12 +90,12 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
-            <div className="mt-0 md:my-28 md:pt-0">
+            <div className="mt-0 md:mt-28 md:pt-0">
                 <Accordeon contentElements={contentElements} header={<span>ХОТИТЕ УЗНАТЬ БОЛЬШЕ О <span className="font-kodchasan">METOD</span></span>} />
             </div>
             <div className="flex flex-col md:flex-row w-full h-auto md:h-44 gap-5 py-9 -mb-5 md:mb-2 mt-7 "> {/*возможно придется пофиксить*/}
-                <span className=" rounded-3xl bg-white border-greenDark p-10 w-full md:w-[75rem] flex items-center justify-center">
-                    <p className="font-bold ">
+                <span className=" rounded-3xl bg-white border-greenDark p-14 w-full md:w-[75rem] flex items-center justify-center">
+                    <p className="font-bold text-lg ">
                         Запросы с которыми работаем:
                     </p>
                 </span>
@@ -105,7 +105,7 @@ function LandingPage() {
                 {/*    onClick={handleOpenFullList}*/}
                 {/*/>*/}
             </div>
-            <div className="w-full md:w-[75rem]"> {/*возможно стоит добавить w-[75rem]*/}
+            <div className="w-full md:w-[75rem]">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-5 h-auto md:h-custom-440">
                     {emotionCardsData.map((card, index) => (
                         <EmotionCard
@@ -120,7 +120,7 @@ function LandingPage() {
                     ))}
                 </div>
             </div>
-            <div className={"mt-10 md:mt-32 w-full"}>
+            <div className={"mt-10 md:mt-24 w-full md:w-[75rem]"}>
                 {loading ? (
                     <div>Loading...</div>
                 ) : error ? (
@@ -129,14 +129,14 @@ function LandingPage() {
                     <Carousel psychologists={psychologists}/>
                 )}
             </div>
-            <div className="flex h-44 w-full mb-24 mt-8">
+            <div className="flex h-44 w-full md:w-[75rem] mb-24 mt-8">
             <BigButton
                     text={"ЗАПИСАТЬСЯ"}
                     icon={<img src={Arrow} alt="Arrow" />}
                     onClick={handleNavigateToSelectPsychologist}
                 />
             </div>
-            <div className={"w-full"}>
+            <div className={"w-full md:w-[75rem]"}>
                 <Footer />
             </div>
         </div>

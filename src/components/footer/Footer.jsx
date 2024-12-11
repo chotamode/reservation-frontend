@@ -67,7 +67,7 @@ function Footer() {
                     </div>
 
                     {/* Business Information */}
-                    <p className="font-inter text-[#7D7D7D] font-normal mt-4 text-center sm:text-left text-xs sm:text-base px-9">
+                    <p className="font-inter text-[#7D7D7D] font-normal mt-8 text-center sm:text-left text-xs sm:text-base px-9">
                         Индивидуальный предприниматель Вахитов-Брук Руслан Эмилевич ИНН 165808340907 ГРНИП
                         324169000184999 Расч. сч. 40802810429930006967 БИК 042202824 Кор. сч. 30101810200000000824
                     </p>

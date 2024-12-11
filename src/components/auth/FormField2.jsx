@@ -5,7 +5,7 @@ function FormField2({ id, label, type, value, onChange, placeholder, isCustomInp
     const [isFocused, setIsFocused] = useState(false);
     return (
         <div className="relative">
-            <label className="p-3" htmlFor={id}>
+            <label className="p-2 md:p-3 text-lg md:text-base" htmlFor={id}>
                 {label}
             </label>
             {isTextarea ? (
@@ -38,7 +38,7 @@ function FormField2({ id, label, type, value, onChange, placeholder, isCustomInp
                     required
                 />
             )}
-            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {error && <p className="text-red-500 text-lg md:text-sm mt-1">{error}</p>}
         </div>
     );
 }

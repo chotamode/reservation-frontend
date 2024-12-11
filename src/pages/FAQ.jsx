@@ -119,14 +119,16 @@ const questions = [
 
 function FAQ({ questions }) {
     return (
-        <div>
-            <TopNav/>
-            <Accordeon2
-                header={"Часто задаваемые вопросы о консультациях"}
-                contentElements={questions}
-                className="my-12"
-            />
-            <Footer/>
+        <div className="flex flex-col justify-center items-center px-4 md:px-0">
+            <div className="w-full md:w-[75rem]">
+                <TopNav />
+                <Accordeon2
+                    header={"Часто задаваемые вопросы о консультациях"}
+                    contentElements={questions}
+                    className="my-12"
+                />
+                <Footer />
+            </div>
         </div>
     );
 }

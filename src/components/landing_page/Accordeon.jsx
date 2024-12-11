@@ -14,7 +14,7 @@ function Accordeon({ contentElements, header }) {
     };
 
     return (
-        <div className="w-full md:w-[75rem] space-y-4 bg-white rounded-3xl border-black p-6 md:p-28 relative">
+        <div className="w-full md:w-[75rem] space-y-6 bg-white rounded-3xl border-black p-6 md:p-20 relative">
             <div className="flex flex-row h-16 items-end">
                 <AccordeonPerson className="h-full" />
                 <h1 className="text-xl ml-4 font-bold">
@@ -27,7 +27,7 @@ function Accordeon({ contentElements, header }) {
                         className="w-full h-full text-left focus:outline-none flex justify-between items-center rounded-3xl p-4 md:p-7"
                         onClick={() => toggleAccordion(index)}
                     >
-                        <h2 className="text-lg font-semibold">{element.title}</h2>
+                        <h2 className="text-xl md:text-lg font-semibold">{element.title}</h2>
                         <ArrowIcon
                             className={`transform transition-transform ${openIndices.includes(index) ? 'rotate-180' : 'rotate-0'}`}
                         />
@@ -35,7 +35,7 @@ function Accordeon({ contentElements, header }) {
                     <div
                         className={`transition-all duration-700 ease-in-out overflow-hidden ${openIndices.includes(index) ? 'max-h-96' : 'max-h-0'}`}
                     >
-                        <div className="px-4 md:px-7 pb-4 md:pb-10">
+                        <div className="px-4 md:px-7 pb-4 md:pb-10 text-lg md:text-base">
                             <p>{element.text}</p>
                         </div>
                     </div>

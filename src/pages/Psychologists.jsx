@@ -133,118 +133,106 @@ function Psychologists() {
 
 
     return (
-        <div>
-            <div className="flex flex-col h-[38rem] gap-8 ">
-                <div className="md:hidden">
-                    <button onClick={toggleDrawer} className="text-black">Menu</button>
-                </div>
-                <div className="hidden md:block">
-                    <TopNav/>
-                </div>
-                <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer}/>
-                <div className="flex flex-grow flex-col gap-8 w-full h-full">
-                    <div className="flex h-[25.5rem] w-full">
-                        <Hero/>
+        <div className="flex flex-col justify-center items-center px-4 md:px-0">
+            <div className="w-full md:w-[75rem]">
+                <div className="flex flex-col mb-14 w-full justify-center items-center gap-8">
+                    <div className="md:hidden">
+                        <button onClick={toggleDrawer} className="text-black">Menu</button>
                     </div>
-
-                    {/*<div className="flex h-1/4 w-full">
-                        <BigButton text={"ЗАПИСАТЬСЯ"} icon={<img src={Arrow} alt="Arrow"/>}/>
+                    <div className="hidden md:block w-full">
+                        <TopNav />
                     </div>
-                    */}
-                </div>
-            </div>
-
-            <div className="bg-white text-black p-4 md:p-10 rounded-3xl  mb-10 font-raleway flex flex-col gap-5 border-black">
-                <h1 className={"text-2xl font-semibold"}>
-                    Доброго дня, драгоценный профессионал своего дела!
-                </h1>
-                <p>Приглашаем Вас Присоединиться к нашему уникальному бутиковому сервису по подбору и поиску психологов
-                    «МЕТОД» и открыть новые расширяющие горизонты в своей практике и росте.</p>
-            </div>
-
-            <div className="my-16">
-                <Accordeon contentElements={contentElements}/>
-            </div>
-
-            <div className="bg-white text-black p-10 rounded-3xl  mb-16 font-raleway flex flex-col gap-5 border-black">
-                <p className="text-2xl font-bold">
-                    Готовы открыть новые горизонты в своей практике? Присоединяйтесь к нам!
-                    Вместе мы сделаем мир лучше.
-                </p>
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl mb-20 font-roboto flex flex-col gap-2 border-black">
-                <h1 className="text-2xl font-bold mb-5">
-                    Давай познакомимся?
-                </h1>
-
-
-
-
-                {step === 1 && (
-                    <form onSubmit={handleFirstFormSubmit} className="flex flex-col gap-4">
-                        <div className="flex flex-row gap-4">
-
-                            <FormField2
-                                id="name"
-                                label="Имя"
-                                type="text"
-                                placeholder="Введите ваше имя"
-                                value={formData.name}
-                                onChange={handleInputChange}
-                            />
-
-                            <FormField2
-                                id="surname"
-                                label="Фамилия"
-                                type="text"
-                                placeholder="Введите вашу фамилию"
-                                value={formData.surname}
-                                onChange={handleInputChange}
-                            />
-
-                            <FormField2
-                                id="patronymic"
-                                label="Отчество"
-                                type="text"
-                                placeholder="Введите ваше отчество"
-                                value={formData.patronymic}
-                                onChange={handleInputChange}
-                            />
+                    <Drawer isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+                    <div className="flex flex-grow flex-col gap-5 md:gap-8 w-full h-full">
+                        <div className="flex h-auto w-full">
+                            <Hero />
                         </div>
-                        <FormField2
-                            id="phone"
-                            label="Номер телефона"
-                            type="tel"
-                            placeholder="Введите ваш номер телефона"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                        />
-                        <FormField2
-                            id="email"
-                            label="Mail"
-                            type="email"
-                            placeholder="Введите ваш адрес электронной почты"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                        />
-                        <button type="submit" className="bg-[#D3DBA8] text-black mt-6 py-2 px-6 rounded-lg mx-auto">
-                            Отправить
-                        </button>
-                    </form>
+                    </div>
+                </div>
+
+                <div className="bg-white text-black p-6 md:p-10 rounded-3xl mb-10 font-raleway flex flex-col gap-5 border-black">
+                    <h1 className="text-2xl font-bold md:font-semibold">
+                        Доброго дня, драгоценный профессионал своего дела!
+                    </h1>
+                    <p className="text-xl md:text-base">Приглашаем Вас Присоединиться к нашему уникальному бутиковому сервису по подбору и поиску психологов
+                        «МЕТОД» и открыть новые расширяющие горизонты в своей практике и росте.</p>
+                </div>
+
+                <div className="my-16">
+                    <Accordeon contentElements={contentElements} />
+                </div>
+
+                <div className="bg-white text-black p-10 rounded-3xl mb-16 font-raleway flex flex-col gap-5 border-black">
+                    <p className="text-2xl font-bold text-center">
+                        Готовы открыть новые горизонты в своей практике? <br/>Присоединяйтесь к нам!
+                        Вместе мы сделаем мир лучше.
+                    </p>
+                </div>
+
+                <div className="bg-white p-10 rounded-3xl mb-20 font-roboto flex flex-col gap-2 border-black">
+                    <h1 className="text-2xl font-bold mb-5">
+                        Давай познакомимся?
+                    </h1>
+
+                    {step === 1 && (
+                        <form onSubmit={handleFirstFormSubmit} className="flex flex-col gap-4">
+                            <div className="flex flex-col md:flex-row gap-4">
+                                <FormField2
+                                    id="name"
+                                    label="Имя"
+                                    type="text"
+                                    placeholder="Введите ваше имя"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                />
+                                <FormField2
+                                    id="surname"
+                                    label="Фамилия"
+                                    type="text"
+                                    placeholder="Введите вашу фамилию"
+                                    value={formData.surname}
+                                    onChange={handleInputChange}
+                                />
+                                <FormField2
+                                    id="patronymic"
+                                    label="Отчество"
+                                    type="text"
+                                    placeholder="Введите ваше отчество"
+                                    value={formData.patronymic}
+                                    onChange={handleInputChange}
+                                />
+                            </div>
+                            <FormField2
+                                id="phone"
+                                label="Номер телефона"
+                                type="tel"
+                                placeholder="Введите ваш номер телефона"
+                                value={formData.phone}
+                                onChange={handleInputChange}
+                            />
+                            <FormField2
+                                id="email"
+                                label="Mail"
+                                type="email"
+                                placeholder="Введите ваш адрес электронной почты"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                            />
+                            <button type="submit" className="bg-[#D3DBA8] text-black text-xl md:text-base font-bold mt-6 py-4 md:py-2 px-14 md:px-6 rounded-xl mx-auto">
+                                Отправить
+                            </button>
+                        </form>
+                    )}
+                </div>
+
+                <Footer />
+
+                {isModalOpen && (
+                    <Modal isOpen={isModalOpen} onClose={handleCloseModal} header="Регистрация психолога">
+                        <PsychologistRegistrationForm formData={formData} />
+                    </Modal>
                 )}
-
-
             </div>
-
-            <Footer/>
-
-            {isModalOpen && (
-                <Modal isOpen={isModalOpen} onClose={handleCloseModal} header="Регистрация психолога">
-                    <PsychologistRegistrationForm formData={formData} />
-                </Modal>
-            )}
-
         </div>
     );
 }
